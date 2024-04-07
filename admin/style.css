@@ -1,0 +1,222 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap');
+
+.root{
+    --main-color:#318BFF;
+    --background-blue:#D4E6FD;
+    --black:#222;
+    --white:#ffff;
+    --light-white:#fff9;
+    --light-grey:#6B6969;
+
+}
+
+*{
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    text-decoration: none;
+}
+
+.container{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    padding-bottom: 60px;
+}
+
+.container .content{
+    text-align: center;
+}
+
+.container .content h3{
+    font-size: 30px;
+    color: #222;
+}
+
+.container .content h3 span{
+    background: #318BFF;
+    color: #ffff;
+    border-radius: 5px;
+    padding: 0 15px;
+}
+
+.container .content h1{
+    font-size: 50px;
+    color: #222;
+}
+
+.container .content h1 span{
+    color: #318BFF;
+}
+
+.container .content p{
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.container .content .btn{
+    display: inline-block;
+    padding: 10px 30px;
+    font-size: 20px;
+    background: #222;
+    color: #ffff;
+    margin: 0 5px;
+    text-transform: capitalize;
+}
+
+.container .content .btn:hover{
+    background: #318BFF;
+}
+
+
+
+
+
+
+
+
+/*register_form*/
+.form-container{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    padding-bottom: 60px;
+    background: #eee;
+}
+
+.form-container form{
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 1);
+    background: #ffff;
+    text-align: center;
+    width: 500px
+}
+
+.form-container form h3{
+    font-size: 30px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.form-container form input,
+.form-container form select{
+    width: 100%;
+    padding: 10px 15px;
+    font-size: 17px;
+    margin: 8px 0;
+    background: #eee;
+    border-radius: 5px;
+}
+
+.form-container form select option{
+    background: #ffff;
+}
+
+.form-container form .form-btn{
+    background: #318BFF;
+    color: #ffff;
+    text-transform: capitalize;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.form-container form .form-btn:hover{
+    background: #D4E6FD;
+    color: #318BFF;
+}
+
+.form-container form p{
+    margin-top: 10px;
+    font-size: 20px;
+    color: #333;
+}
+
+.form-container form p a{
+    color: #318BFF;
+}
+
+.form-container form .error_msg{
+    margin: 10px 0;
+    display: block;
+    background: #318BFF;
+    color: #ffff;
+    border-radius: 5px;
+    font-size: 20px;
+    padding: 10px;
+}
+
+
+
+
+
+
+
+
+.content_list{
+    margin: 20px 0 10px;
+}
+
+.content_list .p{
+    font-size: 1.1rem;
+}
+
+.content_list .requirement-list{
+    margin-top: 20px;
+}
+
+.requirement-list li{
+    list-style: none;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.requirement-list li i{
+    font-size: 0.6rem;
+    color: #aaa;
+    width: 20px;
+}
+
+.requirement-list li.valid i{
+    font-size: 1.2rem;
+    color: #318BFF;
+}
+
+.requirement-list li span{
+    margin-left: 12px;
+}
+
+.requirement-list li.valid span{
+    color: #999;
+}
+
+.forgot p{
+    text-align: left;
+}
+
+.forgot a{
+    font-size: 0.9rem;
+}
+
+/* Add this CSS to style the error message */
+.error_msg {
+    color: red; /* Set the text color to red */
+    background-color: white; /* Set the background color to white */
+    padding: 5px; /* Add some padding for better appearance */
+}
+
+/*  forgot-password css  */
+
+
+
+/*  forgot-password css  */
