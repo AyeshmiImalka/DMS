@@ -20,7 +20,7 @@ include('includes/header.php');
                 <div class="row">
                     <div class="col-md-8 col-sm-12">
                         <div class="title">
-                            <h4>Manufacturing Centers Database Table</h4>
+                            <h4>Drug Stores Database Table</h4>
                         </div>
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
@@ -63,7 +63,7 @@ include('includes/header.php');
                             </thead>
                             <tbody>
                                 <?php
-                                $sql = "SELECT * FROM manufacturingcenters_db";
+                                $sql = "SELECT * FROM drugstores_db";
                                 $result = mysqli_query($conn, $sql);
 
                                 if (mysqli_num_rows($result) > 0) {
@@ -116,7 +116,7 @@ include('includes/header.php');
             <?php include('includes/footer.php');?>
 			
             <script>
-                $(document).ready(function() {
+               $(document).ready(function() {
     $('.delete-btn').click(function() {
         var id = $(this).data('id');
         Swal.fire({
@@ -159,6 +159,12 @@ include('includes/header.php');
         });
     });
 });
+    // Script for edit button
+    $('.edit-btn').click(function() {
+        var id = $(this).data('id');
+        // You can perform edit operation here, maybe redirect to edit page or show a modal
+        console.log('Edit button clicked for ID: ' + id);
+    });
 
                     // Script for edit button
                     $('.edit-btn').click(function() {
@@ -166,7 +172,6 @@ include('includes/header.php');
                         // You can perform edit operation here, maybe redirect to edit page or show a modal
                         console.log('Edit button clicked for ID: ' + id);
                     });
-                
 
 				// Add an event listener for the search input
 $('#DataTables_Table_2_filter input').on('input', function() {

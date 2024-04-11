@@ -29,7 +29,7 @@
 		<script src="assets/src/plugins/datatables/js/pdfmake.min.js"></script>
 		<script src="assets/src/plugins/datatables/js/vfs_fonts.js"></script>
 		<!-- Datatable Setting js -->
-		<script src="assets/vendors/scripts/datatable-setting.js"></script>
+		<script src="assets/vendor/scripts/datatable-setting.js"></script>
 
  <!-- Google Tag Manager (noscript) -->
  <noscript><iframe

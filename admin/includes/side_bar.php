@@ -33,21 +33,21 @@
 							<ul class="submenu">
 								<li><a href="manufacturingDB.php">Private Ayurvedic Manufacturing Centers</a></li>
 								<li>
-									<a href="#">Private Ayurvedic Drug Stores</a>
+									<a href="drugStoresDB.php">Private Ayurvedic Drug Stores</a>
 								</li>
-								<li><a href="#">Private Ayurvedic Pharmacies</a></li>
-								<li><a href="#">Transport Services</a></li>
-								<li><a href="#">Suppliers</a></li>
-								<li><a href="#">Distributors</a></li>
-								<li><a href="#">Local Ayurveda Drugs</a></li>
-								<li><a href="#">Local Ayurveda Products</a></li>
-								<li><a href="#">Imported Ayurveda Drugs</a></li>
-								<li><a href="#">Imported Ayurveda Products</a></li>
-								<li><a href="#">Restricted Drugs</a></li>
-								<li><a href="#">Cannabies</a></li>
-								<li><a href="#">Private Ayurveda Hospitals</a></li>
-								<li><a href="#">Panchakarma Centers</a></li>
-								<li><a href="#">Private Ayurvedic Institutions/ Service Institutions</a></li>
+								<li><a href="pharmaciesDB.php">Private Ayurvedic Pharmacies</a></li>
+								<li><a href="transportDB.php">Transport Services</a></li>
+								<li><a href="suppliersDB.php">Suppliers</a></li>
+								<li><a href="distributorsDB.php">Distributors</a></li>
+								<li><a href="localDrugsDB.php">Local Ayurveda Drugs</a></li>
+								<li><a href="localProductsDB.php">Local Ayurveda Products</a></li>
+								<li><a href="importedDrugsDB.php">Imported Ayurveda Drugs</a></li>
+								<li><a href="importedProductsDB.php">Imported Ayurveda Products</a></li>
+								<li><a href="restrictedDrugsDB.php">Restricted Drugs</a></li>
+								<li><a href="cannabiesDB.php">Cannabies</a></li>
+								<li><a href="hospitalsDB.php">Private Ayurveda Hospitals</a></li>
+								<li><a href="panchakarmaCentersDB.php">Panchakarma Centers</a></li>
+								<li><a href="institutionsDB.php">Private Ayurvedic Institutions/ Service Institutions</a></li>
 							</ul>
 						</li>
 						<li class="dropdown">
@@ -82,7 +82,7 @@
 							</a>
 						</li>
 						<li class="dropdown">
-							<a href="javascript:;" class="dropdown-toggle">
+							<a href="javascript:;" class="dropdown-toggle ">
 								<span class="micon bi bi-pie-chart"></span
 								><span class="mtext"> Reports </span>
 							</a>
@@ -93,74 +93,40 @@
 							</ul>
 						</li>
 						<li class="dropdown">
-							<a href="javascript:;" class="dropdown-toggle">
+							<a href="javascript:;" class="dropdown-toggle no-arrow">
 								<span class="micon bi bi-command"></span
 								><span class="mtext">Advertisements</span>
 							</a>
-							<ul class="submenu">
-								<li><a href="bootstrap-icon.html">Bootstrap Icons</a></li>
-								<li><a href="font-awesome.html">FontAwesome Icons</a></li>
-								<li><a href="foundation.html">Foundation Icons</a></li>
-								<li><a href="ionicons.html">Ionicons Icons</a></li>
-								<li><a href="themify.html">Themify Icons</a></li>
-								<li><a href="custom-icon.html">Custom Icons</a></li>
-							</ul>
+							
 						</li>
 						<li class="dropdown">
-							<a href="javascript:;" class="dropdown-toggle">
+							<a href="javascript:;" class="dropdown-toggle no-arrow">
 								<span class="micon bi bi-arrow-down-circle"></span
 								><span class="mtext">Downloads</span>
 							</a>
-							<ul class="submenu">
-								<li><a href="highchart.html">Highchart</a></li>
-								<li><a href="knob-chart.html">jQuery Knob</a></li>
-								<li><a href="jvectormap.html">jvectormap</a></li>
-								<li><a href="apexcharts.html">Apexcharts</a></li>
-							</ul>
+							
 						</li>
 						<li class="dropdown">
-							<a href="javascript:;" class="dropdown-toggle">
+							<a href="javascript:;" class="dropdown-toggle no-arrow">
 								<span class="micon bi bi-gear"></span
 								><span class="mtext">Settings</span>
 							</a>
-							<ul class="submenu">
-								<li><a href="video-player.html">Video Player</a></li>
-								<li><a href="login.html">Login</a></li>
-								<li><a href="forgot-password.html">Forgot Password</a></li>
-								<li><a href="reset-password.html">Reset Password</a></li>
-							</ul>
+							
 						</li>
 						<li class="dropdown">
-							<a href="javascript:;" class="dropdown-toggle">
+							<a href="javascript:;" class="dropdown-toggle no-arrow">
 								<span class="micon bi bi-question-circle"></span
 								><span class="mtext">Support</span>
 							</a>
-							<ul class="submenu">
-								<li><a href="400.html">400</a></li>
-								<li><a href="403.html">403</a></li>
-								<li><a href="404.html">404</a></li>
-								<li><a href="500.html">500</a></li>
-								<li><a href="503.html">503</a></li>
-							</ul>
+							
 						</li>
 
 						<li class="dropdown">
-							<a href="javascript:;" class="dropdown-toggle">
+							<a href="javascript:;" class="dropdown-toggle no-arrow">
 								<span class="micon bi bi-box-arrow-right"></span
 								><span class="mtext">Logout</span>
 							</a>
-							<ul class="submenu">
-								<li><a href="blank.html">Blank</a></li>
-								<li><a href="contact-directory.html">Contact Directory</a></li>
-								<li><a href="blog.html">Blog</a></li>
-								<li><a href="blog-detail.html">Blog Detail</a></li>
-								<li><a href="product.html">Product</a></li>
-								<li><a href="product-detail.html">Product Detail</a></li>
-								<li><a href="faq.html">FAQ</a></li>
-								<li><a href="profile.html">Profile</a></li>
-								<li><a href="gallery.html">Gallery</a></li>
-								<li><a href="pricing-table.html">Pricing Tables</a></li>
-							</ul>
+							
 						</li>
 
 					</ul>
