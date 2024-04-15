@@ -63,7 +63,24 @@ include('includes/header.php');
                             </thead>
                             <tbody>
                                 <?php
-                                $sql = "SELECT * FROM drugstores_db";
+                                // Query to get total number of records
+                                $sql_count = "SELECT COUNT(*) AS total_records FROM importeddrugs_db ";
+                                $result_count = mysqli_query($conn, $sql_count);
+                                $row_count = mysqli_fetch_assoc($result_count);
+                                $total_records = $row_count['total_records'];
+
+                                // Set the number of records per page
+                                $records_per_page = 50;
+
+                                // Calculate total number of pages
+                                $total_pages = ceil($total_records / $records_per_page);
+
+                                // Determine current page
+                                $page = isset($_GET['page']) ? $_GET['page'] : 1;
+
+                                // Calculate the starting record for the query
+                                $offset = ($page - 1) * $records_per_page;
+                                $sql = "SELECT * FROM drugstores_db LIMIT $offset, $records_per_page";
                                 $result = mysqli_query($conn, $sql);
 
                                 if (mysqli_num_rows($result) > 0) {
@@ -89,24 +106,28 @@ include('includes/header.php');
                             </tbody>
                         </table>
                             </div>
-                        <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_2_paginate">
-                            <ul class="pagination">
-                                <li class="paginate_button page-item previous disabled" id="DataTables_Table_2_previous">
-                                    <a href="#" aria-controls="DataTables_Table_2" data-dt-idx="0" tabindex="0" class="page-link">
-                                        <i class="bi bi-chevron-left"></i>
-                                    </a>
-                                </li>
-                                <li class="paginate_button page-item active">
-                                    <a href="#" aria-controls="DataTables_Table_2" data-dt-idx="1" tabindex="0" class="page-link">1</a>
-                                </li>
-                                <li class="paginate_button page-item ">
-                                    <a href="#" aria-controls="DataTables_Table_2" data-dt-idx="2" tabindex="0" class="page-link">2</a>
-                                </li>
-                                <li class="paginate_button page-item next" id="DataTables_Table_2_next">
-                                    <a href="#" aria-controls="DataTables_Table_2" data-dt-idx="3" tabindex="0" class="page-link">
-                                        <i class="bi bi-chevron-right"></i>
-                                    </a>
-                                </li>
+                            <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_2_paginate">
+                            <!-- Render pagination links -->
+<ul class="pagination">
+<?php if ($page > 1 || $total_pages > 1) : ?>
+        <li class="page-item <?php echo $page == 1 ? 'disabled' : ''; ?>">
+            <a class="page-link" href="?page=<?php echo $page - 1; ?>" <?php echo $page == 1 ? 'tabindex="-1" aria-disabled="true"' : ''; ?>>
+                <i class="bi bi-chevron-left"></i>
+            </a>
+        </li>
+    <?php endif; ?>
+
+    <?php for ($i = 1; $i <= $total_pages; $i++) : ?>
+        <li class="page-item <?php echo $i == $page ? 'active' : ''; ?>"><a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+    <?php endfor; ?>
+
+    <?php if ($page < $total_pages || $total_pages > 1) : ?>
+        <li class="page-item <?php echo $page == $total_pages ? 'disabled' : ''; ?>">
+            <a class="page-link" href="?page=<?php echo $page + 1; ?>" <?php echo $page == $total_pages ? 'tabindex="-1" aria-disabled="true"' : ''; ?>>
+                <i class="bi bi-chevron-right"></i>
+            </a>
+        </li>
+    <?php endif; ?>
                             </ul>
                         </div>
                     </div>

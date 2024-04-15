@@ -20,7 +20,7 @@
 				<div class="sidebar-menu">
 					<ul id="accordion-menu">
 						<li class="dropdown">
-							<a href="admin_page.php" class="dropdown-toggle no-arrow">
+							<a href="dashboard.php" class="dropdown-toggle no-arrow">
 								<span class="micon bi bi-speedometer2"></span
 								><span class="mtext">Dashboard</span>
 							</a>

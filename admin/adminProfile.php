@@ -4,8 +4,7 @@ session_start();
 
 if(!isset($_SESSION['admin_name'])){
     header('location:login_form.php');
-}
- 
+} 
 ?>
 
 
@@ -13,6 +12,7 @@ if(!isset($_SESSION['admin_name'])){
 include('includes/header.php');
 
 ?>
+
 
 <div class="main-container">
 			<div class="pd-ltr-20 xs-pd-20-10">
@@ -178,127 +178,68 @@ include('includes/header.php');
 										<div class="tab-content">
 										
 											
-												<div class="profile-setting">
-													<form>
-														<ul class="profile-edit-list row">
-															<li class="weight-500 col-md-6">
-																<h4 class="text-blue h5 mb-20">
-																	Edit Your Personal Setting
-																</h4>
-																<div class="form-group">
-																	<label>Full Name</label>
-																	<input
-																		class="form-control form-control-lg"
-																		type="text"
-																	/>
-																</div>
-																<div class="form-group">
-																	<label>Title</label>
-																	<input
-																		class="form-control form-control-lg"
-																		type="text"
-																	/>
-																</div>
-																<div class="form-group">
-																	<label>Email</label>
-																	<input
-																		class="form-control form-control-lg"
-																		type="email"
-																	/>
-																</div>
-																
-																<div class="form-group">
-																	<label>Postal Code</label>
-																	<input
-																		class="form-control form-control-lg"
-																		type="text"
-																	/>
-																</div>
-																<div class="form-group">
-																	<label>Phone Number</label>
-																	<input
-																		class="form-control form-control-lg"
-																		type="text"
-																	/>
-																</div>
-																<div class="form-group">
-																	<label>Address</label>
-																	<textarea class="form-control"></textarea>
-																</div>
-																
-																<div class="form-group">
-																	<div
-																		class="custom-control custom-checkbox mb-5"
-																	>
-																		<input
-																			type="checkbox"
-																			class="custom-control-input"
-																			id="customCheck1-1"
-																		/>
-																		<label
-																			class="custom-control-label weight-400"
-																			for="customCheck1-1"
-																			>I agree to receive notification
-																			emails</label
-																		>
-																	</div>
-																</div>
-																<div class="form-group mb-0">
-																	<input
-																		type="submit"
-																		class="btn btn-primary"
-																		value="Update Information"
-																	/>
-																</div>
-															</li>
-															<li class="weight-500 col-md-6">
-																<h4 class="text-blue h5 mb-20">
-																	Edit Social Media links
-																</h4>
-																<div class="form-group">
-																	<label>Facebook URL:</label>
-																	<input
-																		class="form-control form-control-lg"
-																		type="text"
-																		placeholder="Paste your link here"
-																	/>
-																</div>
-																<div class="form-group">
-																	<label>Twitter URL:</label>
-																	<input
-																		class="form-control form-control-lg"
-																		type="text"
-																		placeholder="Paste your link here"
-																	/>
-																</div>
-																<div class="form-group">
-																	<label>Linkedin URL:</label>
-																	<input
-																		class="form-control form-control-lg"
-																		type="text"
-																		placeholder="Paste your link here"
-																	/>
-																</div>
-																<div class="form-group">
-																	<label>Instagram URL:</label>
-																	<input
-																		class="form-control form-control-lg"
-																		type="text"
-																		placeholder="Paste your link here"
-																	/>
-																</div>
-																
-																<div class="form-group mb-0">
-																	<input
-																		type="submit"
-																		class="btn btn-primary"
-																		value="Save & Update"
-																	/>
-																</div>
-															</li>
-														</ul>
-													</form>
-												</div>
+												
+                                                <form action="update-profile-process.php" method="post" enctype="multipart/form-data">
+		<div class="profile-setting">
+			<ul class="profile-edit-list row">
+				<li class="weight-500 col-md-6">
+					<h4 class="text-blue h5 mb-20">
+						Edit Your Personal Setting
+					</h4>
+					<div class="form-group">
+						<label>Full Name</label>
+						<input class="form-control form-control-lg" type="text" name="full_name" value="<?php echo $fullName; ?>">
+					</div>
+					<div class="form-group">
+						<label>Title</label>
+						<input class="form-control form-control-lg" type="text" name="title" value="<?php echo $title; ?>">
+					</div>
+					<div class="form-group">
+						<label>Email</label>
+						<input class="form-control form-control-lg" type="email" name="email" value="<?php echo $email; ?>">
+					</div>
+					<div class="form-group">
+						<label>Postal Code</label>
+						<input class="form-control form-control-lg" type="text" name="postal_code" value="<?php echo $postalCode; ?>">
+					</div>
+					<div class="form-group">
+						<label>Phone Number</label>
+						<input class="form-control form-control-lg" type="text" name="phone_number" value="<?php echo $phoneNumber; ?>">
+					</div>
+					<div class="form-group">
+						<label>Address</label>
+						<textarea class="form-control" name="address"><?php echo $address; ?></textarea>
+					</div>
+					
+					
+				</li>
+				<li class="weight-500 col-md-6">
+					<h4 class="text-blue h5 mb-20">
+						Edit Social Media links
+					</h4>
+					<div class="form-group">
+						<label>Facebook URL:</label>
+						<input class="form-control form-control-lg" type="text" name="facebook_url" value="<?php echo $facebookUrl; ?>">
+					</div>
+					<div class="form-group">
+						<label>Twitter URL:</label>
+						<input class="form-control form-control-lg" type="text" name="twitter_url" value="<?php echo $twitterUrl; ?>">
+					</div>
+					<div class="form-group">
+						<label>Linkedin URL:</label>
+						<input class="form-control form-control-lg" type="text" name="linkedin_url" value="<?php echo $linkedinUrl; ?>">
+					</div>
+					<div class="form-group">
+						<label>Instagram URL:</label>
+						<input class="form-control form-control-lg" type="text" name="instagram_url" value="<?php echo $instagramUrl; ?>">
+					</div>
+					<div class="form-group mb-0">
+						<input type="submit" class="btn btn-primary" value="Save & Update">
+					</div>
+				</li>
+			</ul>
+		</div>
+	</form>
 											</div>
 											<!-- Setting Tab End -->
 										</div>
