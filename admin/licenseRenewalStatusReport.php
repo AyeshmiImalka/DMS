@@ -20,7 +20,7 @@ include('includes/header.php');
                 <div class="row">
                     <div class="col-md-6 col-sm-12">
                         <div class="title">
-                            <h4>Monthly Budget Report</h4>
+                            <h4>License Renewal Status Report</h4>
                         </div>
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
@@ -48,7 +48,7 @@ include('includes/header.php');
             </div>
 
             <div class="bg-white pd-20 card-box mb-30">
-                <div id="budgetchart"></div>
+                <div id="licenseChart"></div>
             </div>
         </div>
 
@@ -61,35 +61,51 @@ include('includes/header.php');
 
     function drawChart() {
         var data = google.visualization.arrayToDataTable([
-            ['Month', 'Budget', 'Actual'],
-            ['Jan', 1000, 800],
-            ['Feb', 1200, 1200],
-            ['Mar', 1400, 1500],
-            ['Apr', 1600, 1300],
-            ['May', 1800, 1700],
-            ['Jun', 2000, 1900],
-            ['Jul', 2200, 2100],
-            ['Aug', 2400, 2300],
-            ['Sep', 2600, 2500],
-            ['Oct', 2800, 2700],
-            ['Nov', 3000, 2900],
-            ['Dec', 3200, 3100]
+            ['License Types', 'Renewed', 'Pending Renewal', 'Expired'],
+            ['Manufacturing Centers', 50, 20, 5], // Type A - Manufacturing Centers
+            ['Drug Stores', 30, 10, 2],           // Type B - Drug Stores
+            ['Pharmacies', 40, 15, 3],
+            ['Transport Services', 35, 5, 1],
+            ['Suppliers', 45, 25, 6],
+            ['Distributors', 55, 22, 7],
+            ['Local Drugs', 33, 18, 4],
+            ['Local Products', 48, 30, 8],
+            ['Imported Drugs', 28, 12, 3],
+            ['Imported Products', 38, 20, 5],
+            ['Restricted Drugs', 42, 26, 7],
+            ['Cannabies', 51, 29, 9],
+            ['Hospitals', 36, 15, 6],
+            ['Panchakarma Centers', 46, 18, 7],
+            ['Institutions', 32, 10, 2],
+            // Add more rows for additional license types as needed
         ]);
 
         var options = {
-            title: 'Monthly Budget Report',
             legend: { position: 'bottom' },
-            height: 450
+            isStacked: true,
+            height: 600, // Increased height for more data
+            colors: ['#4CAF50', '#FFC107', '#F44336'], // Renewed: Green, Pending Renewal: Orange, Expired: Red
+            series: {
+                0: {targetAxisIndex: 0},
+                1: {targetAxisIndex: 0},
+                2: {targetAxisIndex: 0}
+            },
+            hAxis: {
+                title: 'Number of Licenses'
+            },
+            vAxis: {
+                title: 'License Types'
+            }
         };
 
-        var chart = new google.visualization.LineChart(document.getElementById('budgetchart'));
+        var chart = new google.visualization.BarChart(document.getElementById('licenseChart'));
 
         chart.draw(data, options);
     }
 
     // Function to download chart as PNG
     function downloadChart() {
-        var chart = document.getElementById('budgetchart');
+        var chart = document.getElementById('licenseChart');
         var a = document.createElement('a');
 
         html2canvas(chart, {
@@ -100,7 +116,7 @@ include('includes/header.php');
         }).then(function(canvas) {
             var imgData = canvas.toDataURL('image/png');
             a.href = imgData;
-            a.download = 'budget_chart.png';
+            a.download = 'license_chart.png';
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);

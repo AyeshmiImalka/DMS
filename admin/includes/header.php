@@ -12,6 +12,9 @@
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.3/jspdf.umd.min.js"></script>
+    <script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 
 
@@ -68,6 +71,8 @@
 			href="assets/src/plugins/fullcalendar/fullcalendar.css"
 		/>
 		<link rel="stylesheet" type="text/css" href="assets/vendor/styles/style.css" />
+
+		
 
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script
@@ -285,7 +290,7 @@
 							<a class="dropdown-item" href="adminProfile.php"
 								><i class="bi bi-person-circle"></i> Profile</a
 							>
-							<a class="dropdown-item" href="profile.html"
+							<a class="dropdown-item" href="adminSettings.php"
 								><i class="bi bi-gear-fill"></i> Setting</a
 							>
 							<a class="dropdown-item" href="faq.html"

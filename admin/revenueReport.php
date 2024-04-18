@@ -20,7 +20,7 @@ include('includes/header.php');
                 <div class="row">
                     <div class="col-md-6 col-sm-12">
                         <div class="title">
-                            <h4>Monthly Budget Report</h4>
+                            <h4>Revenue Report</h4>
                         </div>
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
@@ -48,7 +48,7 @@ include('includes/header.php');
             </div>
 
             <div class="bg-white pd-20 card-box mb-30">
-                <div id="budgetchart"></div>
+                <div id="revenueChart"></div>
             </div>
         </div>
 
@@ -61,35 +61,42 @@ include('includes/header.php');
 
     function drawChart() {
         var data = google.visualization.arrayToDataTable([
-            ['Month', 'Budget', 'Actual'],
-            ['Jan', 1000, 800],
-            ['Feb', 1200, 1200],
-            ['Mar', 1400, 1500],
-            ['Apr', 1600, 1300],
-            ['May', 1800, 1700],
-            ['Jun', 2000, 1900],
-            ['Jul', 2200, 2100],
-            ['Aug', 2400, 2300],
-            ['Sep', 2600, 2500],
-            ['Oct', 2800, 2700],
-            ['Nov', 3000, 2900],
-            ['Dec', 3200, 3100]
+            ['Time Period', 'Revenue'],
+            ['Jan', 5000],
+            ['Feb', 5500],
+            ['Mar', 6000],
+            ['Apr', 6200],
+            ['May', 6500],
+            ['Jun', 7000],
+            ['Jul', 7200],
+            ['Aug', 7500],
+            ['Sep', 7800],
+            ['Oct', 8000],
+            ['Nov', 8200],
+            ['Dec', 8500]
+            // Add more data points for additional time periods as needed
         ]);
 
         var options = {
-            title: 'Monthly Budget Report',
+            
             legend: { position: 'bottom' },
-            height: 450
+            height: 450,
+            hAxis: {
+                title: 'Time Period'
+            },
+            vAxis: {
+                title: 'Revenue (in currency)'
+            }
         };
 
-        var chart = new google.visualization.LineChart(document.getElementById('budgetchart'));
+        var chart = new google.visualization.LineChart(document.getElementById('revenueChart'));
 
         chart.draw(data, options);
     }
 
     // Function to download chart as PNG
     function downloadChart() {
-        var chart = document.getElementById('budgetchart');
+        var chart = document.getElementById('revenueChart');
         var a = document.createElement('a');
 
         html2canvas(chart, {
@@ -100,7 +107,7 @@ include('includes/header.php');
         }).then(function(canvas) {
             var imgData = canvas.toDataURL('image/png');
             a.href = imgData;
-            a.download = 'budget_chart.png';
+            a.download = 'revenue_chart.png';
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);

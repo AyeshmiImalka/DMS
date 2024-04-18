@@ -187,14 +187,7 @@ include('includes/header.php');
         console.log('Edit button clicked for ID: ' + id);
     });
 
-                    // Script for edit button
-                    $('.edit-btn').click(function() {
-                        var id = $(this).data('id');
-                        // You can perform edit operation here, maybe redirect to edit page or show a modal
-                        console.log('Edit button clicked for ID: ' + id);
-                    });
-
-				// Add an event listener for the search input
+	// Add an event listener for the search input
 $('#DataTables_Table_2_filter input').on('input', function() {
   var filterValue = $(this).val().toLowerCase();
 

@@ -76,7 +76,7 @@
 							</ul>
 						</li>
 						<li>
-							<a href="calendar.html" class="dropdown-toggle no-arrow">
+							<a href="paymentRecords.php" class="dropdown-toggle no-arrow">
 								<span class="micon bi bi-credit-card-2-front"></span
 								><span class="mtext">Payment Records</span>
 							</a>
@@ -87,9 +87,8 @@
 								><span class="mtext"> Reports </span>
 							</a>
 							<ul class="submenu">
-								<li><a href="budgetReport.php">Monthly Budget Report</a></li>
-								<li><a href="#">Activity Track Report</a></li>
-								<li><a href="#">Lead Progress Report</a></li>
+								<li><a href="revenueReport.php">Revenue Report</a></li>
+								<li><a href="licenseRenewalStatusReport.php">License Renewal Status Report</a></li>
 							</ul>
 						</li>
 						<li class="dropdown">
@@ -107,7 +106,7 @@
 							
 						</li>
 						<li class="dropdown">
-							<a href="javascript:;" class="dropdown-toggle no-arrow">
+							<a href="adminSettings.php" class="dropdown-toggle no-arrow">
 								<span class="micon bi bi-gear"></span
 								><span class="mtext">Settings</span>
 							</a>
@@ -122,7 +121,7 @@
 						</li>
 
 						<li class="dropdown">
-							<a href="javascript:;" class="dropdown-toggle no-arrow">
+							<a href="logout.php" class="dropdown-toggle no-arrow">
 								<span class="micon bi bi-box-arrow-right"></span
 								><span class="mtext">Logout</span>
 							</a>

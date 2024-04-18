@@ -88,8 +88,8 @@ include('includes/header.php');
 				<div class="row">
 					<div class="col-xl-8 mb-30">
 						<div class="card-box height-100-p pd-20">
-							<h2 class="h4 mb-20">Activity</h2>
-							<div id="chart5"></div>
+							<h2 class="h4 mb-20">Monthly Budget Report</h2>
+							<div id="budgetchart"></div>
 						</div>
 					</div>
 					<div class="col-xl-4 mb-30">
@@ -335,6 +335,40 @@ include('includes/header.php');
 			<!-- End #main -->
 
   <?php include('includes/footer.php');?>
+
+  <script type="text/javascript">
+    google.charts.load('current', {'packages':['corechart']});
+    google.charts.setOnLoadCallback(drawChart);
+
+    function drawChart() {
+        // Your chart data and options here
+        var data = google.visualization.arrayToDataTable([
+			['Month', 'Budget', 'Actual'],
+            ['Jan', 1000, 800],
+            ['Feb', 1200, 1200],
+            ['Mar', 1400, 1500],
+            ['Apr', 1600, 1300],
+            ['May', 1800, 1700],
+            ['Jun', 2000, 1900],
+            ['Jul', 2200, 2100],
+            ['Aug', 2400, 2300],
+            ['Sep', 2600, 2500],
+            ['Oct', 2800, 2700],
+            ['Nov', 3000, 2900],
+            ['Dec', 3200, 3100]
+        ]);
+
+        var options = {
+            
+            legend: { position: 'bottom' },
+            height: 350
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('budgetchart'));
+
+        chart.draw(data, options);
+    }
+</script>
 
  
 
