@@ -290,12 +290,7 @@
 							<a class="dropdown-item" href="adminProfile.php"
 								><i class="bi bi-person-circle"></i> Profile</a
 							>
-							<a class="dropdown-item" href="adminSettings.php"
-								><i class="bi bi-gear-fill"></i> Setting</a
-							>
-							<a class="dropdown-item" href="faq.html"
-								><i class="bi bi-question-circle-fill"></i> Help</a
-							>
+							
 							<a class="dropdown-item" href="logout.php"
 								><i class="bi bi-box-arrow-right"></i> Log Out</a
 							>

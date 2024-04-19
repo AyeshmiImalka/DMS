@@ -56,7 +56,7 @@
 								><span class="mtext">Registration</span>
 							</a>
 							<ul class="submenu">
-							<li><a href="#">Private Ayurvedic Manufacturing Centers</a></li>
+							<li><a href="manufacturingRegistration.php">Private Ayurvedic Manufacturing Centers</a></li>
 								<li>
 									<a href="#">Private Ayurvedic Drug Stores</a>
 								</li>
@@ -64,7 +64,7 @@
 								<li><a href="#">Transport Services</a></li>
 								<li><a href="#">Suppliers</a></li>
 								<li><a href="#">Distributors</a></li>
-								<li><a href="#">Local Ayurveda Drugs</a></li>
+								<li><a href="localDrugsRegistration.php">Local Ayurveda Drugs</a></li>
 								<li><a href="#">Local Ayurveda Products</a></li>
 								<li><a href="#">Imported Ayurveda Drugs</a></li>
 								<li><a href="#">Imported Ayurveda Products</a></li>
@@ -92,19 +92,13 @@
 							</ul>
 						</li>
 						<li class="dropdown">
-							<a href="javascript:;" class="dropdown-toggle no-arrow">
+							<a href="advertisements.php" class="dropdown-toggle no-arrow">
 								<span class="micon bi bi-command"></span
 								><span class="mtext">Advertisements</span>
 							</a>
 							
 						</li>
-						<li class="dropdown">
-							<a href="javascript:;" class="dropdown-toggle no-arrow">
-								<span class="micon bi bi-arrow-down-circle"></span
-								><span class="mtext">Downloads</span>
-							</a>
-							
-						</li>
+						
 						<li class="dropdown">
 							<a href="adminSettings.php" class="dropdown-toggle no-arrow">
 								<span class="micon bi bi-gear"></span
@@ -112,13 +106,7 @@
 							</a>
 							
 						</li>
-						<li class="dropdown">
-							<a href="javascript:;" class="dropdown-toggle no-arrow">
-								<span class="micon bi bi-question-circle"></span
-								><span class="mtext">Support</span>
-							</a>
-							
-						</li>
+						
 
 						<li class="dropdown">
 							<a href="logout.php" class="dropdown-toggle no-arrow">

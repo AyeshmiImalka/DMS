@@ -35,7 +35,9 @@ $tables = [
     'hospitals_db' => 'hospital_id',
     'panchakarmacenters_db' => 'center_id',
     'ayurvedainstitutions_db' => 'institution_id',
-    'payment_records' => 'payment_id '
+    'payment_records' => 'payment_id ',
+    'advertisement_requests' => 'id',
+    'local_drugs_registration_requests' => 'id'
 ];
 
 $success = false; // Flag to indicate if any deletion was successful
