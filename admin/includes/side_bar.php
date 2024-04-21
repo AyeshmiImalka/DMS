@@ -106,7 +106,6 @@
 							</a>
 							
 						</li>
-						
 
 						<li class="dropdown">
 							<a href="logout.php" class="dropdown-toggle no-arrow">

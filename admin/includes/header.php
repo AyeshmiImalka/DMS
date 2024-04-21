@@ -15,6 +15,7 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.3/jspdf.umd.min.js"></script>
     <script type="text/javascript" src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	
 
 
 
@@ -280,7 +281,7 @@
 							data-toggle="dropdown"
 						>
 							<span class="user-icon">
-								<img src="assets/vendor/images/photo1.jpg" alt="" />
+							<img src="<?php echo $profilePicture; ?>"  class="avatar-photo">
 							</span>
 							<span class="user-name"><?php echo $_SESSION['admin_name']?></span>
 						</a>

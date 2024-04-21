@@ -1,10 +1,12 @@
+
 <?php
 @include 'config_form.php';
 session_start();
 
 if(!isset($_SESSION['admin_name'])){
     header('location:login_form.php');
-} 
+    exit(); // Always exit after redirecting
+}
 
 $fullName = '';
 $title = '';
@@ -17,6 +19,52 @@ $twitterUrl = '';
 $linkedinUrl = '';
 $instagramUrl = '';
 $profilePicture = ''; // Add profile picture variable
+
+// Function to insert or update profile information
+function updateProfileInfo($conn, $fullName, $title, $email, $postalCode, $phoneNumber, $address, $facebookUrl, $twitterUrl, $linkedinUrl, $instagramUrl, $profilePicture, $adminName) {
+    $fullName = mysqli_real_escape_string($conn, $fullName);
+    $title = mysqli_real_escape_string($conn, $title);
+    $email = mysqli_real_escape_string($conn, $email);
+    $postalCode = mysqli_real_escape_string($conn, $postalCode);
+    $phoneNumber = mysqli_real_escape_string($conn, $phoneNumber);
+    $address = mysqli_real_escape_string($conn, $address);
+    $facebookUrl = mysqli_real_escape_string($conn, $facebookUrl);
+    $twitterUrl = mysqli_real_escape_string($conn, $twitterUrl);
+    $linkedinUrl = mysqli_real_escape_string($conn, $linkedinUrl);
+    $instagramUrl = mysqli_real_escape_string($conn, $instagramUrl);
+    $profilePicture = mysqli_real_escape_string($conn, $profilePicture);
+    $adminName = mysqli_real_escape_string($conn, $adminName);
+
+    // Check if the user already has a profile
+    $sql_check = "SELECT * FROM admin_profiles WHERE admin_name = '$adminName'";
+    $result_check = mysqli_query($conn, $sql_check);
+    if (!$result_check) {
+        die("Error executing query: " . mysqli_error($conn));
+    }
+
+    if(mysqli_num_rows($result_check) > 0) {
+        // If the profile exists, update the record
+        $sql = "UPDATE admin_profiles SET 
+                full_name = '$fullName', 
+                title = '$title', 
+                email = '$email', 
+                postal_code = '$postalCode', 
+                phone_number = '$phoneNumber', 
+                address = '$address', 
+                facebook_url = '$facebookUrl', 
+                twitter_url = '$twitterUrl', 
+                linkedin_url = '$linkedinUrl', 
+                instagram_url = '$instagramUrl', 
+                profile_picture = '$profilePicture' 
+                WHERE admin_name = '$adminName'";
+    } else {
+        // If the profile doesn't exist, insert a new record
+        $sql = "INSERT INTO admin_profiles (admin_name, full_name, title, email, postal_code, phone_number, address, facebook_url, twitter_url, linkedin_url, instagram_url, profile_picture)
+                VALUES ('$adminName', '$fullName', '$title', '$email', '$postalCode', '$phoneNumber', '$address', '$facebookUrl', '$twitterUrl', '$linkedinUrl', '$instagramUrl', '$profilePicture')";
+    }
+
+    return mysqli_query($conn, $sql);
+}
 
 // Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -31,31 +79,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $twitterUrl = $_POST['twitter_url'];
     $linkedinUrl = $_POST['linkedin_url'];
     $instagramUrl = $_POST['instagram_url'];
-    $profilePicture = $_FILES['profile_picture']['name']; // Retrieve profile picture name
-    $profilePictureTemp = $_FILES['profile_picture']['tmp_name']; // Retrieve profile picture temporary name
+    $profilePicture = $_FILES['profile_picture']['name'];
+    $adminName = $_POST['admin_name'];
 
-    // Insert data into the database
-    $sql = "INSERT INTO admin_profiles (full_name, title, email, postal_code, phone_number, address, facebook_url, twitter_url, linkedin_url, instagram_url, profile_picture)
-            VALUES ('$fullName', '$title', '$email', '$postalCode', '$phoneNumber', '$address', '$facebookUrl', '$twitterUrl', '$linkedinUrl', '$instagramUrl', '$profilePicture')";
-
-    if (mysqli_query($conn, $sql)) {
+    if (updateProfileInfo($conn, $fullName, $title, $email, $postalCode, $phoneNumber, $address, $facebookUrl, $twitterUrl, $linkedinUrl, $instagramUrl, $profilePicture, $adminName)) {
         // Move the uploaded file to the desired directory
-        move_uploaded_file($profilePictureTemp, "uploads/$profilePicture");
-        echo "Record added successfully.";
+        move_uploaded_file($_FILES['profile_picture']['tmp_name'], "uploads/$profilePicture");
+        echo "Profile information updated successfully.";
     } else {
-        echo "Error: ". $sql. "<br>". mysqli_error($conn);
+        echo "Error updating profile information: " . mysqli_error($conn);
     }
-
-    // Close the connection
-    mysqli_close($conn);
 }
-?>
 
-<?php 
 include('includes/header.php');
 
 ?>
-
 
 <div class="main-container">
 			<div class="pd-ltr-20 xs-pd-20-10">
@@ -108,6 +146,7 @@ include('includes/header.php');
 					</h4>
 					<div class="form-group">
 						<label>Full Name</label>
+						<input type="hidden" name="admin_name" value="<?php echo $_SESSION['admin_name']; ?>">
 						<input class="form-control form-control-lg" type="text" name="full_name" value="<?php echo $fullName;?>">
 					</div>
 					<div class="form-group">

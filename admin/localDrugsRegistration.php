@@ -82,7 +82,22 @@ if(!isset($_SESSION['admin_name'])){
                                     $result = mysqli_query($conn, $sql);
                                     if (mysqli_num_rows($result) > 0) {
                                         while($row = mysqli_fetch_assoc($result)) {
-                                            echo "<tr>";
+                                            // Define a variable to hold the row class based on status
+                                            $row_class = '';
+                                            switch ($row['status']) {
+                                                case 'Approved':
+                                                    $row_class = 'table-success';
+                                                    break;
+                                                case 'Rejected':
+                                                    $row_class = 'table-danger';
+                                                    break;
+                                                case 'Pending':
+                                                    $row_class = 'table-warning';
+                                                    break;
+                                                default:
+                                                    $row_class = '';
+                                            }
+                                            echo "<tr class='$row_class'>";
                                             echo "<td>". $row["id"]. "</td>";
                                             echo "<td>". $row["drug_name"]. "</td>";
                                             echo "<td>". $row["contact_email"]. "</td>";
@@ -90,9 +105,10 @@ if(!isset($_SESSION['admin_name'])){
 
 
                                             echo "<td>
-                                                    <a href='approve_registration.php?id=". $row["id"]. "' class='btn btn-sm btn-success' data-toggle='modal' data-target='#emailModal' data-status='Approved'>Approved</a>
-                                                    <a href='reject_registration.php?id=". $row["id"]. "' class='btn btn-sm btn-danger' data-toggle='modal' data-target='#emailModal' data-status='Rejected'>Rejected</a>
-                                                    <a href='pending_registration.php?id=". $row["id"]. "' class='btn btn-sm btn-secondary' data-toggle='modal' data-target='#emailModal' data-status='Pending'>Pending</a>
+                                           
+                                            <a href='#' class='btn btn-sm btn-success' data-toggle='modal' data-target='#emailModal' data-status='Approved' data-id='{$row['id']}'>Approved</a>
+                                            <a href='#' class='btn btn-sm btn-danger' data-toggle='modal' data-target='#emailModal' data-status='Rejected' data-id='{$row['id']}'>Rejected</a>
+                                            <a href='#' class='btn btn-sm btn-secondary' data-toggle='modal' data-target='#emailModal' data-status='Pending' data-id='{$row['id']}'>Pending</a>
                                                 </td>";
                                             echo "<td>
                                                     <button class='btn btn-sm btn-danger delete-btn' data-id='" . $row["id"] . "'><i class='fas fa-trash-alt'></i></button>
@@ -149,8 +165,7 @@ if(!isset($_SESSION['admin_name'])){
                 </div>
                 <div class="modal-body">
                     <form action="send_email.php" method="post">
-                        <input type="hidden" id="approve_id" name="approve_id">
-                        <input type="hidden" id="email_status" name="email_status">
+                    <input type="hidden" id="email_status" name="email_status">
                         <div class="form-group">
                             <label for="email_address">Recipient Email</label>
                             <input type="email" class="form-control" id="email_address" name="email_address" required>
@@ -177,25 +192,24 @@ if(!isset($_SESSION['admin_name'])){
 
     <script>
         $(document).ready(function() {
-            $('[data-toggle="modal"]').click(function() {
-                var id = $(this).data('id');
-                var status = $(this).data('status');
-                $('#approve_id').val(id);
-                $('#email_status').val(status);
-                var contact_email = $(this).closest('tr').find('td:eq(2)').text();
-                $('#email_address').val(contact_email);
-                var subject;
-                if (status == 'Approved') {
-                    subject = 'Your registration request has been approved';
-                } else if (status == 'Rejected') {
-                    subject = 'Regarding your registration request';
-                } else if (status == 'Pending') {
-                    subject = 'Update on your registration request';
-                }
-                $('#email_subject').val(subject);
-            });
+        $('[data-toggle="modal"]').click(function() {
+            var id = $(this).data('id');
+            var status = $(this).data('status');
+            $('#approve_id').val(id);
+            $('#email_status').val(status); // Set the status value
+            var contact_email = $(this).closest('tr').find('td:eq(2)').text();
+            $('#email_address').val(contact_email);
+            var subject;
+            if (status == 'Approved') {
+                subject = 'Your registration request has been approved';
+            } else if (status == 'Rejected') {
+                subject = 'Regarding your registration request';
+            } else if (status == 'Pending') {
+                subject = 'Update on your registration request';
+            }
+            $('#email_subject').val(subject);
         });
-
+    })
         //row delete 
         $(document).ready(function() {
             $('.delete-btn').click(function() {
@@ -257,6 +271,7 @@ if(!isset($_SESSION['admin_name'])){
                 }
             });
         });
+        
     </script>
 
     <style>
@@ -269,3 +284,4 @@ if(!isset($_SESSION['admin_name'])){
         }
 
     </style>
+</div>
