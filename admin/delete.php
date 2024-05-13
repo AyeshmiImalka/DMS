@@ -37,7 +37,8 @@ $tables = [
     'ayurvedainstitutions_db' => 'institution_id',
     'payment_records' => 'payment_id ',
     'advertisement_requests' => 'id',
-    'local_drugs_registration_requests' => 'id'
+    'local_drugs_registration_requests' => 'id',
+    'manufacturing_centers_registration_requests' => 'id'
 ];
 
 $success = false; // Flag to indicate if any deletion was successful

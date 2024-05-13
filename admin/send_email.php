@@ -47,6 +47,7 @@ $subject = $_POST['email_subject'];
 $message = $_POST['email_message'];
 $status = $_POST['email_status']; // Get the status from the form
 
+
 // Initialize PHPMailer
 $mail = new PHPMailer(true);
 
@@ -80,6 +81,20 @@ try {
         $stmt->bind_param("ss", $status, $emailTo);
         $stmt->execute();
         $stmt->close();
+
+        // Prepare and execute the SQL update query for manufacturing_centers_registration_requests
+        $update_query_manufacturing = "UPDATE manufacturing_centers_registration_requests SET status = ? WHERE contact_email = ?";
+        $stmt_manufacturing = $conn->prepare($update_query_manufacturing);
+        $stmt_manufacturing->bind_param("ss", $status, $emailTo);
+        $stmt_manufacturing->execute();
+        $stmt_manufacturing->close();
+
+        // Prepare and execute the SQL update query for advertisement_requests 
+        $update_query_manufacturing = "UPDATE advertisement_requests  SET status = ? WHERE contact_email = ?";
+        $stmt_manufacturing = $conn->prepare($update_query_manufacturing);
+        $stmt_manufacturing->bind_param("ss", $status, $emailTo);
+        $stmt_manufacturing->execute();
+        $stmt_manufacturing->close();
 
         echo "<p class='success-message'>Email sent successfully!</p>";
     } else {

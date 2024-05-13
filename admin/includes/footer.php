@@ -19,6 +19,7 @@
 	<script src="assets/src/plugins/datatables/js/dataTables.responsive.min.js"></script>
 	<script src="assets/src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
   <script src="assets/vendor/scripts/dashboard.js"></script>
+  <script src="assets/vendor/scripts/script.js"></script>
 
   <!-- buttons for Export datatable -->
   <script src="assets/src/plugins/datatables/js/dataTables.buttons.min.js"></script>

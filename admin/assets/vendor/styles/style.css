@@ -965,8 +965,9 @@ textarea.form-control {
 .table td {
     font-size: 14px;
     font-weight: 500;
-    padding: 1rem;
-    line-height: -0.8
+    border-bottom: 0;
+    padding-left: 1rem;
+
 }
 .table-striped tbody tr:nth-of-type(odd) {
     background: #eaeef2;

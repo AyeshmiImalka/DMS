@@ -46,16 +46,17 @@ if(!isset($_SESSION['admin_name'])){
                                 <input type="search" class="form-control form-control-sm" placeholder="Search" aria-controls="DataTables_Table_2">
                             </label>
                         </div>
-                        <div class="table-responsive-sm">
+                        <div class="table-responsive-md">
                             <table class="table">
                                 <thead>
                                     <tr>
+                                        <th><input type="checkbox" id="select-all" class='checkbox-custom'></th> <!-- Checkbox to select all rows -->
                                         <th>Request ID</th>
                                         <th>Drug Name</th>
                                         <th>Contact Email</th>
-                                        <th>Documents</th>
+                                        <th></th>
                                         <th>Status</th>
-                                        <th>Action</th>
+                                        <th></th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -81,37 +82,36 @@ if(!isset($_SESSION['admin_name'])){
                                     $sql = "SELECT * FROM local_drugs_registration_requests LIMIT $offset, $records_per_page";
                                     $result = mysqli_query($conn, $sql);
                                     if (mysqli_num_rows($result) > 0) {
+                                        $row_count = 0;
                                         while($row = mysqli_fetch_assoc($result)) {
-                                            // Define a variable to hold the row class based on status
-                                            $row_class = '';
-                                            switch ($row['status']) {
-                                                case 'Approved':
-                                                    $row_class = 'table-success';
-                                                    break;
-                                                case 'Rejected':
-                                                    $row_class = 'table-danger';
-                                                    break;
-                                                case 'Pending':
-                                                    $row_class = 'table-warning';
-                                                    break;
-                                                default:
-                                                    $row_class = '';
-                                            }
-                                            echo "<tr class='$row_class'>";
+                                            $row_count++;
+                                            $row_color = $row_count % 2 == 0 ? 'even-row' : 'odd-row';
+                                            echo "<tr class='$row_color'>";
+                                            
+                                            echo "<td><input type='checkbox' class='row-checkbox checkbox-custom' data-id='{$row['id']}'></td>"; // Checkbox for each row
                                             echo "<td>". $row["id"]. "</td>";
                                             echo "<td>". $row["drug_name"]. "</td>";
                                             echo "<td>". $row["contact_email"]. "</td>";
-                                            echo "<td><a href='". $row["registration_documents"]. "' target='_blank'><i class='fas fa-file-alt fa-2x icon-blue'></i></a></td>";
+                                            echo "<td><a href='". $row["registration_documents"]. "' target='_blank'><i class='fas fa-file-alt fa-xl icon-blue'></i></a></td>";
 
+                                            // Email send buttons
+                                            if (empty($row['status'])) {
+                                                echo "<td>
+                                                        <a href='#' class='btn btn-sm btn-success rounded-circle circle-btn' id='circle-btn'' data-toggle='modal' data-target='#emailModal' data-status='Approved' data-id='{$row['id']}'> <i class='fa-solid fa-stamp'></i></a>
+                                                        <a href='#' class='btn btn-sm btn-danger rounded-circle circle-btn' id='circle-btn'' data-toggle='modal' data-target='#emailModal' data-status='Rejected' data-id='{$row['id']}'><i class='fa-solid fa-circle-xmark'></i></a>
+                                                        <a href='#' class='btn btn-sm btn-warning rounded-circle circle-btn' id='circle-btn'' data-toggle='modal' data-target='#emailModal' data-status='Pending' data-id='{$row['id']}'><i class='fa-solid fa-rotate' style='color: #ffffff;'></i></a>
+                                                    </td>";
+                                            } else {
+                                                echo "<td>
+                                                <button class='btn btn-sm btn-secondary rounded-circle circle-btn' id='circle-btn'' disabled><i class='fa-solid fa-stamp'></i></button>
+                                                <button class='btn btn-sm btn-secondary rounded-circle circle-btn' id='circle-btn'' disabled><i class='fa-solid fa-circle-xmark'></i></button>
+                                                <button class='btn btn-sm btn-secondary rounded-circle circle-btn' id='circle-btn'' disabled><i class='fa-solid fa-rotate'></i></button>
+        
+                                                </td>"; // Hide the buttons if status is filled
+                                            }
 
                                             echo "<td>
-                                           
-                                            <a href='#' class='btn btn-sm btn-success' data-toggle='modal' data-target='#emailModal' data-status='Approved' data-id='{$row['id']}'>Approved</a>
-                                            <a href='#' class='btn btn-sm btn-danger' data-toggle='modal' data-target='#emailModal' data-status='Rejected' data-id='{$row['id']}'>Rejected</a>
-                                            <a href='#' class='btn btn-sm btn-secondary' data-toggle='modal' data-target='#emailModal' data-status='Pending' data-id='{$row['id']}'>Pending</a>
-                                                </td>";
-                                            echo "<td>
-                                                    <button class='btn btn-sm btn-danger delete-btn' data-id='" . $row["id"] . "'><i class='fas fa-trash-alt'></i></button>
+                                                    <button class='btn btn-sm btn-danger delete-btn rounded-circle circle-btn' id='circle-btn' data-id='" . $row["id"] . "'><i class='fas fa-trash-alt'></i></button>
                                                 </td>";
                                             echo "</tr>";
                                         }
@@ -154,62 +154,52 @@ if(!isset($_SESSION['admin_name'])){
     </div>
 
     <!-- Email Modal -->
-    <div class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="emailModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="emailModalLabel">Send Email</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="send_email.php" method="post">
-                    <input type="hidden" id="email_status" name="email_status">
-                        <div class="form-group">
-                            <label for="email_address">Recipient Email</label>
-                            <input type="email" class="form-control" id="email_address" name="email_address" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email_subject">Subject</label>
-                            <input type="text" class="form-control" id="email_subject" name="email_subject" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email_message">Message</label>
-                            <textarea class="form-control" id="email_message" name="email_message" rows="3" required></textarea>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-primary">Send Email</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+    <?php include('popups/sendEmailPopup.php');?>
+
 
     <?php include('includes/footer.php');?>
 
     <script>
+        
         $(document).ready(function() {
-        $('[data-toggle="modal"]').click(function() {
-            var id = $(this).data('id');
-            var status = $(this).data('status');
-            $('#approve_id').val(id);
-            $('#email_status').val(status); // Set the status value
-            var contact_email = $(this).closest('tr').find('td:eq(2)').text();
-            $('#email_address').val(contact_email);
-            var subject;
-            if (status == 'Approved') {
-                subject = 'Your registration request has been approved';
-            } else if (status == 'Rejected') {
-                subject = 'Regarding your registration request';
-            } else if (status == 'Pending') {
-                subject = 'Update on your registration request';
-            }
-            $('#email_subject').val(subject);
+            $('[data-toggle="modal"]').click(function() {
+        var id = $(this).data('id');
+        var status = $(this).data('status');
+        $('#approve_id').val(id);
+        $('#email_status').val(status); // Set the status value
+        
+        // Debugging statements for drug name and email address extraction
+        var drug_name = $(this).closest('tr').find('td:eq(1)').text();
+        console.log('Drug Name:', drug_name);
+        
+        var contact_email = $(this).closest('tr').find('td:eq(3)').text();
+        console.log('Contact Email:', contact_email);
+        
+        $('#email_address').val(contact_email);
+        var subject;
+        if (status == 'Approved') {
+            subject = 'Your registration request has been approved';
+        } else if (status == 'Rejected') {
+            subject = 'Regarding your registration request';
+        } else if (status == 'Pending') {
+            subject = 'Update on your registration request';
+        }
+        $('#email_subject').val(subject);
+    });
+});
+
+      // Checkbox to select all rows
+      $('#select-all').change(function() {
+            $('.row-checkbox').prop('checked', $(this).prop('checked'));
         });
-    })
+
+        // Individual row checkbox
+        $('.row-checkbox').change(function() {
+            if (!$(this).prop('checked')) {
+                $('#select-all').prop('checked', false);
+            }
+        });
+
         //row delete 
         $(document).ready(function() {
             $('.delete-btn').click(function() {
@@ -273,15 +263,15 @@ if(!isset($_SESSION['admin_name'])){
         });
         
     </script>
+<Style>
+    .odd-row {
+        background-color: #fff; /* Change to your desired odd row color */
+    }
 
-    <style>
-        .icon-blue {
-            color: #007bff;
-        }
+    .even-row {
+        background-color: #e9ebf0; /* Change to your desired even row color */
+    }
+</Style>
 
-        .icon-blue:hover {
-            color: #0056b3; /* Change to the desired hover color */
-        }
 
-    </style>
 </div>

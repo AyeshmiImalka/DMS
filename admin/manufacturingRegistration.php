@@ -1,17 +1,16 @@
 <?php
-@include 'config_form.php';
 session_start();
+
+include 'config_form.php';
 
 if(!isset($_SESSION['admin_name'])){
     header('location:login_form.php');
+    exit(); // Ensure that the script stops executing after redirection
 }
 
 ?>
 
-
-<?php 
-include('includes/header.php');
-?>
+<?php include('includes/header.php');?>
 
 <div class="main-container">
     <div class="pd-ltr-20 xs-pd-20-10">
@@ -20,7 +19,7 @@ include('includes/header.php');
                 <div class="row">
                     <div class="col-md-8 col-sm-12">
                         <div class="title">
-                            <h4>Imported Ayurveda Products Database Table</h4>
+                            <h4>Manufacturing Centers Registration</h4>
                         </div>
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
@@ -28,19 +27,17 @@ include('includes/header.php');
                                     <a href="#">Home</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    Database
+                                Manufacturing Centers Registration
                                 </li>
                             </ol>
                         </nav>
                     </div>
                 </div>
             </div>
-            <!-- Simple Datatable start -->
 
-            <!-- Export Datatable start -->
             <div class="card-box mb-30">
                 <div class="pd-20">
-                    <h4 class="text-blue h4">Registered Manufacturing Centers Table</h4>
+                    <h4 class="text-blue h4">Registration Requests Table</h4>
                 </div>
                 <div class="pb-20">
                     <div id="DataTables_Table_2_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
@@ -49,166 +46,232 @@ include('includes/header.php');
                                 <input type="search" class="form-control form-control-sm" placeholder="Search" aria-controls="DataTables_Table_2">
                             </label>
                         </div>
-                        <div class="table-responsive-sm">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th >ID</th>
-                                    <th>Center Name</th>
-                                    <th>Location</th>
-                                    <th>Registration Status</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                // Query to get total number of records
-                                $sql_count = "SELECT COUNT(*) AS total_records FROM manufacturing_centers";
-                                $result_count = mysqli_query($conn, $sql_count);
-                                $row_count = mysqli_fetch_assoc($result_count);
-                                $total_records = $row_count['total_records'];
+                        <div class="table-responsive-md">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th><input type="checkbox" id="select-all" class='checkbox-custom'></th> <!-- Checkbox to select all rows -->
+                                        <th>Request ID</th>
+                                        <th>Center Name</th>
+                                        <th>Contact Email</th>
+                                        <th></th>
+                                        <th>Status</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    // Query to get total number of records
+                                    $sql_count = "SELECT COUNT(*) AS total_records FROM manufacturing_centers_registration_requests";
+                                    $result_count = mysqli_query($conn, $sql_count);
+                                    $row_count = mysqli_fetch_assoc($result_count);
+                                    $total_records = $row_count['total_records'];
 
-                                // Set the number of records per page
-                                $records_per_page = 50;
+                                    // Set the number of records per page
+                                    $records_per_page = 50;
 
-                                // Calculate total number of pages
-                                $total_pages = ceil($total_records / $records_per_page);
+                                    // Calculate total number of pages
+                                    $total_pages = ceil($total_records / $records_per_page);
 
-                                // Determine current page
-                                $page = isset($_GET['page']) ? $_GET['page'] : 1;
+                                    // Determine current page
+                                    $page = isset($_GET['page'])? $_GET['page'] : 1;
 
-                                // Calculate the starting record for the query
-                                $offset = ($page - 1) * $records_per_page;
+                                    // Calculate the starting record for the query
+                                    $offset = ($page - 1) * $records_per_page;
 
-                                $sql = "SELECT * FROM manufacturing_centers LIMIT $offset, $records_per_page";
-                                $result = mysqli_query($conn, $sql);
+                                    $sql = "SELECT * FROM manufacturing_centers_registration_requests LIMIT $offset, $records_per_page";
+                                    $result = mysqli_query($conn, $sql);
+                                    if (mysqli_num_rows($result) > 0) {
+                                        $row_count = 0;
+                                        while($row = mysqli_fetch_assoc($result)) {
+                                            $row_count++;
+                                            $row_color = $row_count % 2 == 0 ? 'even-row' : 'odd-row';
+                                            echo "<tr class='$row_color'>";
+                                            
+                                            echo "<td><input type='checkbox' class='row-checkbox checkbox-custom' data-id='{$row['id']}'></td>"; // Checkbox for each row
+                                            echo "<td>". $row["id"]. "</td>";
+                                            echo "<td>". $row["center_name"]. "</td>";
+                                            echo "<td>". $row["contact_email"]. "</td>";
+                                            echo "<td><a href='". $row["registration_documents"]. "' target='_blank'><i class='fas fa-file-alt fa-xl icon-blue'></i></a></td>";
 
-                                if (mysqli_num_rows($result) > 0) {
-                                    // output data of each row
-                                    while($row = mysqli_fetch_assoc($result)) {
-                                        echo "<tr>";
-                                        echo "<td class='table-plus'>" . $row["id"] . "</td>";
-                                        echo "<td>" . $row["center_name"] . "</td>";
-                                        echo "<td>" . $row["location"] . "</td>";
-                                        echo "<td>" . $row["registration_status"] . "</td>";
-                                        echo "<td>
-										<button class='btn btn-sm btn-danger delete-btn' data-id='" . $row["id"] . "'><i class='fas fa-trash-alt'></i></button>
-										<button class='btn btn-sm btn-info edit-btn' data-id='" . $row["id"] . "'><i class='fas fa-edit'></i></button>
-                                              </td>";
-                                        echo "</tr>";
+                                            // Email send buttons
+                                            if (empty($row['status'])) {
+                                                echo "<td>
+                                                        <a href='#' class='btn btn-sm btn-success rounded-circle circle-btn' id='circle-btn'' data-toggle='modal' data-target='#emailModal' data-status='Approved' data-id='{$row['id']}'> <i class='fa-solid fa-stamp'></i></a>
+                                                        <a href='#' class='btn btn-sm btn-danger rounded-circle circle-btn' id='circle-btn'' data-toggle='modal' data-target='#emailModal' data-status='Rejected' data-id='{$row['id']}'><i class='fa-solid fa-circle-xmark'></i></a>
+                                                        <a href='#' class='btn btn-sm btn-warning rounded-circle circle-btn' id='circle-btn'' data-toggle='modal' data-target='#emailModal' data-status='Pending' data-id='{$row['id']}'><i class='fa-solid fa-rotate' style='color: #ffffff;'></i></a>
+                                                    </td>";
+                                            } else {
+                                                echo "<td>
+                                                <button class='btn btn-sm btn-secondary rounded-circle circle-btn' id='circle-btn'' disabled><i class='fa-solid fa-stamp'></i></button>
+                                                <button class='btn btn-sm btn-secondary rounded-circle circle-btn' id='circle-btn'' disabled><i class='fa-solid fa-circle-xmark'></i></button>
+                                                <button class='btn btn-sm btn-secondary rounded-circle circle-btn' id='circle-btn'' disabled><i class='fa-solid fa-rotate'></i></button>
+        
+                                                </td>"; // Hide the buttons if status is filled
+                                            }
+
+                                            echo "<td>
+                                                    <button class='btn btn-sm btn-danger delete-btn rounded-circle circle-btn' id='circle-btn' data-id='" . $row["id"] . "'><i class='fas fa-trash-alt'></i></button>
+                                                </td>";
+                                            echo "</tr>";
+                                        }
+                                    } else {
+                                        echo "<tr><td colspan='6'>No registration requests found.</td></tr>";
                                     }
-                                } else {
-                                    echo "0 results";
-                                }
-                                ?>
-                            </tbody>
-                        </table>
-                            </div>
-                             <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_2_paginate">
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    
+                        <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_2_paginate">
                             <!-- Render pagination links -->
-<ul class="pagination">
-<?php if ($page > 1 || $total_pages > 1) : ?>
-        <li class="page-item <?php echo $page == 1 ? 'disabled' : ''; ?>">
-            <a class="page-link" href="?page=<?php echo $page - 1; ?>" <?php echo $page == 1 ? 'tabindex="-1" aria-disabled="true"' : ''; ?>>
-                <i class="bi bi-chevron-left"></i>
-            </a>
-        </li>
-    <?php endif; ?>
+                            <ul class="pagination">
+                                <?php if ($page > 1 || $total_pages > 1) :?>
+                                    <li class="page-item <?php echo $page == 1? 'disabled' : '';?>">
+                                        <a class="page-link" href="?page=<?php echo $page - 1;?>" <?php echo $page == 1? 'tabindex="-1" aria-disabled="true"' : '';?>>
+                                            <i class="bi bi-chevron-left"></i>
+                                        </a>
+                                    </li>
+                                <?php endif;?>
 
-    <?php for ($i = 1; $i <= $total_pages; $i++) : ?>
-        <li class="page-item <?php echo $i == $page ? 'active' : ''; ?>"><a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
-    <?php endfor; ?>
+                                <?php for ($i = 1; $i <= $total_pages; $i++) :?>
+                                    <li class="page-item <?php echo $i == $page? 'active' : '';?>"><a class="page-link" href="?page=<?php echo $i;?>"><?php echo $i;?></a></li>
+                                <?php endfor;?>
 
-    <?php if ($page < $total_pages || $total_pages > 1) : ?>
-        <li class="page-item <?php echo $page == $total_pages ? 'disabled' : ''; ?>">
-            <a class="page-link" href="?page=<?php echo $page + 1; ?>" <?php echo $page == $total_pages ? 'tabindex="-1" aria-disabled="true"' : ''; ?>>
-                <i class="bi bi-chevron-right"></i>
-            </a>
-        </li>
-    <?php endif; ?>
-
-</ul>
+                                <?php if ($page < $total_pages || $total_pages > 1) :?>
+                                    <li class="page-item <?php echo $page == $total_pages? 'disabled' : '';?>">
+                                        <a class="page-link" href="?page=<?php echo $page + 1;?>" <?php echo $page == $total_pages? 'tabindex="-1" aria-disabled="true"' : '';?>>
+                                            <i class="bi bi-chevron-right"></i>
+                                        </a>
+                                    </li>
+                                <?php endif;?>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-            <!-- Export Datatable End -->
-            <?php include('includes/footer.php');?>
-			
-            <script>
-               $(document).ready(function() {
-    $('.delete-btn').click(function() {
-        var id = $(this).data('id');
-        Swal.fire({
-            title: 'Are you sure?',
-            text: 'This record will be deleted permanently!',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Yes, delete it!',
-            cancelButtonText: 'No, cancel!',
-            reverseButtons: true
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $.ajax({
-                    url: 'delete.php',
-                    type: 'POST',
-                    data: {id: id},
-                    success: function(response) {
-                        if (response == 1) {
-                            Swal.fire({
-                                title: 'Deleted!',
-                                text: 'The record has been deleted successfully.',
-                                icon: 'success',
-                                confirmButtonText: 'OK'
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    location.reload();
-                                }
-                            });
-                        } else {
-                            Swal.fire({
-                                title: 'Error!',
-                                text: 'An error occurred while deleting the record.',
-                                icon: 'error',
-                                confirmButtonText: 'OK'
-                            });
-                        }
-                    }
-                });
-            }
-        });
-    });
-});
-    // Script for edit button
-    $('.edit-btn').click(function() {
-        var id = $(this).data('id');
-        // You can perform edit operation here, maybe redirect to edit page or show a modal
-        console.log('Edit button clicked for ID: ' + id);
-    });
-
-	// Add an event listener for the search input
-$('#DataTables_Table_2_filter input').on('input', function() {
-  var filterValue = $(this).val().toLowerCase();
-
-  // Loop through the table rows
-  $('.table tbody tr').each(function() {
-    var rowText = $(this).find('td').text().toLowerCase();
-
-    // Check if the row text contains the filter value
-    if (rowText.includes(filterValue)) {
-      $(this).show();
-    } else {
-      $(this).hide();
-    }
-  });
-});
-            </script>
         </div>
     </div>
-</div>
-<style>
-    .expired {
-        background-color: #ffcccc; /* Change to your desired color */
+
+    <!-- Email Modal -->
+    <?php include('popups/sendEmailPopup.php');?>
+
+
+    <?php include('includes/footer.php');?>
+
+    <script>
+        
+        $(document).ready(function() {
+            $('[data-toggle="modal"]').click(function() {
+        var id = $(this).data('id');
+        var status = $(this).data('status');
+        $('#approve_id').val(id);
+        $('#email_status').val(status); // Set the status value
+        
+        // Debugging statements for drug name and email address extraction
+        var drug_name = $(this).closest('tr').find('td:eq(1)').text();
+        console.log('Drug Name:', drug_name);
+        
+        var contact_email = $(this).closest('tr').find('td:eq(3)').text();
+        console.log('Contact Email:', contact_email);
+        
+        $('#email_address').val(contact_email);
+        var subject;
+        if (status == 'Approved') {
+            subject = 'Your registration request has been approved';
+        } else if (status == 'Rejected') {
+            subject = 'Regarding your registration request';
+        } else if (status == 'Pending') {
+            subject = 'Update on your registration request';
+        }
+        $('#email_subject').val(subject);
+    });
+});
+
+      // Checkbox to select all rows
+      $('#select-all').change(function() {
+            $('.row-checkbox').prop('checked', $(this).prop('checked'));
+        });
+
+        // Individual row checkbox
+        $('.row-checkbox').change(function() {
+            if (!$(this).prop('checked')) {
+                $('#select-all').prop('checked', false);
+            }
+        });
+
+        //row delete 
+        $(document).ready(function() {
+            $('.delete-btn').click(function() {
+                var id = $(this).data('id');
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: 'This record will be deleted permanently!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, delete it!',
+                    cancelButtonText: 'No, cancel!',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: 'delete.php',
+                            type: 'POST',
+                            data: {id: id},
+                            success: function(response) {
+                                if (response == 1) {
+                                    Swal.fire({
+                                        title: 'Deleted!',
+                                        text: 'The record has been deleted successfully.',
+                                        icon: 'success',
+                                        confirmButtonText: 'OK'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            location.reload();
+                                        }
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        title: 'Error!',
+                                        text: 'An error occurred while deleting the record.',
+                                        icon: 'error',
+                                        confirmButtonText: 'OK'
+                                    });
+                                }
+                            }
+                        });
+                    }
+                });
+            });
+        });
+
+        // Add an event listener for the search input
+        $('#DataTables_Table_2_filter input').on('input', function() {
+            var filterValue = $(this).val().toLowerCase();
+
+            // Loop through the table rows
+            $('.table tbody tr').each(function() {
+                var rowText = $(this).find('td').text().toLowerCase();
+
+                // Check if the row text contains the filter value
+                if (rowText.includes(filterValue)) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        });
+        
+    </script>
+<Style>
+    .odd-row {
+        background-color: #fff; /* Change to your desired odd row color */
     }
-	
-</style>
+
+    .even-row {
+        background-color: #e9ebf0; /* Change to your desired even row color */
+    }
+</Style>
+
+
+</div>
