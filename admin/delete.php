@@ -38,7 +38,9 @@ $tables = [
     'payment_records' => 'payment_id ',
     'advertisement_requests' => 'id',
     'local_drugs_registration_requests' => 'id',
-    'manufacturing_centers_registration_requests' => 'id'
+    'manufacturing_centers_registration_requests' => 'id',
+    'private_ayurvedic_drug_stores_registration_requests' => 'id',
+    'private_ayurvedic_pharmacies_registration_requests' => 'id'
 ];
 
 $success = false; // Flag to indicate if any deletion was successful

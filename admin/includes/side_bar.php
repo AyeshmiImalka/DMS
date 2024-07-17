@@ -58,9 +58,9 @@
 							<ul class="submenu">
 							<li><a href="manufacturingRegistration.php">Private Ayurvedic Manufacturing Centers</a></li>
 								<li>
-									<a href="#">Private Ayurvedic Drug Stores</a>
+									<a href="drugStoresRegistration.php">Private Ayurvedic Drug Stores</a>
 								</li>
-								<li><a href="#">Private Ayurvedic Pharmacies</a></li>
+								<li><a href="pharmaciesRegistration.php">Private Ayurvedic Pharmacies</a></li>
 								<li><a href="#">Transport Services</a></li>
 								<li><a href="#">Suppliers</a></li>
 								<li><a href="#">Distributors</a></li>

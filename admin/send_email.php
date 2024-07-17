@@ -89,6 +89,21 @@ try {
         $stmt_manufacturing->execute();
         $stmt_manufacturing->close();
 
+        // Prepare and execute the SQL update query for Private Ayurvedic Drug Stores Registration
+        $update_query_drugstores = "UPDATE private_ayurvedic_drug_stores_registration_requests SET status = ? WHERE contact_email = ?";
+        $stmt_drugstores = $conn->prepare($update_query_drugstores);
+        $stmt_drugstores->bind_param("ss", $status, $emailTo);
+        $stmt_drugstores->execute();
+        $stmt_drugstores->close();
+
+        // Prepare and execute the SQL update query for Private Ayurvedic Pharmacies Registration
+        $update_query_pharmacies = "UPDATE private_ayurvedic_pharmacies_registration_requests SET status = ? WHERE contact_email = ?";
+        $stmt_pharmacies = $conn->prepare($update_query_pharmacies);
+        $stmt_pharmacies->bind_param("ss", $status, $emailTo);
+        $stmt_pharmacies->execute();
+        $stmt_pharmacies->close();
+
+
         // Prepare and execute the SQL update query for advertisement_requests 
         $update_query_manufacturing = "UPDATE advertisement_requests  SET status = ? WHERE contact_email = ?";
         $stmt_manufacturing = $conn->prepare($update_query_manufacturing);
