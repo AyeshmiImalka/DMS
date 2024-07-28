@@ -52,6 +52,7 @@ include('includes/header.php');
                             <table class="table">
                                 <thead>
                                     <tr>
+                                        <th><input type="checkbox" id="select-all" class='checkbox-custom'></th> <!-- Checkbox to select all rows -->
                                         <th>Payment ID</th>
                                         <th>Amount</th>
                                         <th>Customer Name</th>
@@ -91,6 +92,7 @@ include('includes/header.php');
                                             $row_count++;
                                             $row_color = $row_count % 2 == 0 ? 'even-row' : 'odd-row';
                                             echo "<tr class='$row_color'>";
+                                            echo "<td><input type='checkbox' class='row-checkbox checkbox-custom' data-id='{$row['payment_id']}'></td>"; // Checkbox for each row
                                             echo "<td>" . $row["payment_id"] . "</td>";
                                             echo "<td>" . $row["amount"] . "</td>";
                                             echo "<td>" . $row["customer_name"] . "</td>";
@@ -99,7 +101,7 @@ include('includes/header.php');
                                             echo "<td>" . $row["time"] . "</td>";
                                             echo "<td>" . $row["transaction_type"] . "</td>";
                                             echo "<td>
-                                            <button class='btn btn-sm btn-danger delete-btn' data-id='" . $row["payment_id"] . "'><i class='fas fa-trash-alt'></i></button>
+                                            <button class='btn btn-sm btn-danger delete-btn rounded-circle circle-btn' id='circle-btn' data-id='" . $row["payment_id"] . "'><i class='fas fa-trash-alt'></i></button>
                                             </td>";
                                             echo "</tr>";
                                         }
@@ -141,6 +143,17 @@ include('includes/header.php');
             <?php include('includes/footer.php');?>
 			
             <script>
+                // Checkbox to select all rows
+      $('#select-all').change(function() {
+            $('.row-checkbox').prop('checked', $(this).prop('checked'));
+        });
+
+        // Individual row checkbox
+        $('.row-checkbox').change(function() {
+            if (!$(this).prop('checked')) {
+                $('#select-all').prop('checked', false);
+            }
+        });
                 $(document).ready(function() {
                     $('.delete-btn').click(function() {
                         var id = $(this).data('id');

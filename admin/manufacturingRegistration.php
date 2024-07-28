@@ -151,7 +151,7 @@ if(!isset($_SESSION['admin_name'])){
                 </div>
             </div>
         </div>
-    </div>
+    
 
     <!-- Email Modal -->
     <?php include('popups/sendEmailPopup.php');?>

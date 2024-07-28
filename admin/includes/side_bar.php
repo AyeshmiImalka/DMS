@@ -61,18 +61,18 @@
 									<a href="drugStoresRegistration.php">Private Ayurvedic Drug Stores</a>
 								</li>
 								<li><a href="pharmaciesRegistration.php">Private Ayurvedic Pharmacies</a></li>
-								<li><a href="#">Transport Services</a></li>
-								<li><a href="#">Suppliers</a></li>
-								<li><a href="#">Distributors</a></li>
+								<li><a href="transportServicesRegistration.php">Transport Services</a></li>
+								<li><a href="suppliersRegistration.php">Suppliers</a></li>
+								<li><a href="distributorsRegistration.php">Distributors</a></li>
 								<li><a href="localDrugsRegistration.php">Local Ayurveda Drugs</a></li>
-								<li><a href="#">Local Ayurveda Products</a></li>
-								<li><a href="#">Imported Ayurveda Drugs</a></li>
-								<li><a href="#">Imported Ayurveda Products</a></li>
-								<li><a href="#">Restricted Drugs</a></li>
-								<li><a href="#">Cannabies</a></li>
-								<li><a href="#">Private Ayurveda Hospitals</a></li>
-								<li><a href="#">Panchakarma Centers</a></li>
-								<li><a href="#">Private Ayurvedic Institutions/ Service Institutions</a></li>
+								<li><a href="localProductsRegistration.php">Local Ayurveda Products</a></li>
+								<li><a href="importedDrugsRegistration.php">Imported Ayurveda Drugs</a></li>
+								<li><a href="importedProductsRegistration.php">Imported Ayurveda Products</a></li>
+								<li><a href="restrictedDrugsRegistration.php">Restricted Drugs</a></li>
+								<li><a href="cannabiesRegistration.php">Cannabies</a></li>
+								<li><a href="hospitalRegistration.php">Private Ayurveda Hospitals</a></li>
+								<li><a href="panchakarmaCentersRegistration.php">Panchakarma Centers</a></li>
+								<li><a href="institutionsRegistration.php">Private Ayurvedic Institutions/ Service Institutions</a></li>
 							</ul>
 						</li>
 						<li>

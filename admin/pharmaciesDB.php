@@ -53,6 +53,7 @@ include('includes/header.php');
                         <table class="table">
                             <thead>
                                 <tr>
+                                    <th><input type="checkbox" id="select-all" class='checkbox-custom'></th> <!-- Checkbox to select all rows -->
                                     <th >Reg. ID</th>
                                     <th>Reg. Name</th>
                                     <th>Reg. Date</th>
@@ -88,14 +89,15 @@ include('includes/header.php');
                                     while($row = mysqli_fetch_assoc($result)) {
                                         $expired = strtotime($row['Renewal_update']) < strtotime('now');
                                         echo "<tr class='" . ($expired ? 'expired' : '') . "'>";
+                                        echo "<td><input type='checkbox' class='row-checkbox checkbox-custom' data-id='{$row['Reg_id']}'></td>"; // Checkbox for each row
                                         echo "<td class='table-plus'>" . $row["Reg_id"] . "</td>";
                                         echo "<td>" . $row["Reg_name"] . "</td>";
                                         echo "<td>" . $row["Reg_date"] . "</td>";
                                         echo "<td>" . $row["LicenseRenewal(yrs)"] . "</td>";
                                         echo "<td>" . $row["Renewal_update"] . "</td>";
                                         echo "<td>
-										<button class='btn btn-sm btn-danger delete-btn' data-id='" . $row["Reg_id"] . "'><i class='fas fa-trash-alt'></i></button>
-										<button class='btn btn-sm btn-info edit-btn' data-id='" . $row["Reg_id"] . "'><i class='fas fa-edit'></i></button>
+										<button class='btn btn-sm btn-danger delete-btn rounded-circle circle-btn' id='circle-btn'' data-id='" . $row["Reg_id"] . "'><i class='fas fa-trash-alt'></i></button>
+										<button class='btn btn-sm btn-info edit-btn rounded-circle circle-btn' id='circle-btn'' data-id='" . $row["Reg_id"] . "'><i class='fas fa-edit'></i></button>
                                               </td>";
                                         echo "</tr>";
                                     }
@@ -137,7 +139,21 @@ include('includes/header.php');
             <?php include('includes/footer.php');?>
 			
             <script>
-               $(document).ready(function() {
+
+      // Checkbox to select all rows
+      $('#select-all').change(function() {
+            $('.row-checkbox').prop('checked', $(this).prop('checked'));
+        });
+
+        // Individual row checkbox
+        $('.row-checkbox').change(function() {
+            if (!$(this).prop('checked')) {
+                $('#select-all').prop('checked', false);
+            }
+        });
+
+        //row delete 
+    $(document).ready(function() {
     $('.delete-btn').click(function() {
         var id = $(this).data('id');
         Swal.fire({

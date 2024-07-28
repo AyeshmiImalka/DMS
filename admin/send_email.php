@@ -46,7 +46,7 @@ $emailTo = $_POST['email_address'];
 $subject = $_POST['email_subject'];
 $message = $_POST['email_message'];
 $status = $_POST['email_status']; // Get the status from the form
-
+$id = $_POST['approve_id']; // Get the id from the form
 
 // Initialize PHPMailer
 $mail = new PHPMailer(true);
@@ -75,41 +75,33 @@ try {
         // Email sent successfully, now update the status in the database
         require 'config_form.php'; // Include your database connection file
 
-        // Prepare and execute the SQL update query
-        $update_query = "UPDATE local_drugs_registration_requests SET status = ? WHERE contact_email = ?";
-        $stmt = $conn->prepare($update_query);
-        $stmt->bind_param("ss", $status, $emailTo);
-        $stmt->execute();
-        $stmt->close();
+        // Update status in each table separately
+        $tables = [
+            'local_drugs_registration_requests',
+            'manufacturing_centers_registration_requests',
+            'private_ayurvedic_drug_stores_registration_requests',
+            'private_ayurvedic_pharmacies_registration_requests',
+            'transport_services_registration_requests',
+            'suppliers_registration_requests',
+            'distributors_registration_requests',
+            'local_products_registration_requests',
+            'imported_drugs_registration_requests',
+            'imported_products_registration_requests',
+            'restricted_drugs_registration_requests',
+            'cannabis_registration_requests',
+            'private_ayurveda_hospital_registration',
+            'panchakarma_centers_registration_requests',
+            'private_ayurveda_institutions_registration_requests',
+            'advertisement_requests'
+        ];
 
-        // Prepare and execute the SQL update query for manufacturing_centers_registration_requests
-        $update_query_manufacturing = "UPDATE manufacturing_centers_registration_requests SET status = ? WHERE contact_email = ?";
-        $stmt_manufacturing = $conn->prepare($update_query_manufacturing);
-        $stmt_manufacturing->bind_param("ss", $status, $emailTo);
-        $stmt_manufacturing->execute();
-        $stmt_manufacturing->close();
-
-        // Prepare and execute the SQL update query for Private Ayurvedic Drug Stores Registration
-        $update_query_drugstores = "UPDATE private_ayurvedic_drug_stores_registration_requests SET status = ? WHERE contact_email = ?";
-        $stmt_drugstores = $conn->prepare($update_query_drugstores);
-        $stmt_drugstores->bind_param("ss", $status, $emailTo);
-        $stmt_drugstores->execute();
-        $stmt_drugstores->close();
-
-        // Prepare and execute the SQL update query for Private Ayurvedic Pharmacies Registration
-        $update_query_pharmacies = "UPDATE private_ayurvedic_pharmacies_registration_requests SET status = ? WHERE contact_email = ?";
-        $stmt_pharmacies = $conn->prepare($update_query_pharmacies);
-        $stmt_pharmacies->bind_param("ss", $status, $emailTo);
-        $stmt_pharmacies->execute();
-        $stmt_pharmacies->close();
-
-
-        // Prepare and execute the SQL update query for advertisement_requests 
-        $update_query_manufacturing = "UPDATE advertisement_requests  SET status = ? WHERE contact_email = ?";
-        $stmt_manufacturing = $conn->prepare($update_query_manufacturing);
-        $stmt_manufacturing->bind_param("ss", $status, $emailTo);
-        $stmt_manufacturing->execute();
-        $stmt_manufacturing->close();
+        foreach ($tables as $table) {
+            $update_query = "UPDATE $table SET status = ? WHERE id = ? ";
+            $stmt = $conn->prepare($update_query);
+            $stmt->bind_param("ss", $status, $id);
+            $stmt->execute();
+            $stmt->close();
+        }
 
         echo "<p class='success-message'>Email sent successfully!</p>";
     } else {
@@ -119,6 +111,7 @@ try {
     echo "<p class='error-message'>Failed to send email. Error: {$mail->ErrorInfo}</p>";
 }
 ?>
+
 
     </div>
 </body>

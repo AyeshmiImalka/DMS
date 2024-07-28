@@ -178,11 +178,11 @@ if(!isset($_SESSION['admin_name'])){
         $('#email_address').val(contact_email);
         var subject;
         if (status == 'Approved') {
-            subject = 'Your registration request has been approved';
+            subject = 'Your Advertisement Has Been Approved!';
         } else if (status == 'Rejected') {
-            subject = 'Regarding your registration request';
+            subject = 'Your Advertisement Submission';
         } else if (status == 'Pending') {
-            subject = 'Update on your registration request';
+            subject = 'Your Advertisement Submission is Pending';
         }
         $('#email_subject').val(subject);
     });

@@ -19,7 +19,7 @@ if(!isset($_SESSION['admin_name'])){
                 <div class="row">
                     <div class="col-md-8 col-sm-12">
                         <div class="title">
-                            <h4>Local Ayurveda Drugs Registration</h4>
+                            <h4>Imported Drugs Registration</h4>
                         </div>
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
@@ -27,7 +27,7 @@ if(!isset($_SESSION['admin_name'])){
                                     <a href="#">Home</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    Local Ayurveda Drugs Registration
+                                    Imported Drugs Registration
                                 </li>
                             </ol>
                         </nav>
@@ -62,7 +62,7 @@ if(!isset($_SESSION['admin_name'])){
                                 <tbody>
                                     <?php
                                     // Query to get total number of records
-                                    $sql_count = "SELECT COUNT(*) AS total_records FROM local_drugs_registration_requests";
+                                    $sql_count = "SELECT COUNT(*) AS total_records FROM imported_drugs_registration_requests";
                                     $result_count = mysqli_query($conn, $sql_count);
                                     $row_count = mysqli_fetch_assoc($result_count);
                                     $total_records = $row_count['total_records'];
@@ -79,7 +79,7 @@ if(!isset($_SESSION['admin_name'])){
                                     // Calculate the starting record for the query
                                     $offset = ($page - 1) * $records_per_page;
 
-                                    $sql = "SELECT * FROM local_drugs_registration_requests LIMIT $offset, $records_per_page";
+                                    $sql = "SELECT * FROM imported_drugs_registration_requests LIMIT $offset, $records_per_page";
                                     $result = mysqli_query($conn, $sql);
                                     if (mysqli_num_rows($result) > 0) {
                                         $row_count = 0;
@@ -97,15 +97,15 @@ if(!isset($_SESSION['admin_name'])){
                                             // Email send buttons
                                             if (empty($row['status'])) {
                                                 echo "<td>
-                                                        <a href='#' class='btn btn-sm btn-success rounded-circle circle-btn' id='circle-btn'' data-toggle='modal' data-target='#emailModal' data-status='Approved' data-id='{$row['id']}'> <i class='fa-solid fa-stamp'></i></a>
-                                                        <a href='#' class='btn btn-sm btn-danger rounded-circle circle-btn' id='circle-btn'' data-toggle='modal' data-target='#emailModal' data-status='Rejected' data-id='{$row['id']}'><i class='fa-solid fa-circle-xmark'></i></a>
-                                                        <a href='#' class='btn btn-sm btn-warning rounded-circle circle-btn' id='circle-btn'' data-toggle='modal' data-target='#emailModal' data-status='Pending' data-id='{$row['id']}'><i class='fa-solid fa-rotate' style='color: #ffffff;'></i></a>
+                                                        <a href='#' class='btn btn-sm btn-success rounded-circle circle-btn' id='circle-btn' data-toggle='modal' data-target='#emailModal' data-status='Approved' data-id='{$row['id']}'> <i class='fa-solid fa-stamp'></i></a>
+                                                        <a href='#' class='btn btn-sm btn-danger rounded-circle circle-btn' id='circle-btn' data-toggle='modal' data-target='#emailModal' data-status='Rejected' data-id='{$row['id']}'><i class='fa-solid fa-circle-xmark'></i></a>
+                                                        <a href='#' class='btn btn-sm btn-warning rounded-circle circle-btn' id='circle-btn' data-toggle='modal' data-target='#emailModal' data-status='Pending' data-id='{$row['id']}'><i class='fa-solid fa-rotate' style='color: #ffffff;'></i></a>
                                                     </td>";
                                             } else {
                                                 echo "<td>
-                                                <button class='btn btn-sm btn-secondary rounded-circle circle-btn' id='circle-btn'' disabled><i class='fa-solid fa-stamp'></i></button>
-                                                <button class='btn btn-sm btn-secondary rounded-circle circle-btn' id='circle-btn'' disabled><i class='fa-solid fa-circle-xmark'></i></button>
-                                                <button class='btn btn-sm btn-secondary rounded-circle circle-btn' id='circle-btn'' disabled><i class='fa-solid fa-rotate'></i></button>
+                                                <button class='btn btn-sm btn-secondary rounded-circle circle-btn' id='circle-btn' disabled><i class='fa-solid fa-stamp'></i></button>
+                                                <button class='btn btn-sm btn-secondary rounded-circle circle-btn' id='circle-btn' disabled><i class='fa-solid fa-circle-xmark'></i></button>
+                                                <button class='btn btn-sm btn-secondary rounded-circle circle-btn' id='circle-btn' disabled><i class='fa-solid fa-rotate'></i></button>
         
                                                 </td>"; // Hide the buttons if status is filled
                                             }
@@ -116,7 +116,7 @@ if(!isset($_SESSION['admin_name'])){
                                             echo "</tr>";
                                         }
                                     } else {
-                                        echo "<tr><td colspan='6'>No registration requests found.</td></tr>";
+                                        echo "<tr><td colspan='7'>No registration requests found.</td></tr>";
                                     }
                                     ?>
                                 </tbody>
@@ -163,33 +163,33 @@ if(!isset($_SESSION['admin_name'])){
         
         $(document).ready(function() {
             $('[data-toggle="modal"]').click(function() {
-        var id = $(this).data('id');
-        var status = $(this).data('status');
-        $('#approve_id').val(id);
-        $('#email_status').val(status); // Set the status value
-        
-        // Debugging statements for drug name and email address extraction
-        var drug_name = $(this).closest('tr').find('td:eq(1)').text();
-        console.log('Drug Name:', drug_name);
-        
-        var contact_email = $(this).closest('tr').find('td:eq(3)').text();
-        console.log('Contact Email:', contact_email);
-        
-        $('#email_address').val(contact_email);
-        var subject;
-        if (status == 'Approved') {
-            subject = 'Your registration request has been approved';
-        } else if (status == 'Rejected') {
-            subject = 'Regarding your registration request';
-        } else if (status == 'Pending') {
-            subject = 'Update on your registration request';
-        }
-        $('#email_subject').val(subject);
-    });
-});
+                var id = $(this).data('id');
+                var status = $(this).data('status');
+                $('#approve_id').val(id); // Added id input field
+                $('#email_status').val(status); // Set the status value
+                
+                // Extracting drug name and email address
+                var drug_name = $(this).closest('tr').find('td:eq(2)').text(); // Corrected the index to 2 for drug name
+                console.log('Drug Name:', drug_name);
+                
+                var contact_email = $(this).closest('tr').find('td:eq(3)').text();
+                console.log('Contact Email:', contact_email);
+                
+                $('#email_address').val(contact_email);
+                var subject;
+                if (status == 'Approved') {
+                    subject = 'Your registration request for ' + drug_name + ' has been approved';
+                } else if (status == 'Rejected') {
+                    subject = 'Regarding your registration request for ' + drug_name;
+                } else if (status == 'Pending') {
+                    subject = 'Update on your registration request for ' + drug_name;
+                }
+                $('#email_subject').val(subject);
+            });
+        });
 
-      // Checkbox to select all rows
-      $('#select-all').change(function() {
+        // Checkbox to select all rows
+        $('#select-all').change(function() {
             $('.row-checkbox').prop('checked', $(this).prop('checked'));
         });
 

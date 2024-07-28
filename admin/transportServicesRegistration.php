@@ -19,7 +19,7 @@ if(!isset($_SESSION['admin_name'])){
                 <div class="row">
                     <div class="col-md-8 col-sm-12">
                         <div class="title">
-                            <h4>Local Ayurveda Drugs Registration</h4>
+                            <h4>Transport Services Registration</h4>
                         </div>
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
@@ -27,7 +27,7 @@ if(!isset($_SESSION['admin_name'])){
                                     <a href="#">Home</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    Local Ayurveda Drugs Registration
+                                    Transport Services Registration
                                 </li>
                             </ol>
                         </nav>
@@ -52,7 +52,7 @@ if(!isset($_SESSION['admin_name'])){
                                     <tr>
                                         <th><input type="checkbox" id="select-all" class='checkbox-custom'></th> <!-- Checkbox to select all rows -->
                                         <th>Request ID</th>
-                                        <th>Drug Name</th>
+                                        <th>Transport Service Name</th>
                                         <th>Contact Email</th>
                                         <th></th>
                                         <th>Status</th>
@@ -62,7 +62,7 @@ if(!isset($_SESSION['admin_name'])){
                                 <tbody>
                                     <?php
                                     // Query to get total number of records
-                                    $sql_count = "SELECT COUNT(*) AS total_records FROM local_drugs_registration_requests";
+                                    $sql_count = "SELECT COUNT(*) AS total_records FROM transport_services_registration_requests";
                                     $result_count = mysqli_query($conn, $sql_count);
                                     $row_count = mysqli_fetch_assoc($result_count);
                                     $total_records = $row_count['total_records'];
@@ -79,7 +79,7 @@ if(!isset($_SESSION['admin_name'])){
                                     // Calculate the starting record for the query
                                     $offset = ($page - 1) * $records_per_page;
 
-                                    $sql = "SELECT * FROM local_drugs_registration_requests LIMIT $offset, $records_per_page";
+                                    $sql = "SELECT * FROM transport_services_registration_requests LIMIT $offset, $records_per_page";
                                     $result = mysqli_query($conn, $sql);
                                     if (mysqli_num_rows($result) > 0) {
                                         $row_count = 0;
@@ -90,7 +90,7 @@ if(!isset($_SESSION['admin_name'])){
                                             
                                             echo "<td><input type='checkbox' class='row-checkbox checkbox-custom' data-id='{$row['id']}'></td>"; // Checkbox for each row
                                             echo "<td>". $row["id"]. "</td>";
-                                            echo "<td>". $row["drug_name"]. "</td>";
+                                            echo "<td>". $row["service_name"]. "</td>";
                                             echo "<td>". $row["contact_email"]. "</td>";
                                             echo "<td><a href='". $row["registration_documents"]. "' target='_blank'><i class='fas fa-file-alt fa-xl icon-blue'></i></a></td>";
 
@@ -99,7 +99,7 @@ if(!isset($_SESSION['admin_name'])){
                                                 echo "<td>
                                                         <a href='#' class='btn btn-sm btn-success rounded-circle circle-btn' id='circle-btn'' data-toggle='modal' data-target='#emailModal' data-status='Approved' data-id='{$row['id']}'> <i class='fa-solid fa-stamp'></i></a>
                                                         <a href='#' class='btn btn-sm btn-danger rounded-circle circle-btn' id='circle-btn'' data-toggle='modal' data-target='#emailModal' data-status='Rejected' data-id='{$row['id']}'><i class='fa-solid fa-circle-xmark'></i></a>
-                                                        <a href='#' class='btn btn-sm btn-warning rounded-circle circle-btn' id='circle-btn'' data-toggle='modal' data-target='#emailModal' data-status='Pending' data-id='{$row['id']}'><i class='fa-solid fa-rotate' style='color: #ffffff;'></i></a>
+                                                        <a href='#' class='btn btn-sm btn-warning rounded-circle circle-btn' id='circle-btn'' data-toggle='modal' data-target='#emailModal' data-status='Pending' data-id='{$row['id']}'> <i class='fa-solid fa-rotate' style='color: #ffffff;'></i></a>
                                                     </td>";
                                             } else {
                                                 echo "<td>
@@ -156,37 +156,36 @@ if(!isset($_SESSION['admin_name'])){
     <!-- Email Modal -->
     <?php include('popups/sendEmailPopup.php');?>
 
-
     <?php include('includes/footer.php');?>
 
     <script>
-        
         $(document).ready(function() {
             $('[data-toggle="modal"]').click(function() {
-        var id = $(this).data('id');
-        var status = $(this).data('status');
-        $('#approve_id').val(id);
-        $('#email_status').val(status); // Set the status value
-        
-        // Debugging statements for drug name and email address extraction
-        var drug_name = $(this).closest('tr').find('td:eq(1)').text();
-        console.log('Drug Name:', drug_name);
-        
-        var contact_email = $(this).closest('tr').find('td:eq(3)').text();
-        console.log('Contact Email:', contact_email);
-        
-        $('#email_address').val(contact_email);
-        var subject;
-        if (status == 'Approved') {
-            subject = 'Your registration request has been approved';
-        } else if (status == 'Rejected') {
-            subject = 'Regarding your registration request';
-        } else if (status == 'Pending') {
-            subject = 'Update on your registration request';
+                var id = $(this).data('id');
+                var status = $(this).data('status');
+                $('#approve_id').val(id); // Added id input field
+                $('#email_status').val(status); // Set the status value
+                
+                // Extracting service name and email address
+                var service_name = $(this).closest('tr').find('td:eq(2)').text(); // Corrected the index to 2 for service name
+                console.log('Service Name:', service_name);
+                
+                var contact_email = $(this).closest('tr').find('td:eq(3)').text();
+                console.log('Contact Email:', contact_email);
+                
+                $('#email_address').val(contact_email);
+                var subject;
+                if (status == 'Approved') {
+                    subject = 'Your registration request for ' + service_name + ' has been approved';
+                } else if (status == 'Rejected') {
+                    subject = 'Regarding your registration request for ' + service_name;
+                } else if (status == 'Pending') {
+                    subject = 'Update on your registration request for ' + service_name;
         }
         $('#email_subject').val(subject);
     });
 });
+
 
       // Checkbox to select all rows
       $('#select-all').change(function() {
@@ -275,3 +274,4 @@ if(!isset($_SESSION['admin_name'])){
 
 
 </div>
+

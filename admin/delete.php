@@ -40,7 +40,18 @@ $tables = [
     'local_drugs_registration_requests' => 'id',
     'manufacturing_centers_registration_requests' => 'id',
     'private_ayurvedic_drug_stores_registration_requests' => 'id',
-    'private_ayurvedic_pharmacies_registration_requests' => 'id'
+    'private_ayurvedic_pharmacies_registration_requests' => 'id',
+    'transport_services_registration_requests' => 'id',
+    'suppliers_registration_requests' => 'id',
+    'distributors_registration_requests' => 'id',
+    'local_products_registration_requests' => 'id',
+    'imported_drugs_registration_requests' => 'id',
+    'imported_products_registration_requests' => 'id',
+    'restricted_drugs_registration_requests' => 'id',
+    'cannabis_registration_requests' => 'id',
+    'private_ayurveda_hospital_registration' => 'id',
+    'panchakarma_centers_registration_requests' => 'id',
+    'private_ayurveda_institutions_registration_requests' => 'id'
 ];
 
 $success = false; // Flag to indicate if any deletion was successful

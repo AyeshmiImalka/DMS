@@ -7,6 +7,7 @@
                 </div>
                 <div class="modal-body">
                     <form action="send_email.php" method="post">
+                    <input type="hidden" id="approve_id" name="approve_id"> <!-- Added hidden input field for ID -->
                     <input type="hidden" id="email_status" name="email_status">
                         <div class="form-group">
                             <label for="email_address">Recipient Email</label>

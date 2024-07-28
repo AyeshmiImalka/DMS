@@ -151,7 +151,7 @@ if(!isset($_SESSION['admin_name'])){
                 </div>
             </div>
         </div>
-    </div>
+    
 
     <!-- Email Modal -->
     <?php include('popups/sendEmailPopup.php');?>
@@ -165,7 +165,7 @@ if(!isset($_SESSION['admin_name'])){
     $('[data-toggle="modal"]').click(function() {
         var id = $(this).data('id');
         var status = $(this).data('status');
-        $('#approve_id').val(id);
+        $('#approve_id').val(id); // Added id input field
         $('#email_status').val(status); // Set the status value
         
         // Extracting pharmacy name and email address
@@ -187,6 +187,7 @@ if(!isset($_SESSION['admin_name'])){
         $('#email_subject').val(subject);
     });
 });
+
 
       // Checkbox to select all rows
       $('#select-all').change(function() {

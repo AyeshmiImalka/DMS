@@ -19,7 +19,7 @@ if(!isset($_SESSION['admin_name'])){
                 <div class="row">
                     <div class="col-md-8 col-sm-12">
                         <div class="title">
-                            <h4>Local Ayurveda Drugs Registration</h4>
+                            <h4>Local Products Registration</h4>
                         </div>
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
@@ -27,7 +27,7 @@ if(!isset($_SESSION['admin_name'])){
                                     <a href="#">Home</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">
-                                    Local Ayurveda Drugs Registration
+                                    Local Products Registration
                                 </li>
                             </ol>
                         </nav>
@@ -52,7 +52,7 @@ if(!isset($_SESSION['admin_name'])){
                                     <tr>
                                         <th><input type="checkbox" id="select-all" class='checkbox-custom'></th> <!-- Checkbox to select all rows -->
                                         <th>Request ID</th>
-                                        <th>Drug Name</th>
+                                        <th>Product Name</th>
                                         <th>Contact Email</th>
                                         <th></th>
                                         <th>Status</th>
@@ -62,7 +62,7 @@ if(!isset($_SESSION['admin_name'])){
                                 <tbody>
                                     <?php
                                     // Query to get total number of records
-                                    $sql_count = "SELECT COUNT(*) AS total_records FROM local_drugs_registration_requests";
+                                    $sql_count = "SELECT COUNT(*) AS total_records FROM local_products_registration_requests";
                                     $result_count = mysqli_query($conn, $sql_count);
                                     $row_count = mysqli_fetch_assoc($result_count);
                                     $total_records = $row_count['total_records'];
@@ -74,38 +74,38 @@ if(!isset($_SESSION['admin_name'])){
                                     $total_pages = ceil($total_records / $records_per_page);
 
                                     // Determine current page
-                                    $page = isset($_GET['page'])? $_GET['page'] : 1;
+                                    $page = isset($_GET['page']) ? $_GET['page'] : 1;
 
                                     // Calculate the starting record for the query
                                     $offset = ($page - 1) * $records_per_page;
 
-                                    $sql = "SELECT * FROM local_drugs_registration_requests LIMIT $offset, $records_per_page";
+                                    $sql = "SELECT * FROM local_products_registration_requests LIMIT $offset, $records_per_page";
                                     $result = mysqli_query($conn, $sql);
                                     if (mysqli_num_rows($result) > 0) {
                                         $row_count = 0;
-                                        while($row = mysqli_fetch_assoc($result)) {
+                                        while ($row = mysqli_fetch_assoc($result)) {
                                             $row_count++;
                                             $row_color = $row_count % 2 == 0 ? 'even-row' : 'odd-row';
                                             echo "<tr class='$row_color'>";
-                                            
+
                                             echo "<td><input type='checkbox' class='row-checkbox checkbox-custom' data-id='{$row['id']}'></td>"; // Checkbox for each row
-                                            echo "<td>". $row["id"]. "</td>";
-                                            echo "<td>". $row["drug_name"]. "</td>";
-                                            echo "<td>". $row["contact_email"]. "</td>";
-                                            echo "<td><a href='". $row["registration_documents"]. "' target='_blank'><i class='fas fa-file-alt fa-xl icon-blue'></i></a></td>";
+                                            echo "<td>" . $row["id"] . "</td>";
+                                            echo "<td>" . $row["product_name"] . "</td>";
+                                            echo "<td>" . $row["contact_email"] . "</td>";
+                                            echo "<td><a href='" . $row["registration_documents"] . "' target='_blank'><i class='fas fa-file-alt fa-xl icon-blue'></i></a></td>";
 
                                             // Email send buttons
                                             if (empty($row['status'])) {
                                                 echo "<td>
-                                                        <a href='#' class='btn btn-sm btn-success rounded-circle circle-btn' id='circle-btn'' data-toggle='modal' data-target='#emailModal' data-status='Approved' data-id='{$row['id']}'> <i class='fa-solid fa-stamp'></i></a>
-                                                        <a href='#' class='btn btn-sm btn-danger rounded-circle circle-btn' id='circle-btn'' data-toggle='modal' data-target='#emailModal' data-status='Rejected' data-id='{$row['id']}'><i class='fa-solid fa-circle-xmark'></i></a>
-                                                        <a href='#' class='btn btn-sm btn-warning rounded-circle circle-btn' id='circle-btn'' data-toggle='modal' data-target='#emailModal' data-status='Pending' data-id='{$row['id']}'><i class='fa-solid fa-rotate' style='color: #ffffff;'></i></a>
+                                                        <a href='#' class='btn btn-sm btn-success rounded-circle circle-btn' id='circle-btn' data-toggle='modal' data-target='#emailModal' data-status='Approved' data-id='{$row['id']}'> <i class='fa-solid fa-stamp'></i></a>
+                                                        <a href='#' class='btn btn-sm btn-danger rounded-circle circle-btn' id='circle-btn' data-toggle='modal' data-target='#emailModal' data-status='Rejected' data-id='{$row['id']}'><i class='fa-solid fa-circle-xmark'></i></a>
+                                                        <a href='#' class='btn btn-sm btn-warning rounded-circle circle-btn' id='circle-btn' data-toggle='modal' data-target='#emailModal' data-status='Pending' data-id='{$row['id']}'><i class='fa-solid fa-rotate' style='color: #ffffff;'></i></a>
                                                     </td>";
                                             } else {
                                                 echo "<td>
-                                                <button class='btn btn-sm btn-secondary rounded-circle circle-btn' id='circle-btn'' disabled><i class='fa-solid fa-stamp'></i></button>
-                                                <button class='btn btn-sm btn-secondary rounded-circle circle-btn' id='circle-btn'' disabled><i class='fa-solid fa-circle-xmark'></i></button>
-                                                <button class='btn btn-sm btn-secondary rounded-circle circle-btn' id='circle-btn'' disabled><i class='fa-solid fa-rotate'></i></button>
+                                                <button class='btn btn-sm btn-secondary rounded-circle circle-btn' id='circle-btn' disabled><i class='fa-solid fa-stamp'></i></button>
+                                                <button class='btn btn-sm btn-secondary rounded-circle circle-btn' id='circle-btn' disabled><i class='fa-solid fa-circle-xmark'></i></button>
+                                                <button class='btn btn-sm btn-secondary rounded-circle circle-btn' id='circle-btn' disabled><i class='fa-solid fa-rotate'></i></button>
         
                                                 </td>"; // Hide the buttons if status is filled
                                             }
@@ -122,29 +122,29 @@ if(!isset($_SESSION['admin_name'])){
                                 </tbody>
                             </table>
                         </div>
-                    
+
                         <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_2_paginate">
                             <!-- Render pagination links -->
                             <ul class="pagination">
-                                <?php if ($page > 1 || $total_pages > 1) :?>
-                                    <li class="page-item <?php echo $page == 1? 'disabled' : '';?>">
-                                        <a class="page-link" href="?page=<?php echo $page - 1;?>" <?php echo $page == 1? 'tabindex="-1" aria-disabled="true"' : '';?>>
+                                <?php if ($page > 1 || $total_pages > 1) : ?>
+                                    <li class="page-item <?php echo $page == 1 ? 'disabled' : ''; ?>">
+                                        <a class="page-link" href="?page=<?php echo $page - 1; ?>" <?php echo $page == 1 ? 'tabindex="-1" aria-disabled="true"' : ''; ?>>
                                             <i class="bi bi-chevron-left"></i>
                                         </a>
                                     </li>
-                                <?php endif;?>
+                                <?php endif; ?>
 
-                                <?php for ($i = 1; $i <= $total_pages; $i++) :?>
-                                    <li class="page-item <?php echo $i == $page? 'active' : '';?>"><a class="page-link" href="?page=<?php echo $i;?>"><?php echo $i;?></a></li>
-                                <?php endfor;?>
+                                <?php for ($i = 1; $i <= $total_pages; $i++) : ?>
+                                    <li class="page-item <?php echo $i == $page ? 'active' : ''; ?>"><a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+                                <?php endfor; ?>
 
-                                <?php if ($page < $total_pages || $total_pages > 1) :?>
-                                    <li class="page-item <?php echo $page == $total_pages? 'disabled' : '';?>">
-                                        <a class="page-link" href="?page=<?php echo $page + 1;?>" <?php echo $page == $total_pages? 'tabindex="-1" aria-disabled="true"' : '';?>>
+                                <?php if ($page < $total_pages || $total_pages > 1) : ?>
+                                    <li class="page-item <?php echo $page == $total_pages ? 'disabled' : ''; ?>">
+                                        <a class="page-link" href="?page=<?php echo $page + 1; ?>" <?php echo $page == $total_pages ? 'tabindex="-1" aria-disabled="true"' : ''; ?>>
                                             <i class="bi bi-chevron-right"></i>
                                         </a>
                                     </li>
-                                <?php endif;?>
+                                <?php endif; ?>
                             </ul>
                         </div>
                     </div>
@@ -154,42 +154,40 @@ if(!isset($_SESSION['admin_name'])){
     
 
     <!-- Email Modal -->
-    <?php include('popups/sendEmailPopup.php');?>
+    <?php include('popups/sendEmailPopup.php'); ?>
 
-
-    <?php include('includes/footer.php');?>
+    <?php include('includes/footer.php'); ?>
 
     <script>
-        
         $(document).ready(function() {
             $('[data-toggle="modal"]').click(function() {
-        var id = $(this).data('id');
-        var status = $(this).data('status');
-        $('#approve_id').val(id);
-        $('#email_status').val(status); // Set the status value
-        
-        // Debugging statements for drug name and email address extraction
-        var drug_name = $(this).closest('tr').find('td:eq(1)').text();
-        console.log('Drug Name:', drug_name);
-        
-        var contact_email = $(this).closest('tr').find('td:eq(3)').text();
-        console.log('Contact Email:', contact_email);
-        
-        $('#email_address').val(contact_email);
-        var subject;
-        if (status == 'Approved') {
-            subject = 'Your registration request has been approved';
-        } else if (status == 'Rejected') {
-            subject = 'Regarding your registration request';
-        } else if (status == 'Pending') {
-            subject = 'Update on your registration request';
-        }
-        $('#email_subject').val(subject);
-    });
-});
+                var id = $(this).data('id');
+                var status = $(this).data('status');
+                $('#approve_id').val(id); // Added id input field
+                $('#email_status').val(status); // Set the status value
 
-      // Checkbox to select all rows
-      $('#select-all').change(function() {
+                // Extracting product name and email address
+                var product_name = $(this).closest('tr').find('td:eq(2)').text(); // Corrected the index to 2 for product name
+                console.log('Product Name:', product_name);
+
+                var contact_email = $(this).closest('tr').find('td:eq(3)').text();
+                console.log('Contact Email:', contact_email);
+
+                $('#email_address').val(contact_email);
+                var subject;
+                if (status == 'Approved') {
+                    subject = 'Your registration request for ' + product_name + ' has been approved';
+                } else if (status == 'Rejected') {
+                    subject = 'Regarding your registration request for ' + product_name;
+                } else if (status == 'Pending') {
+                    subject = 'Update on your registration request for ' + product_name;
+                }
+                $('#email_subject').val(subject);
+            });
+        });
+
+        // Checkbox to select all rows
+        $('#select-all').change(function() {
             $('.row-checkbox').prop('checked', $(this).prop('checked'));
         });
 
@@ -200,7 +198,7 @@ if(!isset($_SESSION['admin_name'])){
             }
         });
 
-        //row delete 
+        // Row delete
         $(document).ready(function() {
             $('.delete-btn').click(function() {
                 var id = $(this).data('id');
@@ -261,7 +259,6 @@ if(!isset($_SESSION['admin_name'])){
                 }
             });
         });
-        
     </script>
 <Style>
     .odd-row {
@@ -272,6 +269,5 @@ if(!isset($_SESSION['admin_name'])){
         background-color: #e9ebf0; /* Change to your desired even row color */
     }
 </Style>
-
 
 </div>

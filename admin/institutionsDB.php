@@ -53,6 +53,7 @@ include('includes/header.php');
                         <table class="table">
                             <thead>
                                 <tr>
+                                    <th><input type="checkbox" id="select-all" class='checkbox-custom'></th> <!-- Checkbox to select all rows -->
                                     <th >Institution Id</th>
                                     <th>Institution Name</th>
                                     <th>Location</th>
@@ -89,14 +90,15 @@ include('includes/header.php');
                                     while($row = mysqli_fetch_assoc($result)) {
                                         $expired = strtotime($row['license_expiry_date']) < strtotime('now');
                                         echo "<tr class='" . ($expired ? 'expired' : '') . "'>";
+                                        echo "<td><input type='checkbox' class='row-checkbox checkbox-custom' data-id='{$row['institution_id']}'></td>"; // Checkbox for each row
                                         echo "<td class='table-plus'>" . $row["institution_id"] . "</td>";
                                         echo "<td>" . $row["institution_name"] . "</td>";
                                         echo "<td>" . $row["location"] . "</td>";
                                         echo "<td>" . $row["registration_date"] . "</td>";
                                         echo "<td>" . $row["license_expiry_date"] . "</td>";
                                         echo "<td>
-										<button class='btn btn-sm btn-danger delete-btn' data-id='" . $row["institution_id"] . "'><i class='fas fa-trash-alt'></i></button>
-										<button class='btn btn-sm btn-info edit-btn' data-id='" . $row["institution_id"] . "'><i class='fas fa-edit'></i></button>
+										<button class='btn btn-sm btn-danger delete-btn rounded-circle circle-btn' id='circle-btn'' data-id='" . $row["institution_id"] . "'><i class='fas fa-trash-alt'></i></button>
+										<button class='btn btn-sm btn-info edit-btn rounded-circle circle-btn' id='circle-btn'' data-id='" . $row["institution_id"] . "'><i class='fas fa-edit'></i></button>
                                               </td>";
                                         echo "</tr>";
                                     }
@@ -139,8 +141,19 @@ include('includes/header.php');
             <?php include('includes/footer.php');?>
 			
             <script>
+     // Checkbox to select all rows
+      $('#select-all').change(function() {
+            $('.row-checkbox').prop('checked', $(this).prop('checked'));
+        });
+
+        // Individual row checkbox
+        $('.row-checkbox').change(function() {
+            if (!$(this).prop('checked')) {
+                $('#select-all').prop('checked', false);
+            }
+        });
                $(document).ready(function() {
-    $('.delete-btn').click(function() {
+               $('.delete-btn').click(function() {
         var id = $(this).data('id');
         Swal.fire({
             title: 'Are you sure?',
