@@ -118,19 +118,15 @@ include('includes/header.php');
                                 <?php if ($page > 1 || $total_pages > 1) : ?>
                                     <li class="page-item <?php echo $page == 1 ? 'disabled' : ''; ?>">
                                         <a class="page-link" href="?page=<?php echo $page - 1; ?>" <?php echo $page == 1 ? 'tabindex="-1" aria-disabled="true"' : ''; ?>>
-                                            <i class="bi bi-chevron-left"></i>
+                                            <i class="bi bi-caret-left"></i>
                                         </a>
                                     </li>
                                 <?php endif; ?>
 
-                                <?php for ($i = 1; $i <= $total_pages; $i++) : ?>
-                                    <li class="page-item <?php echo $i == $page ? 'active' : ''; ?>"><a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
-                                <?php endfor; ?>
-
                                 <?php if ($page < $total_pages || $total_pages > 1) : ?>
                                     <li class="page-item <?php echo $page == $total_pages ? 'disabled' : ''; ?>">
                                         <a class="page-link" href="?page=<?php echo $page + 1; ?>" <?php echo $page == $total_pages ? 'tabindex="-1" aria-disabled="true"' : ''; ?>>
-                                            <i class="bi bi-chevron-right"></i>
+                                            <i class="bi bi-caret-right"></i>
                                         </a>
                                     </li>
                                 <?php endif; ?>

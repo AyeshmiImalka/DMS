@@ -6,6 +6,7 @@ if(!isset($_SESSION['admin_name'])){
     header('location:login_form.php');
 }
 
+$admin_name = $_SESSION['admin_name']; // Fetch admin name from session
 ?>
 
 
@@ -13,78 +14,115 @@ if(!isset($_SESSION['admin_name'])){
 include('includes/header.php');
 
 ?>
+
+<style>
+	.welcome-message {
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-transform: capitalize;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInMoveDown 1s ease-out forwards;
+  }
+
+  .dashboard-admin {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #1D8FE1;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInMoveDown 1s ease-out forwards 0.5s;
+  }
+
+  .description {
+    font-size: 1.2rem;
+    max-width: 600px;
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: fadeInMoveDown 1s ease-out forwards 1s;
+  }
+
+  @keyframes fadeInMoveDown {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<link rel="stylesheet" href="assets/styles.css">
+
  <div class="main-container">
-			<div class="pd-ltr-20">
-				<div class="card-box pd-20 height-100-p mb-30">
-					<div class="row align-items-center">
-						<div class="col-md-4">
-							<img src="assets/vendor/images/banner-img.png" alt="" />
-						</div>
-						<div class="col-md-8">
-							<h4 class="font-20 weight-500 mb-10 text-capitalize">
-								Welcome back
-								<div class="weight-600 font-30 text-blue">Admin - Dashboard</div>
-							</h4>
-							<p class="font-18 max-width-600">
-								Document Management System for Department Of Ayurveda
-							</p>
-						</div>
-					</div>
+			<div class="pd-ltr-23">
+			<div class="card-box pd-20 height-100-p mb-30" style="background-image: url('assets/vendor/images/banner_bg.png'); background-size: cover; background-position: center; color: white;">
+    <div class="row align-items-center">
+        <div class="col">
+            <img src="assets/vendor/images/banner.png" alt="" />
+        </div>
+        <div class="col-md-8">
+            <h2 class="welcome-message">Welcome back, <?php echo $admin_name; ?>!</h2>
+            <div class="dashboard-admin">Admin - Dashboard</div>
+            <h4 class="description">Document Management System for Department Of Ayurveda</h4>
+        </div>
+    </div>
+</div>
+
 				</div>
 				<div class="row">
-					<div class="col-xl-3 mb-30">
-						<div class="card-box height-100-p widget-style1">
-							<div class="d-flex flex-wrap align-items-center">
-								<div class="progress-data">
-									<div id="chart"></div>
-								</div>
-								<div class="widget-data">
-									<div class="h4 mb-0">10000</div>
-									<div class="weight-600 font-14">Ayurveda Pharmacies</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-xl-3 mb-30">
-						<div class="card-box height-100-p widget-style1">
-							<div class="d-flex flex-wrap align-items-center">
-								<div class="progress-data">
-									<div id="chart2"></div>
-								</div>
-								<div class="widget-data">
-									<div class="h4 mb-0">4000</div>
-									<div class="weight-600 font-14">Ayurveda Hospitals</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-xl-3 mb-30">
-						<div class="card-box height-100-p widget-style1">
-							<div class="d-flex flex-wrap align-items-center">
-								<div class="progress-data">
-									<div id="chart3"></div>
-								</div>
-								<div class="widget-data">
-									<div class="h4 mb-0">3500</div>
-									<div class="weight-600 font-14">Manufacturing Centers</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-xl-3 mb-30">
-						<div class="card-box height-100-p widget-style1">
-							<div class="d-flex flex-wrap align-items-center">
-								<div class="progress-data">
-									<div id="chart4"></div>
-								</div>
-								<div class="widget-data">
-									<div class="h4 mb-0">6060</div>
-									<div class="weight-600 font-14">Ayurveda Drug Stores</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+    <div class="col-xl-3 mb-30">
+        <div class="card-box height-100-p widget-style1 text-white" style="background: linear-gradient(-225deg, #22E1FF 0%, #1D8FE1 48%, #625EB1 100%);">
+            <div class="d-flex flex-wrap align-items-center">
+                <div class="progress-data">
+                    <div id="chart"></div>
+                </div>
+                <div class="widget-data">
+                    <div class="h3 mb-0">10000</div>
+                    <div class="weight-800 font-16">Ayurveda Pharmacies</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 mb-30">
+        <div class="card-box height-100-p widget-style1 text-white" style="background: linear-gradient(to top, #0fd850 0%, #f9f047 100%);">
+            <div class="d-flex flex-wrap align-items-center">
+                <div class="progress-data">
+                    <div id="chart2"></div>
+                </div>
+                <div class="widget-data">
+                    <div class="h3 mb-0">4000</div>
+                    <div class="weight-800 font-16">Ayurveda Hospitals</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 mb-30">
+        <div class="card-box height-100-p widget-style1 text-white" style="background: linear-gradient(120deg, #a6c0fe 0%, #f68084 100%);">
+            <div class="d-flex flex-wrap align-items-center">
+                <div class="progress-data">
+                    <div id="chart3"></div>
+                </div>
+                <div class="widget-data">
+                    <div class="h3 mb-0">3500</div>
+                    <div class="weight-800 font-16">Manufacturing Centers</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-3 mb-30">
+        <div class="card-box height-100-p widget-style1 text-white" style="background: linear-gradient(to top, #a18cd1 0%, #fbc2eb 100%);">
+            <div class="d-flex flex-wrap align-items-center">
+                <div class="progress-data">
+                    <div id="chart4"></div>
+                </div>
+                <div class="widget-data">
+                    <div class="h3 mb-0">6060</div>
+                    <div class="weight-800 font-16">Ayurveda Drug Stores</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 				<div class="row">
 					<div class="col-xl-8 mb-30">
 						<div class="card-box height-100-p pd-20">
@@ -369,7 +407,3 @@ include('includes/header.php');
         chart.draw(data, options);
     }
 </script>
-
- 
-
-  

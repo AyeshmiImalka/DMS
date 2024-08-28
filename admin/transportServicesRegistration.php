@@ -87,6 +87,8 @@ if(!isset($_SESSION['admin_name'])){
                                             $row_count++;
                                             $row_color = $row_count % 2 == 0 ? 'even-row' : 'odd-row';
                                             echo "<tr class='$row_color'>";
+                                            $status_color = strtolower($row['status']) === 'pending' ? 'pending-row' : $row_color;
+                                            echo "<tr class='$status_color'>";
                                             
                                             echo "<td><input type='checkbox' class='row-checkbox checkbox-custom' data-id='{$row['id']}'></td>"; // Checkbox for each row
                                             echo "<td>". $row["id"]. "</td>";
@@ -129,19 +131,15 @@ if(!isset($_SESSION['admin_name'])){
                                 <?php if ($page > 1 || $total_pages > 1) :?>
                                     <li class="page-item <?php echo $page == 1? 'disabled' : '';?>">
                                         <a class="page-link" href="?page=<?php echo $page - 1;?>" <?php echo $page == 1? 'tabindex="-1" aria-disabled="true"' : '';?>>
-                                            <i class="bi bi-chevron-left"></i>
+                                            <i class="bi bi-caret-left-fill"></i>
                                         </a>
                                     </li>
                                 <?php endif;?>
 
-                                <?php for ($i = 1; $i <= $total_pages; $i++) :?>
-                                    <li class="page-item <?php echo $i == $page? 'active' : '';?>"><a class="page-link" href="?page=<?php echo $i;?>"><?php echo $i;?></a></li>
-                                <?php endfor;?>
-
                                 <?php if ($page < $total_pages || $total_pages > 1) :?>
                                     <li class="page-item <?php echo $page == $total_pages? 'disabled' : '';?>">
                                         <a class="page-link" href="?page=<?php echo $page + 1;?>" <?php echo $page == $total_pages? 'tabindex="-1" aria-disabled="true"' : '';?>>
-                                            <i class="bi bi-chevron-right"></i>
+                                            <i class="bi bi-caret-right-fill"></i>
                                         </a>
                                     </li>
                                 <?php endif;?>
@@ -269,6 +267,10 @@ if(!isset($_SESSION['admin_name'])){
 
     .even-row {
         background-color: #e9ebf0; /* Change to your desired even row color */
+    }
+
+    .pending-row {
+        background-color: #ffeb99; /* Change to your desired pending row color */
     }
 </Style>
 

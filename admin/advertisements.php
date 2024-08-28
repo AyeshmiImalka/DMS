@@ -1,13 +1,11 @@
 <?php
 session_start();
-
 include 'config_form.php';
 
 if(!isset($_SESSION['admin_name'])){
     header('location:login_form.php');
     exit(); // Ensure that the script stops executing after redirection
 }
-
 ?>
 
 <?php include('includes/header.php');?>
@@ -56,7 +54,6 @@ if(!isset($_SESSION['admin_name'])){
                                         <th>Contact Email</th>
                                         <th></th>
                                         <th>Status</th>
-                                    
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -87,26 +84,28 @@ if(!isset($_SESSION['admin_name'])){
                                             $row_count++;
                                             $row_color = $row_count % 2 == 0 ? 'even-row' : 'odd-row';
                                             echo "<tr class='$row_color'>";
+                                            $status_color = strtolower($row['status']) === 'pending' ? 'pending-row' : $row_color;
+                                            echo "<tr class='$status_color'>";
                                             
-                                            echo "<td><input type='checkbox' class='row-checkbox checkbox-custom' data-id='{$row['id']}'></td>"; // Checkbox for each row
+                                            echo "<td><input type='checkbox' class='row-checkbox checkbox-custom' data-id='{$row['id']}'" . ($row['viewed'] && empty($row['status']) ? ' checked' : '') . "></td>"; // Checkbox for each row
                                             echo "<td>". $row["id"]. "</td>";
                                             echo "<td>". $row["company_name"]. "</td>";
                                             echo "<td>". $row["contact_email"]. "</td>";
-                                            echo "<td><a href='". $row["advertisement_sample"]. "' target='_blank'><i class='fa-solid fa-photo-film fa-xl icon-blue'></i></a></td>";
+                                            echo "<td><a href='". $row["advertisement_sample"]. "' target='_blank' class='view-sample' data-id='{$row['id']}'><i class='fa-solid fa-photo-film fa-xl icon-blue'></i></a></td>";
 
                                             // Email send buttons
                                             if (empty($row['status'])) {
                                                 echo "<td>
-                                                        <a href='#' class='btn btn-sm btn-success rounded-circle circle-btn' id='circle-btn'' data-toggle='modal' data-target='#emailModal' data-status='Approved' data-id='{$row['id']}'> <i class='fa-solid fa-stamp'></i></a>
-                                                        <a href='#' class='btn btn-sm btn-danger rounded-circle circle-btn' id='circle-btn'' data-toggle='modal' data-target='#emailModal' data-status='Rejected' data-id='{$row['id']}'><i class='fa-solid fa-circle-xmark'></i></a>
-                                                        <a href='#' class='btn btn-sm btn-warning rounded-circle circle-btn' id='circle-btn'' data-toggle='modal' data-target='#emailModal' data-status='Pending' data-id='{$row['id']}'><i class='fa-solid fa-rotate' style='color: #ffffff;'></i></a>
+                                                        <a href='#' class='btn btn-sm btn-success rounded-circle circle-btn' id='circle-btn' data-toggle='modal' data-target='#emailModal' data-status='Approved' data-id='{$row['id']}'> <i class='fa-solid fa-stamp'></i></a>
+                                                        <a href='#' class='btn btn-sm btn-danger rounded-circle circle-btn' id='circle-btn' data-toggle='modal' data-target='#emailModal' data-status='Rejected' data-id='{$row['id']}'><i class='fa-solid fa-circle-xmark'></i></a>
+                                                        <a href='#' class='btn btn-sm btn-warning rounded-circle circle-btn' id='circle-btn' data-toggle='modal' data-target='#emailModal' data-status='Pending' data-id='{$row['id']}'><i class='fa-solid fa-rotate' style='color: #ffffff;'></i></a>
                                                     </td>";
                                             } else {
                                                 echo "<td>
-                                                <button class='btn btn-sm btn-secondary rounded-circle circle-btn' id='circle-btn'' disabled><i class='fa-solid fa-stamp'></i></button>
-                                                <button class='btn btn-sm btn-secondary rounded-circle circle-btn' id='circle-btn'' disabled><i class='fa-solid fa-circle-xmark'></i></button>
-                                                <button class='btn btn-sm btn-secondary rounded-circle circle-btn' id='circle-btn'' disabled><i class='fa-solid fa-rotate'></i></button>
-        
+                                                <button class='btn btn-sm btn-secondary rounded-circle circle-btn' id='circle-btn' disabled><i class='fa-solid fa-stamp'></i></button>
+                                                <button class='btn btn-sm btn-secondary rounded-circle circle-btn' id='circle-btn' disabled><i class='fa-solid fa-circle-xmark'></i></button>
+                                                <button class='btn btn-sm btn-secondary rounded-circle circle-btn' id='circle-btn' disabled><i class='fa-solid fa-rotate'></i></button>
+    
                                                 </td>"; // Hide the buttons if status is filled
                                             }
 
@@ -127,21 +126,17 @@ if(!isset($_SESSION['admin_name'])){
                             <!-- Render pagination links -->
                             <ul class="pagination">
                                 <?php if ($page > 1 || $total_pages > 1) :?>
-                                    <li class="page-item <?php echo $page == 1? 'disabled' : '';?>">
-                                        <a class="page-link" href="?page=<?php echo $page - 1;?>" <?php echo $page == 1? 'tabindex="-1" aria-disabled="true"' : '';?>>
-                                            <i class="bi bi-chevron-left"></i>
+                                    <li class="page-item <?php echo $page == 1 ? 'disabled' : '';?>">
+                                        <a class="page-link" href="?page=<?php echo $page - 1;?>" <?php echo $page == 1 ? 'tabindex="-1" aria-disabled="true"' : '';?>>
+                                            <i class="bi bi-caret-left-fill"></i>
                                         </a>
                                     </li>
                                 <?php endif;?>
 
-                                <?php for ($i = 1; $i <= $total_pages; $i++) :?>
-                                    <li class="page-item <?php echo $i == $page? 'active' : '';?>"><a class="page-link" href="?page=<?php echo $i;?>"><?php echo $i;?></a></li>
-                                <?php endfor;?>
-
                                 <?php if ($page < $total_pages || $total_pages > 1) :?>
-                                    <li class="page-item <?php echo $page == $total_pages? 'disabled' : '';?>">
-                                        <a class="page-link" href="?page=<?php echo $page + 1;?>" <?php echo $page == $total_pages? 'tabindex="-1" aria-disabled="true"' : '';?>>
-                                            <i class="bi bi-chevron-right"></i>
+                                    <li class="page-item <?php echo $page == $total_pages ? 'disabled' : '';?>">
+                                        <a class="page-link" href="?page=<?php echo $page + 1;?>" <?php echo $page == $total_pages ? 'tabindex="-1" aria-disabled="true"' : '';?>>
+                                            <i class="bi bi-caret-right"></i>
                                         </a>
                                     </li>
                                 <?php endif;?>
@@ -151,45 +146,54 @@ if(!isset($_SESSION['admin_name'])){
                 </div>
             </div>
         </div>
-    </div>
+    
 
     <!-- Email Modal -->
     <?php include('popups/sendEmailPopup.php');?>
 
-
     <?php include('includes/footer.php');?>
 
     <script>
-        
-        $(document).ready(function() {
-            $('[data-toggle="modal"]').click(function() {
-        var id = $(this).data('id');
-        var status = $(this).data('status');
-        $('#approve_id').val(id);
-        $('#email_status').val(status); // Set the status value
-        
-        // Debugging statements for drug name and email address extraction
-        var drug_name = $(this).closest('tr').find('td:eq(1)').text();
-        console.log('Drug Name:', drug_name);
-        
-        var contact_email = $(this).closest('tr').find('td:eq(3)').text();
-        console.log('Contact Email:', contact_email);
-        
-        $('#email_address').val(contact_email);
-        var subject;
-        if (status == 'Approved') {
-            subject = 'Your Advertisement Has Been Approved!';
-        } else if (status == 'Rejected') {
-            subject = 'Your Advertisement Submission';
-        } else if (status == 'Pending') {
-            subject = 'Your Advertisement Submission is Pending';
-        }
-        $('#email_subject').val(subject);
-    });
-});
+        // Mark as viewed when sample is clicked
+        $('.view-sample').click(function() {
+            var id = $(this).data('id');
+            $.ajax({
+                url: 'mark_viewed.php',
+                type: 'POST',
+                data: {id: id},
+                success: function(response) {
+                    if (response == 1) {
+                        $('input.row-checkbox[data-id="' + id + '"]').prop('checked', true);
+                    }
+                }
+            });
+        });
 
-      // Checkbox to select all rows
-      $('#select-all').change(function() {
+        // Handle email modal data
+        $('[data-toggle="modal"]').click(function() {
+            var id = $(this).data('id');
+            var status = $(this).data('status');
+            $('#approve_id').val(id);
+            $('#email_status').val(status); // Set the status value
+            
+            
+            var contact_email = $(this).closest('tr').find('td:eq(3)').text();
+            console.log('Contact Email:', contact_email);
+            
+            $('#email_address').val(contact_email);
+            var subject;
+            if (status == 'Approved') {
+                subject = 'Your Advertisement Has Been Approved!';
+            } else if (status == 'Rejected') {
+                subject = 'Your Advertisement Submission';
+            } else if (status == 'Pending') {
+                subject = 'Your Advertisement Submission is Pending';
+            }
+            $('#email_subject').val(subject);
+        });
+
+        // Checkbox to select all rows
+        $('#select-all').change(function() {
             $('.row-checkbox').prop('checked', $(this).prop('checked'));
         });
 
@@ -200,48 +204,46 @@ if(!isset($_SESSION['admin_name'])){
             }
         });
 
-        //row delete 
-        $(document).ready(function() {
-            $('.delete-btn').click(function() {
-                var id = $(this).data('id');
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: 'This record will be deleted permanently!',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonText: 'Yes, delete it!',
-                    cancelButtonText: 'No, cancel!',
-                    reverseButtons: true
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $.ajax({
-                            url: 'delete.php',
-                            type: 'POST',
-                            data: {id: id},
-                            success: function(response) {
-                                if (response == 1) {
-                                    Swal.fire({
-                                        title: 'Deleted!',
-                                        text: 'The record has been deleted successfully.',
-                                        icon: 'success',
-                                        confirmButtonText: 'OK'
-                                    }).then((result) => {
-                                        if (result.isConfirmed) {
-                                            location.reload();
-                                        }
-                                    });
-                                } else {
-                                    Swal.fire({
-                                        title: 'Error!',
-                                        text: 'An error occurred while deleting the record.',
-                                        icon: 'error',
-                                        confirmButtonText: 'OK'
-                                    });
-                                }
+        // Row delete
+        $('.delete-btn').click(function() {
+            var id = $(this).data('id');
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'This record will be deleted permanently!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: 'delete.php',
+                        type: 'POST',
+                        data: {id: id},
+                        success: function(response) {
+                            if (response == 1) {
+                                Swal.fire({
+                                    title: 'Deleted!',
+                                    text: 'The record has been deleted successfully.',
+                                    icon: 'success',
+                                    confirmButtonText: 'OK'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        location.reload();
+                                    }
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: 'Error!',
+                                    text: 'An error occurred while deleting the record.',
+                                    icon: 'error',
+                                    confirmButtonText: 'OK'
+                                });
                             }
-                        });
-                    }
-                });
+                        }
+                    });
+                }
             });
         });
 
@@ -261,17 +263,19 @@ if(!isset($_SESSION['admin_name'])){
                 }
             });
         });
-        
     </script>
-<Style>
-    .odd-row {
-        background-color: #fff; /* Change to your desired odd row color */
-    }
 
-    .even-row {
-        background-color: #e9ebf0; /* Change to your desired even row color */
-    }
-</Style>
+    <style>
+        .odd-row {
+            background-color: #fff; /* Change to your desired odd row color */
+        }
 
+        .even-row {
+            background-color: #e9ebf0; /* Change to your desired even row color */
+        }
 
+        .pending-row {
+            background-color: #ffeb99; /* Change to your desired pending row color */
+        }
+    </style>
 </div>

@@ -86,6 +86,8 @@ if (!isset($_SESSION['admin_name'])) {
                                             $row_count++;
                                             $row_color = $row_count % 2 == 0 ? 'even-row' : 'odd-row';
                                             echo "<tr class='$row_color'>";
+                                            $status_color = strtolower($row['status']) === 'pending' ? 'pending-row' : $row_color;
+                                            echo "<tr class='$status_color'>";
 
                                             echo "<td><input type='checkbox' class='row-checkbox checkbox-custom' data-id='{$row['id']}'></td>"; // Checkbox for each row
                                             echo "<td>" . $row["id"] . "</td>";
@@ -266,6 +268,10 @@ if (!isset($_SESSION['admin_name'])) {
 
         .even-row {
             background-color: #e9ebf0; /* Change to your desired even row color */
+        }
+
+        .pending-row {
+            background-color: #ffeb99; /* Change to your desired pending row color */
         }
     </Style>
 

@@ -11,6 +11,9 @@
 	<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.css">
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+     <link rel="stylesheet" href=".stylecss">
 	<link rel="stylesheet" href="assets/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.3/jspdf.umd.min.js"></script>
@@ -282,14 +285,14 @@
 							data-toggle="dropdown"
 						>
 							<span class="user-icon">
-							<img src="<?php echo $profilePicture; ?>"  class="avatar-photo">
+							<img src="uploads/<?php echo htmlspecialchars($profilePicture); ?>"  class="avatar-photo" style="width: 55px; height: 55px; object-fit: cover;" >
 							</span>
 							<span class="user-name"><?php echo $_SESSION['admin_name']?></span>
 						</a>
 						<div
 							class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
 						>
-							<a class="dropdown-item" href="adminProfile.php"
+							<a class="dropdown-item" href="adminSettings.php"
 								><i class="bi bi-person-circle"></i> Profile</a
 							>
 							
@@ -304,9 +307,4 @@
 		</div><!-- End Header -->
 
 <?php include('includes/side_bar.php'); ?>
-
-
-
-
-
 
