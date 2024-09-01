@@ -2,28 +2,119 @@
 @include 'config_form.php';
 session_start();
 
-if (!isset($_SESSION['admin_name'])) {
+if(!isset($_SESSION['admin_name'])){
     header('location:login_form.php');
+    exit();
 }
 
-$sql = "SELECT * FROM manufacturingcenters_db WHERE Renewal_update < CURDATE()";
-$result = mysqli_query($conn, $sql);
+// Check which table's data is being requested
+$table = isset($_GET['table']) ? $_GET['table'] : '';
 
-$output = '';
+$expired_licenses = [];
 
-if (mysqli_num_rows($result) > 0) {
-    while ($row = mysqli_fetch_assoc($result)) {
-        $output .= '<tr>';
-        $output .= '<td>' . $row["Reg_id"] . '</td>';
-        $output .= '<td>' . $row["Reg_name"] . '</td>';
-        $output .= '<td>' . $row["Reg_date"] . '</td>';
-        $output .= '<td>' . $row["LicenseRenewal(yrs)"] . '</td>';
-        $output .= '<td>' . $row["Renewal_update"] . '</td>';
-        $output .= '</tr>';
+if ($table === 'drugstores') {
+    // Fetch expired licenses from drugstores_db
+    $sql = "SELECT Reg_id, Reg_name, Reg_date, `LicenseRenewal(yrs)`, Renewal_update FROM drugstores_db WHERE Renewal_update < CURDATE()";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+            $expired_licenses[] = $row;
+        }
     }
-} else {
-    $output = '<tr><td colspan="5">No expired licenses found</td></tr>';
+} elseif ($table === 'manufacturing') {
+    // Fetch expired licenses from manufacturingcenters_db
+    $sql = "SELECT Reg_id, Reg_name, Reg_date, `LicenseRenewal(yrs)`, Renewal_update FROM manufacturingcenters_db WHERE Renewal_update < CURDATE()";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+            $expired_licenses[] = $row;
+        }
+    }
+}elseif ($table === 'pharmacy') {
+    // Fetch expired licenses from pharmacies_db
+    $sql = "SELECT Reg_id, Reg_name, Reg_date, `LicenseRenewal(yrs)`, Renewal_update FROM pharmacies_db WHERE Renewal_update < CURDATE()";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+            $expired_licenses[] = $row;
+        }
+    }
+}elseif ($table === 'transport') {
+    // Fetch expired licenses from manufacturingcenters_db
+    $sql = "SELECT Service_id, Service_name, Vehicle_type, Registration_date, `LicenseRenewal(yrs)`, Renewal_update FROM pharmacies_db WHERE Renewal_update < CURDATE()";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+            $expired_licenses[] = $row;
+        }
+    }
+}elseif ($table === 'supplier') {
+    // Fetch expired licenses from suppliers_db
+    $sql = "SELECT Reg_id, Reg_name, Reg_date, `LicenseRenewal(yrs)`, Renewal_update FROM suppliers_db WHERE Renewal_update < CURDATE()";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+            $expired_licenses[] = $row;
+        }
+    }
+}elseif ($table === 'distributor') {
+    // Fetch expired licenses from distributors_db
+    $sql = "SELECT Reg_id, Reg_name, Reg_date, `LicenseRenewal(yrs)`, Renewal_update FROM distributors_db WHERE Renewal_update < CURDATE()";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+            $expired_licenses[] = $row;
+        }
+    }
+}elseif ($table === 'localdrug') {
+    // Fetch expired licenses from localdrugs_db
+    $sql = "SELECT Reg_id, Reg_name, Manufacturer, Reg_date, `LicenseRenewal(yrs)`, Renewal_update FROM localdrugs_db WHERE Renewal_update < CURDATE()";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+            $expired_licenses[] = $row;
+        }
+    }
+}elseif ($table === 'localproduct') {
+    // Fetch expired licenses from localproducts_db
+    $sql = "SELECT Reg_id, Reg_name, Manufacturer, Reg_date, `LicenseRenewal(yrs)`, Renewal_update FROM localproducts_db WHERE Renewal_update < CURDATE()";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+            $expired_licenses[] = $row;
+        }
+    }
+}elseif ($table === 'importeddrug') {
+    // Fetch expired licenses from importeddrugs_db
+    $sql = "SELECT Reg_id, Reg_name, Manufacturer, Reg_date, `LicenseRenewal(yrs)`, Renewal_update FROM importeddrugs_db WHERE Renewal_update < CURDATE()";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+            $expired_licenses[] = $row;
+        }
+    }
+}elseif ($table === 'importedproduct') {
+    // Fetch expired licenses from importedproducts_db
+    $sql = "SELECT Reg_id, Reg_name, Manufacturer, Reg_date, `LicenseRenewal(yrs)`, Renewal_update FROM importedproducts_db WHERE Renewal_update < CURDATE()";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+            $expired_licenses[] = $row;
+        }
+    }
 }
 
-echo $output;
+
+// Return data as JSON
+echo json_encode($expired_licenses);
 ?>

@@ -52,7 +52,7 @@ $expired_count = $row_expired_count['expired_count'];
                             <label>Search:
                                 <input type="search" class="form-control form-control-sm" placeholder="Search" aria-controls="DataTables_Table_2">
                             </label>
-                            <button id="expired-licenses-btn" class="btn btn-warning" style="margin-left: 20px;">
+                            <button id="expired-manufacturing-btn" class="btn btn-warning" style="margin-left: 20px;">
                                 <strong>Expired Licenses: </strong> <span id="expiry-count"><?php echo $expired_count; ?></span>
                             </button>
                         </div>
@@ -78,7 +78,7 @@ $expired_count = $row_expired_count['expired_count'];
                                     $total_records = $row_count['total_records'];
 
                                     // Set the number of records per page
-                                    $records_per_page = 5;
+                                    $records_per_page = 25;               
 
                                     // Calculate total number of pages
                                     $total_pages = ceil($total_records / $records_per_page);
@@ -267,7 +267,7 @@ $expired_count = $row_expired_count['expired_count'];
                         e.preventDefault();
                         var formData = $(this).serialize();
                         $.ajax({
-                            url: 'add_record.php',
+                            url: 'add_record_manufacturing.php',
                             type: 'POST',
                             data: formData,
                             success: function(response) {
@@ -299,7 +299,7 @@ $expired_count = $row_expired_count['expired_count'];
                 $('.edit-btn').click(function() {
                     var id = $(this).data('id');
                     $.ajax({
-                        url: 'get_record.php',
+                        url: 'get_record_manufacturing.php',
                         type: 'POST',
                         data: { id: id },
                         success: function(response) {
@@ -386,16 +386,38 @@ $expired_count = $row_expired_count['expired_count'];
                 });
 
                 // Handle expired licenses button click
-                $('#expired-licenses-btn').click(function() {
-                    $.ajax({
-                        url: 'get_expired_licenses.php',
-                        type: 'GET',
-                        success: function(response) {
-                            $('#expired-licenses-list').html(response);
-                            $('#expiredLicensesModal').modal('show');
-                        }
-                    });
+                function fetchExpiredLicenses(table) {
+        $.ajax({
+            url: 'get_expired_licenses.php',
+            type: 'GET',
+            data: { table: table },
+            success: function(response) {
+                var expiredLicenses = JSON.parse(response);
+                var tableBody = $('#expired-licenses-list');
+                tableBody.empty(); // Clear previous data
+                
+                expiredLicenses.forEach(function(license) {
+                    var row = '<tr>' +
+                              '<td>' + license.Reg_id + '</td>' +
+                              '<td>' + license.Reg_name + '</td>' +
+                              '<td>' + license.Reg_date + '</td>' +
+                              '<td>' + license['LicenseRenewal(yrs)'] + '</td>' +
+                              '<td>' + license.Renewal_update + '</td>' +
+                              '</tr>';
+                    tableBody.append(row);
                 });
+                
+                $('#expiredLicensesModal').modal('show');
+            }
+        });
+    }
+
+
+    // Click event for manufacturing centers expired licenses
+    $('#expired-manufacturing-btn').click(function() {
+        fetchExpiredLicenses('manufacturing');
+    });
+    
             </script>
         </div>
     </div>

@@ -5,7 +5,11 @@ session_start();
 if(!isset($_SESSION['admin_name'])){
     header('location:login_form.php');
 }
-
+// Fetch the count of expired licenses
+$sql_expired_count = "SELECT COUNT(*) AS expired_count FROM transportservices_db WHERE License_expiry_date < CURDATE()";
+$result_expired_count = mysqli_query($conn, $sql_expired_count);
+$row_expired_count = mysqli_fetch_assoc($result_expired_count);
+$expired_count = $row_expired_count['expired_count'];
 ?>
 
 
@@ -33,6 +37,9 @@ include('includes/header.php');
                             </ol>
                         </nav>
                     </div>
+                    <div class="col-md-4 col-sm-12 text-right">
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#addRecordModal">Add New Record</button>
+                    </div>
                 </div>
             </div>
             <!-- Simple Datatable start -->
@@ -48,6 +55,9 @@ include('includes/header.php');
                             <label>Search:
                                 <input type="search" class="form-control form-control-sm" placeholder="Search" aria-controls="DataTables_Table_2">
                             </label>
+                            <button id="expired-pharmacy-btn" class="btn btn-warning" style="margin-left: 20px;">
+                                <strong>Expired Licenses: </strong> <span id="expiry-count"><?php echo $expired_count; ?></span>
+                            </button>
                         </div>
                         <div class="table-responsive-sm">
                         <table class="table">
@@ -58,6 +68,7 @@ include('includes/header.php');
                                     <th>Service Name</th>
                                     <th>Vehicle Type</th>
                                     <th>Reg. Date</th>
+                                    <th>License(yrs)</th>
                                     <th>License Expiry Date</th>
                                     <th>Action</th>
                                 </tr>
@@ -65,7 +76,7 @@ include('includes/header.php');
                             <tbody>
                                 <?php
                                 // Query to get total number of records
-                                $sql_count = "SELECT COUNT(*) AS total_records FROM restricteddrugs_db ";
+                                $sql_count = "SELECT COUNT(*) AS total_records FROM transportservices_db ";
                                 $result_count = mysqli_query($conn, $sql_count);
                                 $row_count = mysqli_fetch_assoc($result_count);
                                 $total_records = $row_count['total_records'];
@@ -88,14 +99,15 @@ include('includes/header.php');
                                 if (mysqli_num_rows($result) > 0) {
                                     // output data of each row
                                     while($row = mysqli_fetch_assoc($result)) {
-                                        $expired = strtotime($row['license_expiry_date']) < strtotime('now');
+                                        $expired = strtotime($row['License_expiry_date']) < strtotime('now');
                                         echo "<tr class='" . ($expired ? 'expired' : '') . "'>";
-                                        echo "<td><input type='checkbox' class='row-checkbox checkbox-custom' data-id='{$row['service_id']}'></td>"; // Checkbox for each row
-                                        echo "<td class='table-plus'>" . $row["service_id"] . "</td>";
-                                        echo "<td>" . $row["service_name"] . "</td>";
-                                        echo "<td>" . $row["vehicle_type"] . "</td>";
-                                        echo "<td>" . $row["registration_date"] . "</td>";
-                                        echo "<td>" . $row["license_expiry_date"] . "</td>";
+                                        echo "<td><input type='checkbox' class='row-checkbox checkbox-custom' data-id='{$row['Service_id']}'></td>"; // Checkbox for each row
+                                        echo "<td class='table-plus'>" . $row["Service_id"] . "</td>";
+                                        echo "<td>" . $row["Service_name"] . "</td>";
+                                        echo "<td>" . $row["Vehicle_type"] . "</td>";
+                                        echo "<td>" . $row["Registration_date"] . "</td>";
+                                        echo "<td>" . $row["LicenseRenewal(yrs)"] . "</td>";
+                                        echo "<td>" . $row["License_expiry_date"] . "</td>";
                                         echo "<td>
 										<button class='btn btn-sm btn-danger delete-btn rounded-circle circle-btn' id='circle-btn'' data-id='" . $row["service_id"] . "'><i class='fas fa-trash-alt'></i></button>
 										<button class='btn btn-sm btn-info edit-btn rounded-circle circle-btn' id='circle-btn'' data-id='" . $row["service_id"] . "'><i class='fas fa-edit'></i></button>
@@ -140,6 +152,28 @@ include('includes/header.php');
             <?php include('includes/footer.php');?>
 			
             <script>
+                //Renewal Update" field will automatically update
+                document.addEventListener('DOMContentLoaded', function() {
+                    const regDateInput = document.getElementById('regDate');
+                    const licenseYearsInput = document.getElementById('licenseYears');
+                    const renewalUpdateInput = document.getElementById('renewalUpdate');
+
+                    function updateRenewalDate() {
+                        const regDateValue = regDateInput.value;
+                        const licenseYearsValue = licenseYearsInput.value;
+
+                        if (regDateValue && licenseYearsValue) {
+                            const regDate = new Date(regDateValue);
+                            regDate.setFullYear(regDate.getFullYear() + parseInt(licenseYearsValue));
+                            renewalUpdateInput.value = regDate.toISOString().split('T')[0];
+                        } else {
+                            renewalUpdateInput.value = '';
+                        }
+                    }
+
+                    regDateInput.addEventListener('input', updateRenewalDate);
+                    licenseYearsInput.addEventListener('input', updateRenewalDate);
+                });
         // Checkbox to select all rows
         $('#select-all').change(function() {
             $('.row-checkbox').prop('checked', $(this).prop('checked'));
@@ -196,36 +230,162 @@ include('includes/header.php');
         });
     });
 });
-    // Script for edit button
-    $('.edit-btn').click(function() {
-        var id = $(this).data('id');
-        // You can perform edit operation here, maybe redirect to edit page or show a modal
-        console.log('Edit button clicked for ID: ' + id);
-    });
-
-                    // Script for edit button
-                    $('.edit-btn').click(function() {
-                        var id = $(this).data('id');
-                        // You can perform edit operation here, maybe redirect to edit page or show a modal
-                        console.log('Edit button clicked for ID: ' + id);
+    // Form submission for adding a new record
+ $('#addRecordForm').submit(function(e) {
+                        e.preventDefault();
+                        var formData = $(this).serialize();
+                        $.ajax({
+                            url: 'add_record_pharmacies.php',
+                            type: 'POST',
+                            data: formData,
+                            success: function(response) {
+                                if (response == 1) {
+                                    Swal.fire({
+                                        title: 'Success!',
+                                        text: 'The record has been added successfully.',
+                                        icon: 'success',
+                                        confirmButtonText: 'OK'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            location.reload();
+                                        }
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        title: 'Error!',
+                                        text: 'An error occurred while adding the record.',
+                                        icon: 'error',
+                                        confirmButtonText: 'OK'
+                                    });
+                                }
+                            }
+                        });
                     });
+                
 
-				// Add an event listener for the search input
-$('#DataTables_Table_2_filter input').on('input', function() {
-  var filterValue = $(this).val().toLowerCase();
+                // Edit button click
+                $('.edit-btn').click(function() {
+                    var id = $(this).data('id');
+                    $.ajax({
+                        url: 'get_record_pharmacies.php',
+                        type: 'POST',
+                        data: { id: id },
+                        success: function(response) {
+                            var record = JSON.parse(response);
+                            $('#editRegId').val(record.service_id);
+                            $('#editRegName').val(record.Reg_name);
+                            $('#editRegDate').val(record.Reg_date);
+                            $('#editLicenseYears').val(record['LicenseRenewal(yrs)']);
+                            $('#editRenewalUpdate').val(record.Renewal_update);
+                            $('#editRecordModal').modal('show');
+                        }
+                    });
+                });
 
-  // Loop through the table rows
-  $('.table tbody tr').each(function() {
-    var rowText = $(this).find('td').text().toLowerCase();
+                // Edit form submission
+                $('#editRecordForm').submit(function(e) {
+                    e.preventDefault();
+                    var formData = $(this).serialize();
+                    $.ajax({
+                        url: 'update_record.php',
+                        type: 'POST',
+                        data: formData,
+                        success: function(response) {
+                            if (response == 1) {
+                                Swal.fire({
+                                    title: 'Success!',
+                                    text: 'The record has been updated successfully.',
+                                    icon: 'success',
+                                    confirmButtonText: 'OK'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        location.reload();
+                                    }
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: 'Error!',
+                                    text: 'An error occurred while updating the record.',
+                                    icon: 'error',
+                                    confirmButtonText: 'OK'
+                                });
+                            }
+                        }
+                    });
+                });
 
-    // Check if the row text contains the filter value
-    if (rowText.includes(filterValue)) {
-      $(this).show();
-    } else {
-      $(this).hide();
+                document.addEventListener('DOMContentLoaded', function() {
+                    const editRegDateInput = document.getElementById('editRegDate');
+                    const editLicenseYearsInput = document.getElementById('editLicenseYears');
+                    const editRenewalUpdateInput = document.getElementById('editRenewalUpdate');
+
+                    function updateRenewalDate() {
+                        const regDateValue = editRegDateInput.value;
+                        const licenseYearsValue = editLicenseYearsInput.value;
+
+                        if (regDateValue && licenseYearsValue) {
+                            const regDate = new Date(regDateValue);
+                            regDate.setFullYear(regDate.getFullYear() + parseInt(licenseYearsValue));
+                            editRenewalUpdateInput.value = regDate.toISOString().split('T')[0];
+                        } else {
+                            editRenewalUpdateInput.value = '';
+                        }
+                    }
+
+                    editRegDateInput.addEventListener('input', updateRenewalDate);
+                    editLicenseYearsInput.addEventListener('input', updateRenewalDate);
+                });
+
+                // Add an event listener for the search input
+                $('#DataTables_Table_2_filter input').on('input', function() {
+                    var filterValue = $(this).val().toLowerCase();
+
+                    // Loop through the table rows
+                    $('.table tbody tr').each(function() {
+                        var rowText = $(this).find('td').text().toLowerCase();
+
+                        // Check if the row text contains the filter value
+                        if (rowText.includes(filterValue)) {
+                            $(this).show();
+                        } else {
+                            $(this).hide();
+                        }
+                    });
+                });
+
+                // Handle expired licenses button click
+                function fetchExpiredLicenses(table) {
+        $.ajax({
+            url: 'get_expired_licenses.php',
+            type: 'GET',
+            data: { table: table },
+            success: function(response) {
+                var expiredLicenses = JSON.parse(response);
+                var tableBody = $('#expired-licenses-list');
+                tableBody.empty(); // Clear previous data
+                
+                expiredLicenses.forEach(function(license) {
+                    var row = '<tr>' +
+                              '<td>' + license.Service_id + '</td>' +
+                              '<td>' + license.Service_name + '</td>' +
+                              '<td>' + license.Vehicle_type + '</td>' +
+                              '<td>' + license.Registration_date + '</td>' +
+                              '<td>' + license['LicenseRenewal(yrs)'] + '</td>' +
+                              '<td>' + license.License_expiry_date + '</td>' +
+                              '</tr>';
+                    tableBody.append(row);
+                });
+                
+                $('#expiredLicensesModal').modal('show');
+            }
+        });
     }
-  });
-});
+
+
+    // Click event for manufacturing centers expired licenses
+    $('#expired-pharmacy-btn').click(function() {
+        fetchExpiredLicenses('pharmacy');
+    });	
             </script>
         </div>
     </div>
