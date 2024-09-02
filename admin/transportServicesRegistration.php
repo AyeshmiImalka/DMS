@@ -68,7 +68,7 @@ if(!isset($_SESSION['admin_name'])){
                                     $total_records = $row_count['total_records'];
 
                                     // Set the number of records per page
-                                    $records_per_page = 50;
+                                    $records_per_page = 25;
 
                                     // Calculate total number of pages
                                     $total_pages = ceil($total_records / $records_per_page);
@@ -90,11 +90,11 @@ if(!isset($_SESSION['admin_name'])){
                                             $status_color = strtolower($row['status']) === 'pending' ? 'pending-row' : $row_color;
                                             echo "<tr class='$status_color'>";
                                             
-                                            echo "<td><input type='checkbox' class='row-checkbox checkbox-custom' data-id='{$row['id']}'></td>"; // Checkbox for each row
+                                            echo "<td><input type='checkbox' class='row-checkbox checkbox-custom' data-id='{$row['id']}'" . ($row['viewed'] && empty($row['status']) ? ' checked' : '') . "></td>"; // Checkbox for each row
                                             echo "<td>". $row["id"]. "</td>";
                                             echo "<td>". $row["service_name"]. "</td>";
                                             echo "<td>". $row["contact_email"]. "</td>";
-                                            echo "<td><a href='". $row["registration_documents"]. "' target='_blank'><i class='fas fa-file-alt fa-xl icon-blue'></i></a></td>";
+                                            echo "<td><a href='". $row["registration_documents"]. "' target='_blank' class='view-sample' data-id='{$row['id']}'><i class='fas fa-file-alt fa-xl icon-blue'></i></a></td>";
 
                                             // Email send buttons
                                             if (empty($row['status'])) {
@@ -258,6 +258,22 @@ if(!isset($_SESSION['admin_name'])){
                 }
             });
         });
+
+        // Mark as viewed when sample is clicked
+        $('.view-sample').click(function() {
+            var id = $(this).data('id');
+            $.ajax({
+                url: 'mark_viewed.php',
+                type: 'POST',
+                data: {id: id},
+                success: function(response) {
+                    if (response == 1) {
+                        $('input.row-checkbox[data-id="' + id + '"]').prop('checked', true);
+                    }
+                }
+            });
+        });
+
         
     </script>
 <Style>

@@ -90,11 +90,11 @@ if(!isset($_SESSION['admin_name'])){
                                             $status_color = strtolower($row['status']) === 'pending' ? 'pending-row' : $row_color;
                                             echo "<tr class='$status_color'>";
                                             
-                                            echo "<td><input type='checkbox' class='row-checkbox checkbox-custom' data-id='{$row['id']}'></td>"; // Checkbox for each row
+                                            echo "<td><input type='checkbox' class='row-checkbox checkbox-custom' data-id='{$row['id']}'" . ($row['viewed'] && empty($row['status']) ? ' checked' : '') . "></td>"; // Checkbox for each row>
                                             echo "<td>". $row["id"]. "</td>";
                                             echo "<td>". $row["center_name"]. "</td>";
                                             echo "<td>". $row["contact_email"]. "</td>";
-                                            echo "<td><a href='". $row["registration_documents"]. "' target='_blank'><i class='fas fa-file-alt fa-xl icon-blue'></i></a></td>";
+                                            echo "<td><a href='". $row["registration_documents"]. "' target='_blank' class='view-sample' data-id='{$row['id']}'><i class='fas fa-file-alt fa-xl icon-blue'></i></a></td>";
 
                                             // Email send buttons
                                             if (empty($row['status'])) {
@@ -128,25 +128,21 @@ if(!isset($_SESSION['admin_name'])){
                         <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_2_paginate">
                             <!-- Render pagination links -->
                             <ul class="pagination">
-                                <?php if ($page > 1 || $total_pages > 1) :?>
-                                    <li class="page-item <?php echo $page == 1? 'disabled' : '';?>">
-                                        <a class="page-link" href="?page=<?php echo $page - 1;?>" <?php echo $page == 1? 'tabindex="-1" aria-disabled="true"' : '';?>>
-                                            <i class="bi bi-chevron-left"></i>
+                                <?php if ($page > 1 || $total_pages > 1) : ?>
+                                    <li class="page-item <?php echo $page == 1 ? 'disabled' : ''; ?>">
+                                        <a class="page-link" href="?page=<?php echo $page - 1; ?>" <?php echo $page == 1 ? 'tabindex="-1" aria-disabled="true"' : ''; ?>>
+                                            <i class="bi bi-caret-left-fill"></i>
                                         </a>
                                     </li>
-                                <?php endif;?>
+                                <?php endif; ?>
 
-                                <?php for ($i = 1; $i <= $total_pages; $i++) :?>
-                                    <li class="page-item <?php echo $i == $page? 'active' : '';?>"><a class="page-link" href="?page=<?php echo $i;?>"><?php echo $i;?></a></li>
-                                <?php endfor;?>
-
-                                <?php if ($page < $total_pages || $total_pages > 1) :?>
-                                    <li class="page-item <?php echo $page == $total_pages? 'disabled' : '';?>">
-                                        <a class="page-link" href="?page=<?php echo $page + 1;?>" <?php echo $page == $total_pages? 'tabindex="-1" aria-disabled="true"' : '';?>>
-                                            <i class="bi bi-chevron-right"></i>
+                                <?php if ($page < $total_pages || $total_pages > 1) : ?>
+                                    <li class="page-item <?php echo $page == $total_pages ? 'disabled' : ''; ?>">
+                                        <a class="page-link" href="?page=<?php echo $page + 1; ?>" <?php echo $page == $total_pages ? 'tabindex="-1" aria-disabled="true"' : ''; ?>>
+                                            <i class="bi bi-caret-right-fill"></i>
                                         </a>
                                     </li>
-                                <?php endif;?>
+                                <?php endif; ?>
                             </ul>
                         </div>
                     </div>
@@ -264,6 +260,21 @@ if(!isset($_SESSION['admin_name'])){
             });
         });
         
+        // Mark as viewed when sample is clicked
+        $('.view-sample').click(function() {
+            var id = $(this).data('id');
+            $.ajax({
+                url: 'mark_viewed.php',
+                type: 'POST',
+                data: {id: id},
+                success: function(response) {
+                    if (response == 1) {
+                        $('input.row-checkbox[data-id="' + id + '"]').prop('checked', true);
+                    }
+                }
+            });
+        });
+
     </script>
 <Style>
     .odd-row {
