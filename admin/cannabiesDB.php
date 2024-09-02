@@ -6,6 +6,13 @@ if(!isset($_SESSION['admin_name'])){
     header('location:login_form.php');
 }
 
+// Fetch the count of expired licenses
+$sql_expired_count = "SELECT COUNT(*) AS expired_count FROM cannabies_db WHERE Renewal_update < CURDATE()";
+$result_expired_count = mysqli_query($conn, $sql_expired_count);
+$row_expired_count = mysqli_fetch_assoc($result_expired_count);
+$expired_count = $row_expired_count['expired_count'];
+
+
 ?>
 
 
@@ -33,6 +40,9 @@ include('includes/header.php');
                             </ol>
                         </nav>
                     </div>
+                    <div class="col-md-4 col-sm-12 text-right">
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#addRecordModal">Add New Record</button>
+                    </div>
                 </div>
             </div>
             <!-- Simple Datatable start -->
@@ -48,6 +58,9 @@ include('includes/header.php');
                             <label>Search:
                                 <input type="search" class="form-control form-control-sm" placeholder="Search" aria-controls="DataTables_Table_2">
                             </label>
+                            <button id="expired-cannabies-btn" class="btn btn-warning" style="margin-left: 20px;">
+                                <strong>Expired Licenses: </strong> <span id="expiry-count"><?php echo $expired_count; ?></span>
+                            </button>
                         </div>
                         <div class="table-responsive-sm">
                         <table class="table">
@@ -57,9 +70,9 @@ include('includes/header.php');
                                     <th >Cannabies Id</th>
                                     <th>Strain Name</th>
                                     <th>Manufacturer</th>
-                                    <th>Location</th>
                                     <th>Reg. Date</th>
-                                    <th>License Expiry Date</th>
+                                    <th>License(yrs)</th>
+                                    <th>Renewal update</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -72,7 +85,7 @@ include('includes/header.php');
                                 $total_records = $row_count['total_records'];
 
                                 // Set the number of records per page
-                                $records_per_page = 50;
+                                $records_per_page = 25;
 
                                 // Calculate total number of pages
                                 $total_pages = ceil($total_records / $records_per_page);
@@ -89,18 +102,18 @@ include('includes/header.php');
                                 if (mysqli_num_rows($result) > 0) {
                                     // output data of each row
                                     while($row = mysqli_fetch_assoc($result)) {
-                                        $expired = strtotime($row['license_expiry_date']) < strtotime('now');
+                                        $expired = strtotime($row['Renewal_update']) < strtotime('now');
                                         echo "<tr class='" . ($expired ? 'expired' : '') . "'>";
-                                        echo "<td><input type='checkbox' class='row-checkbox checkbox-custom' data-id='{$row['cannabies_id']}'></td>"; // Checkbox for each row
-                                        echo "<td class='table-plus'>" . $row["cannabies_id"] . "</td>";
-                                        echo "<td>" . $row["strain_name"] . "</td>";
-                                        echo "<td>" . $row["manufacturer"] . "</td>";
-                                        echo "<td>" . $row["location"] . "</td>";
-                                        echo "<td>" . $row["registration_date"] . "</td>";
-                                        echo "<td>" . $row["license_expiry_date"] . "</td>";
+                                        echo "<td><input type='checkbox' class='row-checkbox checkbox-custom' data-id='{$row['Reg_id']}'></td>"; // Checkbox for each row
+                                        echo "<td class='table-plus'>" . $row["Reg_id"] . "</td>";
+                                        echo "<td>" . $row["Reg_name"] . "</td>";
+                                        echo "<td>" . $row["Manufacturer"] . "</td>";
+                                        echo "<td>" . $row["Reg_date"] . "</td>";
+                                        echo "<td>" . $row["LicenseRenewal(yrs)"] . "</td>";
+                                        echo "<td>" . $row["Renewal_update"] . "</td>";
                                         echo "<td>
-										<button class='btn btn-sm btn-danger delete-btn rounded-circle circle-btn' id='circle-btn'' data-id='" . $row["cannabies_id"] . "'><i class='fas fa-trash-alt'></i></button>
-										<button class='btn btn-sm btn-info edit-btn rounded-circle circle-btn' id='circle-btn'' data-id='" . $row["cannabies_id"] . "'><i class='fas fa-edit'></i></button>
+										<button class='btn btn-sm btn-danger delete-btn rounded-circle circle-btn' id='circle-btn'' data-id='" . $row["Reg_id"] . "'><i class='fas fa-trash-alt'></i></button>
+										<button class='btn btn-sm btn-info edit-btn rounded-circle circle-btn' id='circle-btn'' data-id='" . $row["Reg_id"] . "'><i class='fas fa-edit'></i></button>
                                               </td>";
                                         echo "</tr>";
                                     }
@@ -113,36 +126,96 @@ include('includes/header.php');
                             </div>
                              <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_2_paginate">
                             <!-- Render pagination links -->
-<ul class="pagination">
-<?php if ($page > 1 || $total_pages > 1) : ?>
-        <li class="page-item <?php echo $page == 1 ? 'disabled' : ''; ?>">
-            <a class="page-link" href="?page=<?php echo $page - 1; ?>" <?php echo $page == 1 ? 'tabindex="-1" aria-disabled="true"' : ''; ?>>
-                <i class="bi bi-chevron-left"></i>
-            </a>
-        </li>
-    <?php endif; ?>
+                            <ul class="pagination">
+                                <?php if ($page > 1 || $total_pages > 1) : ?>
+                                    <li class="page-item <?php echo $page == 1 ? 'disabled' : ''; ?>">
+                                        <a class="page-link" href="?page=<?php echo $page - 1; ?>" <?php echo $page == 1 ? 'tabindex="-1" aria-disabled="true"' : ''; ?>>
+                                            <i class="bi bi-caret-left-fill"></i>
+                                        </a>
+                                    </li>
+                                <?php endif; ?>
 
-    <?php for ($i = 1; $i <= $total_pages; $i++) : ?>
-        <li class="page-item <?php echo $i == $page ? 'active' : ''; ?>"><a class="page-link" href="?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
-    <?php endfor; ?>
-
-    <?php if ($page < $total_pages || $total_pages > 1) : ?>
-        <li class="page-item <?php echo $page == $total_pages ? 'disabled' : ''; ?>">
-            <a class="page-link" href="?page=<?php echo $page + 1; ?>" <?php echo $page == $total_pages ? 'tabindex="-1" aria-disabled="true"' : ''; ?>>
-                <i class="bi bi-chevron-right"></i>
-            </a>
-        </li>
-    <?php endif; ?>
-
-</ul>
+                                <?php if ($page < $total_pages || $total_pages > 1) : ?>
+                                    <li class="page-item <?php echo $page == $total_pages ? 'disabled' : ''; ?>">
+                                        <a class="page-link" href="?page=<?php echo $page + 1; ?>" <?php echo $page == $total_pages ? 'tabindex="-1" aria-disabled="true"' : ''; ?>>
+                                            <i class="bi bi-caret-right-fill"></i>
+                                        </a>
+                                    </li>
+                                <?php endif; ?>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
             <!-- Export Datatable End -->
             <?php include('includes/footer.php');?>
+
+            <!-- Add Record Modal -->
+            <?php include('database/cannabies/addCannabies.php'); ?>
+
+            <!-- Edit Record Modal -->
+            <?php include('database/cannabies/editCannabies.php'); ?>
+
+            <!-- Expired Licenses Modal -->
+            <div class="modal fade" id="expiredLicensesModal" tabindex="-1" role="dialog" aria-labelledby="expiredLicensesModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="expiredLicensesModalLabel">Expired Licenses</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Cannabies Id</th>
+                                            <th>Strain Name</th>
+                                            <th>Manufacturer</th>
+                                            <th>Reg. Date</th>
+                                            <th>License(yrs)</th>
+                                            <th>Renewal update</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="expired-licenses-list">
+                                        <!-- Expired licenses will be loaded here via AJAX -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
 			
             <script>
+
+                //Renewal Update" field will automatically update
+                document.addEventListener('DOMContentLoaded', function() {
+                    const regDateInput = document.getElementById('regDate');
+                    const licenseYearsInput = document.getElementById('licenseYears');
+                    const renewalUpdateInput = document.getElementById('renewalUpdate');
+
+                    function updateRenewalDate() {
+                        const regDateValue = regDateInput.value;
+                        const licenseYearsValue = licenseYearsInput.value;
+
+                        if (regDateValue && licenseYearsValue) {
+                            const regDate = new Date(regDateValue);
+                            regDate.setFullYear(regDate.getFullYear() + parseInt(licenseYearsValue));
+                            renewalUpdateInput.value = regDate.toISOString().split('T')[0];
+                        } else {
+                            renewalUpdateInput.value = '';
+                        }
+                    }
+
+                    regDateInput.addEventListener('input', updateRenewalDate);
+                    licenseYearsInput.addEventListener('input', updateRenewalDate);
+                });
         // Checkbox to select all rows
         $('#select-all').change(function() {
             $('.row-checkbox').prop('checked', $(this).prop('checked'));
@@ -199,29 +272,163 @@ include('includes/header.php');
         });
     });
 });
-    // Script for edit button
-    $('.edit-btn').click(function() {
-        var id = $(this).data('id');
-        // You can perform edit operation here, maybe redirect to edit page or show a modal
-        console.log('Edit button clicked for ID: ' + id);
-    });
+// Form submission for adding a new record
+$('#addRecordForm').submit(function(e) {
+                        e.preventDefault();
+                        var formData = $(this).serialize();
+                        $.ajax({
+                            url: 'add_record_cannabies.php',
+                            type: 'POST',
+                            data: formData,
+                            success: function(response) {
+                                if (response == 1) {
+                                    Swal.fire({
+                                        title: 'Success!',
+                                        text: 'The record has been added successfully.',
+                                        icon: 'success',
+                                        confirmButtonText: 'OK'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            location.reload();
+                                        }
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        title: 'Error!',
+                                        text: 'An error occurred while adding the record.',
+                                        icon: 'error',
+                                        confirmButtonText: 'OK'
+                                    });
+                                }
+                            }
+                        });
+                    });
+                
 
-	// Add an event listener for the search input
-$('#DataTables_Table_2_filter input').on('input', function() {
-  var filterValue = $(this).val().toLowerCase();
+                // Edit button click
+                $('.edit-btn').click(function() {
+                    var id = $(this).data('id');
+                    $.ajax({
+                        url: 'get_record_cannabies.php',
+                        type: 'POST',
+                        data: { id: id },
+                        success: function(response) {
+                            var record = JSON.parse(response);
+                            $('#editRegId').val(record.Reg_id);
+                            $('#editRegName').val(record.Reg_name);
+                            $('#editManufacturer').val(record.Manufacturer);
+                            $('#editRegDate').val(record.Reg_date);
+                            $('#editLicenseYears').val(record['LicenseRenewal(yrs)']);
+                            $('#editRenewalUpdate').val(record.Renewal_update);
+                            $('#editRecordModal').modal('show');
+                        }
+                    });
+                });
 
-  // Loop through the table rows
-  $('.table tbody tr').each(function() {
-    var rowText = $(this).find('td').text().toLowerCase();
+                // Edit form submission
+                $('#editRecordForm').submit(function(e) {
+                    e.preventDefault();
+                    var formData = $(this).serialize();
+                    $.ajax({
+                        url: 'update_record.php',
+                        type: 'POST',
+                        data: formData,
+                        success: function(response) {
+                            if (response == 1) {
+                                Swal.fire({
+                                    title: 'Success!',
+                                    text: 'The record has been updated successfully.',
+                                    icon: 'success',
+                                    confirmButtonText: 'OK'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        location.reload();
+                                    }
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: 'Error!',
+                                    text: 'An error occurred while updating the record.',
+                                    icon: 'error',
+                                    confirmButtonText: 'OK'
+                                });
+                            }
+                        }
+                    });
+                });
 
-    // Check if the row text contains the filter value
-    if (rowText.includes(filterValue)) {
-      $(this).show();
-    } else {
-      $(this).hide();
+                document.addEventListener('DOMContentLoaded', function() {
+                    const editRegDateInput = document.getElementById('editRegDate');
+                    const editLicenseYearsInput = document.getElementById('editLicenseYears');
+                    const editRenewalUpdateInput = document.getElementById('editRenewalUpdate');
+
+                    function updateRenewalDate() {
+                        const regDateValue = editRegDateInput.value;
+                        const licenseYearsValue = editLicenseYearsInput.value;
+
+                        if (regDateValue && licenseYearsValue) {
+                            const regDate = new Date(regDateValue);
+                            regDate.setFullYear(regDate.getFullYear() + parseInt(licenseYearsValue));
+                            editRenewalUpdateInput.value = regDate.toISOString().split('T')[0];
+                        } else {
+                            editRenewalUpdateInput.value = '';
+                        }
+                    }
+
+                    editRegDateInput.addEventListener('input', updateRenewalDate);
+                    editLicenseYearsInput.addEventListener('input', updateRenewalDate);
+                });
+
+                // Add an event listener for the search input
+                $('#DataTables_Table_2_filter input').on('input', function() {
+                    var filterValue = $(this).val().toLowerCase();
+
+                    // Loop through the table rows
+                    $('.table tbody tr').each(function() {
+                        var rowText = $(this).find('td').text().toLowerCase();
+
+                        // Check if the row text contains the filter value
+                        if (rowText.includes(filterValue)) {
+                            $(this).show();
+                        } else {
+                            $(this).hide();
+                        }
+                    });
+                });
+
+                // Handle expired licenses button click
+                function fetchExpiredLicenses(table) {
+        $.ajax({
+            url: 'get_expired_licenses.php',
+            type: 'GET',
+            data: { table: table },
+            success: function(response) {
+                var expiredLicenses = JSON.parse(response);
+                var tableBody = $('#expired-licenses-list');
+                tableBody.empty(); // Clear previous data
+                
+                expiredLicenses.forEach(function(license) {
+                    var row = '<tr>' +
+                              '<td>' + license.Reg_id + '</td>' +
+                              '<td>' + license.Reg_name + '</td>' +
+                              '<td>' + license.Manufacturer+ '</td>' +
+                              '<td>' + license.Reg_date + '</td>' +
+                              '<td>' + license['LicenseRenewal(yrs)'] + '</td>' +
+                              '<td>' + license.Renewal_update + '</td>' +
+                              '</tr>';
+                    tableBody.append(row);
+                });
+                
+                $('#expiredLicensesModal').modal('show');
+            }
+        });
     }
-  });
-});
+
+
+    // Click event for imported drugs expired licenses
+    $('#expired-cannabies-btn').click(function() {
+        fetchExpiredLicenses('cannabies');
+    });
             </script>
         </div>
     </div>

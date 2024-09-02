@@ -325,7 +325,7 @@ include('includes/header.php');
                     e.preventDefault();
                     var formData = $(this).serialize();
                     $.ajax({
-                        url: 'update_record.php',
+                        url: 'registration_update_record.php',
                         type: 'POST',
                         data: formData,
                         success: function(response) {

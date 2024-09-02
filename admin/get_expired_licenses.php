@@ -112,7 +112,68 @@ if ($table === 'drugstores') {
             $expired_licenses[] = $row;
         }
     }
+}elseif ($table === 'restricteddrug') {
+    // Fetch expired licenses from restricteddrugs_db
+    $sql = "SELECT Reg_id, Reg_name, Manufacturer, Reg_date, `LicenseRenewal(yrs)`, Renewal_update FROM restricteddrugs_db WHERE Renewal_update < CURDATE()";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+            $expired_licenses[] = $row;
+        }
+    }
+}elseif ($table === 'cannabies') {
+    // Fetch expired licenses from cannabies_db
+    $sql = "SELECT Reg_id, Reg_name, Manufacturer, Reg_date, `LicenseRenewal(yrs)`, Renewal_update FROM cannabies_db WHERE Renewal_update < CURDATE()";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+            $expired_licenses[] = $row;
+        }
+    }
+}elseif ($table === 'hospital') {
+    // Fetch expired licenses from hospitals_db
+    $sql = "SELECT Reg_id, Reg_name, `Location`, Reg_date, `LicenseRenewal(yrs)`, Renewal_update FROM hospitals_db WHERE Renewal_update < CURDATE()";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+            $expired_licenses[] = $row;
+        }
+    }
+}elseif ($table === 'panchakarma') {
+    // Fetch expired licenses from panchakarmacenters_db
+    $sql = "SELECT Reg_id, Reg_name, `Location`, Reg_date, `LicenseRenewal(yrs)`, Renewal_update FROM panchakarmacenters_db WHERE Renewal_update < CURDATE()";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+            $expired_licenses[] = $row;
+        }
+    }
+}elseif ($table === 'institutions') {
+    // Fetch expired licenses from ayurvedainstitutions_db
+    $sql = "SELECT Reg_id, Reg_name, `Location`, Reg_date, `LicenseRenewal(yrs)`, Renewal_update FROM ayurvedainstitutions_db WHERE Renewal_update < CURDATE()";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+            $expired_licenses[] = $row;
+        }
+    }
+}elseif ($table === 'transport') {
+    // Fetch expired licenses from transportservices_db
+    $sql = "SELECT Reg_id, Reg_name, Vehicle_type, Reg_date, `LicenseRenewal(yrs)`, Renewal_update FROM transportservices_db WHERE Renewal_update < CURDATE()";
+    $result = mysqli_query($conn, $sql);
+
+    if (mysqli_num_rows($result) > 0) {
+        while($row = mysqli_fetch_assoc($result)) {
+            $expired_licenses[] = $row;
+        }
+    }
 }
+
 
 
 // Return data as JSON
