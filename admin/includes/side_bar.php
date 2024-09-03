@@ -88,7 +88,7 @@
 							</a>
 							<ul class="submenu">
 								<li><a href="revenueReport.php">Revenue Report</a></li>
-								<li><a href="licenseRenewalStatusReport.php">License Renewal Status Report</a></li>
+								<li><a href="licenseRenewalStatusReport.php">License Registration Status Report</a></li>
 							</ul>
 						</li>
 						<li class="dropdown">

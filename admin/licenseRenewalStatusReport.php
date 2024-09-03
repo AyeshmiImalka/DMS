@@ -5,7 +5,45 @@ session_start();
 if(!isset($_SESSION['admin_name'])){
     header('location:login_form.php');
 }
+// Function to count the statuses for each type
+function count_statuses($conn, $table) {
+    $statuses = ['approved' => 0, 'pending' => 0, 'rejected' => 0];
+    
+    $sql = "SELECT status, COUNT(*) as count FROM $table GROUP BY status";
+    $result = mysqli_query($conn, $sql);
 
+    if ($result) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $status = strtolower($row['status']);
+            if (array_key_exists($status, $statuses)) {
+                $statuses[$status] = (int)$row['count'];
+            }
+        }
+    }
+
+    return $statuses;
+}
+
+// Aggregating data for each license type
+$license_data = [
+    'Manufacturing Centers' => count_statuses($conn, 'manufacturing_centers_registration_requests'),
+    'Drug Stores' => count_statuses($conn, 'private_ayurvedic_drug_stores_registration_requests'),
+    'Pharmacies' => count_statuses($conn, 'private_ayurvedic_pharmacies_registration_requests'),
+    'Transport Services' => count_statuses($conn, 'transport_services_registration_requests'),
+    'Suppliers' => count_statuses($conn, 'suppliers_registration_requests'),
+    'Distributors' => count_statuses($conn, 'distributors_registration_requests'),
+    'Local Drugs' => count_statuses($conn, 'local_drugs_registration_requests'),
+    'Local Products' => count_statuses($conn, 'local_products_registration_requests'),
+    'Imported Drugs' => count_statuses($conn, 'imported_drugs_registration_requests'),
+    'Imported Products' => count_statuses($conn, 'imported_products_registration_requests'),
+    'Restricted Drugs' => count_statuses($conn, 'restricted_drugs_registration_requests'),
+    'Cannabies' => count_statuses($conn, 'cannabis_registration_requests'),
+    'Hospitals' => count_statuses($conn, 'private_ayurveda_hospital_registration'),
+    'Panchakarma Centers' => count_statuses($conn, 'panchakarma_centers_registration_requests'),
+    'Institutions' => count_statuses($conn, 'private_ayurveda_institutions_registration_requests')
+];
+
+// Pass the data to the JavaScript part
 ?>
 
 <?php 
@@ -20,7 +58,7 @@ include('includes/header.php');
                 <div class="row">
                     <div class="col-md-6 col-sm-12">
                         <div class="title">
-                            <h4>License Renewal Status Report</h4>
+                            <h4>License Registration Status Report</h4>
                         </div>
                         <nav aria-label="breadcrumb" role="navigation">
                             <ol class="breadcrumb">
@@ -61,23 +99,12 @@ include('includes/header.php');
 
     function drawChart() {
         var data = google.visualization.arrayToDataTable([
-            ['License Types', 'Renewed', 'Pending Renewal', 'Expired'],
-            ['Manufacturing Centers', 50, 20, 5], // Type A - Manufacturing Centers
-            ['Drug Stores', 30, 10, 2],           // Type B - Drug Stores
-            ['Pharmacies', 40, 15, 3],
-            ['Transport Services', 35, 5, 1],
-            ['Suppliers', 45, 25, 6],
-            ['Distributors', 55, 22, 7],
-            ['Local Drugs', 33, 18, 4],
-            ['Local Products', 48, 30, 8],
-            ['Imported Drugs', 28, 12, 3],
-            ['Imported Products', 38, 20, 5],
-            ['Restricted Drugs', 42, 26, 7],
-            ['Cannabies', 51, 29, 9],
-            ['Hospitals', 36, 15, 6],
-            ['Panchakarma Centers', 46, 18, 7],
-            ['Institutions', 32, 10, 2],
-            // Add more rows for additional license types as needed
+            ['License Types', 'Approved', 'Pending', 'Rejected'],
+            <?php
+            foreach ($license_data as $type => $statuses) {
+                echo "['$type', {$statuses['approved']}, {$statuses['pending']}, {$statuses['rejected']}],";
+            }
+            ?>
         ]);
 
         var options = {

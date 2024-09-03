@@ -60,40 +60,28 @@ include('includes/header.php');
     google.charts.setOnLoadCallback(drawChart);
 
     function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-            ['Time Period', 'Revenue'],
-            ['Jan', 5000],
-            ['Feb', 5500],
-            ['Mar', 6000],
-            ['Apr', 6200],
-            ['May', 6500],
-            ['Jun', 7000],
-            ['Jul', 7200],
-            ['Aug', 7500],
-            ['Sep', 7800],
-            ['Oct', 8000],
-            ['Nov', 8200],
-            ['Dec', 8500]
-            // Add more data points for additional time periods as needed
-        ]);
+                fetch('get_revenue_data.php')
+                    .then(response => response.json())
+                    .then(data => {
+                        var dataTable = google.visualization.arrayToDataTable(data);
 
-        var options = {
-            
-            legend: { position: 'bottom' },
-            height: 450,
-            hAxis: {
-                title: 'Time Period'
-            },
-            vAxis: {
-                title: 'Revenue (in currency)'
+                        var options = {
+                            legend: { position: 'bottom' },
+                            height: 450,
+                            hAxis: {
+                                title: 'Time Period'
+                            },
+                            vAxis: {
+                                title: 'Revenue (in currency)'
+                            }
+                        };
+
+                        var chart = new google.visualization.LineChart(document.getElementById('revenueChart'));
+                        chart.draw(dataTable, options);
+                    });
             }
-        };
 
-        var chart = new google.visualization.LineChart(document.getElementById('revenueChart'));
-
-        chart.draw(data, options);
-    }
-
+        
     // Function to download chart as PNG
     function downloadChart() {
         var chart = document.getElementById('revenueChart');

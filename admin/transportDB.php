@@ -156,41 +156,42 @@ include('includes/header.php');
             <!-- Edit Record Modal -->
             <?php include('database/transport_services/editTransports.php'); ?>
 
+           
             <!-- Expired Licenses Modal -->
-            <div class="modal fade" id="expiredLicensesModal" tabindex="-1" role="dialog" aria-labelledby="expiredLicensesModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="expiredLicensesModalLabel">Expired Licenses</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="table-responsive">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                        <th >Service Id</th>
-                                        <th>Service Name</th>
-                                        <th>Vehicle Type</th>
-                                        <th>Reg. Date</th>
-                                        <th>License(yrs)</th>
-                                        <th>License Expiry Date</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="expired-licenses-list">
-                                        <!-- Expired licenses will be loaded here via AJAX -->
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
+<div class="modal fade" id="expiredLicensesModal" tabindex="-1" role="dialog" aria-labelledby="expiredLicensesModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="expiredLicensesModalLabel">Expired Licenses</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Service Id</th>
+                                <th>Service Name</th>
+                                <th>Vehicle Type</th>
+                                <th>Reg. Date</th>
+                                <th>License(yrs)</th>
+                                <th>License Expiry Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="expired-licenses-list">
+                            <!-- Expired licenses will be loaded here via AJAX -->
+                        </tbody>
+                    </table>
                 </div>
             </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 			
             <script>
                 //Renewal Update" field will automatically update
@@ -424,7 +425,7 @@ include('includes/header.php');
     }
 
 
-    // Click event for manufacturing centers expired licenses
+    // Click event for transport services expired licenses
     $('#expired-transport-btn').click(function() {
         fetchExpiredLicenses('transport');
     });	

@@ -107,7 +107,7 @@ include('includes/header.php');
                                         echo "<td>" . $row["LicenseRenewal(yrs)"] . "</td>";
                                         echo "<td>" . $row["Renewal_update"] . "</td>";
                                         echo "<td>
-										<button class='btn btn-sm btn-danger delete-btn rounded-circle circle-btn' id='circle-btn'' data-id='" . $row["Reg_id"] . "'><i class='fas fa-trash-alt'></i></button>
+										<button class='btn btn-sm btn-danger delete-btn rounded-circle circle-btn' id='circle-btn' data-id='" . $row["Reg_id"] . "'><i class='fas fa-trash-alt'></i></button>
 										<button class='btn btn-sm btn-info edit-btn rounded-circle circle-btn' id='circle-btn'' data-id='" . $row["Reg_id"] . "'><i class='fas fa-edit'></i></button>
                                               </td>";
                                         echo "</tr>";
@@ -224,49 +224,49 @@ include('includes/header.php');
         });
 
         //row delete 
-    $(document).ready(function() {
-    $('.delete-btn').click(function() {
-        var id = $(this).data('id');
-        Swal.fire({
-            title: 'Are you sure?',
-            text: 'This record will be deleted permanently!',
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Yes, delete it!',
-            cancelButtonText: 'No, cancel!',
-            reverseButtons: true
-        }).then((result) => {
-            if (result.isConfirmed) {
-                $.ajax({
-                    url: 'delete.php',
-                    type: 'POST',
-                    data: {id: id},
-                    success: function(response) {
-                        if (response == 1) {
-                            Swal.fire({
-                                title: 'Deleted!',
-                                text: 'The record has been deleted successfully.',
-                                icon: 'success',
-                                confirmButtonText: 'OK'
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    location.reload();
+        $(document).ready(function() {
+            $('.delete-btn').click(function() {
+                var id = $(this).data('id');
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: 'This record will be deleted permanently!',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Yes, delete it!',
+                    cancelButtonText: 'No, cancel!',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: 'delete.php',
+                            type: 'POST',
+                            data: {id: id},
+                            success: function(response) {
+                                if (response == 1) {
+                                    Swal.fire({
+                                        title: 'Deleted!',
+                                        text: 'The record has been deleted successfully.',
+                                        icon: 'success',
+                                        confirmButtonText: 'OK'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            location.reload();
+                                        }
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        title: 'Error!',
+                                        text: 'An error occurred while deleting the record.',
+                                        icon: 'error',
+                                        confirmButtonText: 'OK'
+                                    });
                                 }
-                            });
-                        } else {
-                            Swal.fire({
-                                title: 'Error!',
-                                text: 'An error occurred while deleting the record.',
-                                icon: 'error',
-                                confirmButtonText: 'OK'
-                            });
-                        }
+                            }
+                        });
                     }
                 });
-            }
+            });
         });
-    });
-});
 
  // Form submission for adding a new record
  $('#addRecordForm').submit(function(e) {
