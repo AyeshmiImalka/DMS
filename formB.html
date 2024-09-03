@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Link to Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application for registration / renewal of Ayurveda Products</title>
+    <link rel="stylesheet" href="formB.css">
+    <link rel="stylesheet" href="formB.js">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+</head>
+<body>
+  
+
+<!------------------!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!$$$$$$$$$$!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!---------------------->
+<form action="formB.php" method="post">
+<div class="certificate-form">
+  
+    <div class="container mt-5">
+
+        <!-- Form Header -->
+        
+        <div class="text-center form-header mb-4">
+           
+          <h3>Form B</h3>
+          <p>Application for registration / renewal of Ayurveda Products</p>
+        </div>
+      
+        <!-- Official Use Only Box -->
+        <div class="official-use-box">
+          <b><p>For official use only</p></b>
+          <div>File No/ Registration No: <input type="text" name="fileNoRegistrationNo" required></div>
+          <div>Money order/ Receipt No: <input type="text" name="moneyOrderReceiptNo" required></div>
+          <div>Date of issue: <input type="date" name="dateOfIssue" required></div> <br>
+          <div>Signature of subject officer: <input type="text" name="signatureOfSubjectOfficer" required></div>
+        </div>
+      
+        <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br><br> <br><br> <br><br>
+        <!-- Registration Type -->
+        <div class="form-group">
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="firstTimeRegistration" name="firstTimeRegistration" value="firstTime">
+            <label class="form-check-label" for="firstTimeRegistration">First time registration</label>
+          </div>
+          <br>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="checkbox" id="annualRegistration" name="annualRegistration" value="annual registration">
+            <label class="form-check-label" for="annualRegistration">Annual registration</label>
+          </div>
+          <p>(Put the "✔" sign in the appropriate box.)</p>
+        </div>
+     
+        <br> <br> <br>
+      
+        <!-- Details of Applicant -->
+        
+        <!-- Add additional fields for address, NIC/passport/driving license no., profession, post of applicant at drug manufactory, telephone number, email address, number and date of company registration, registration certificate number, date of establishment of the institution/company, etc. -->
+      
+
+
+     <!----------------!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!$$$$$$$$$$!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!---------------------->
+   
+    <h4>1.Details of applicant</h4>
+   
+        <label for="Nameofapplicant">1.2 Name of applicant:</label>
+        <input type="text" id="Nameofapplicant" name="Nameofapplicant" required><br><br>
+
+        <label for="HAddress">Address:</label>
+        <input type="text" id="HAddress" name="HAddress" required><br><br>
+
+        <label for="NIC">National Identity card/ Passport/Driving license No:</label>
+        <input type="text" id="NIC" name="NIC" required><br><br>
+
+        <label for="Profession">Profession:</label>
+        <input type="text" id="Profession" name="Profession" required><br><br>
+
+        <label for="Postofapplicant">Post of applicant:</label>
+        <input type="text" id="Postofapplicant" name="Postofapplicant" required><br><br>
+
+        <label for="Telephone">Telephone:</label>
+        <input type="tel" id="Telephone" name="Telephone" required><br><br>
+
+        <label for="Mobile">Mobile:</label>
+        <input type="tel" id="Mobile" name="Mobile" required><br><br>
+
+        <label for="Emailaddress">Email address:</label>
+        <input type="email" id="Emailaddress" name="emailaddress" required><br><br>
+
+        
+
+  <br> <br> 
+
+          <!------------------!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!$$$$$$$$$$!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!---------------------->
+          <h4>2. Details of drug manufactory/Institution</h4>
+
+          
+              <div class="form-group">
+                  <label for="NameofInstitution">2.1 Name of Institution/Company:</label>
+                  <input type="text" id="NameofInstitution" name="NameofInstitution">
+              </div>
+              
+              <div class="form-group">
+                  <label for="Institution_Address">2.2 Address:</label>
+                  <input type="text" id="Institution_Address" name="Institution_Address">
+              </div>
+              
+              <div class="form-group">
+                  <label for="InstitutionTelephone">2.3 Telephone number:</label>
+                  <input type="text" id="InstitutionTelephone" name="InstitutionTelephone">
+              </div>
+              
+              <div class="form-group">
+                  <label for="Emailaddress">2.4 Email address:</label>
+                  <input type="text" id="Emailaddress" name="Emailaddress">
+              </div>
+              
+              <div class="form-group">
+                  <label for="registrationNo">2.5 Number and date of company registration:</label>
+                  <input type="text" id="registrationNo" name="registrationNo">
+              </div>
+              
+              <div class="form-group">
+                  <label for="companydateOfIssue">Date of issue:</label>
+                  <input type="date" id="companydateOfIssue" name="companydateOfIssue">
+              </div>
+              
+              <div class="form-group">
+                  <label for="RegistrationcertificateNumber">2.6 If registered under Department of Ayurveda, Registration certificate Number:</label>
+                  <input type="text" id="RegistrationcertificateNumber" name="RegistrationcertificateNumber">
+              </div>
+              
+              <div class="form-group">
+                  <label for="certificatedateOfIssue">Date of issue:</label>
+                  <input type="date" id="certificatedateOfIssue" name="certificatedateOfIssue">
+              </div>
+              
+              <div class="form-group">
+                  <label for="Dateestablishment">2.7 Date of establishment of the Institution/Company:</label>
+                  <input type="date" id="Dateestablishment" name="Dateestablishment">
+              </div>
+          
+              
+        
+                <br> <br> 
+
+ <!------------------!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!$$$$$$$$$$!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!---------------------->
+<h4>3. Details of manufactory (Pharmacy)</h4>
+
+<div class="form-group">
+    <label for="manufactory_name">3.1 Name of manufactory:</label>
+    <input type="text" id="manufactory_name" name="manufactory_name">
+
+    <label for="manufactory_address">3.2 Address of drug manufactory:</label>
+    <input type="text" id="manufactory_address" name="manufactory_address">
+
+    <label for="province">3.3 Province:</label>
+    <select id="province" name="province" required>
+        <option value="western">Western Province</option>
+        <option value="uva">Uva Province</option>
+        <option value="southern">Southern Province</option>
+        <option value="sabaragamuwa">Sabaragamuwa Province</option>
+        <option value="north_western">North Western Province</option>
+        <option value="northern">Northern Province</option>
+        <option value="north_central">North Central Province</option>
+        <option value="eastern">Eastern Province</option>
+        <option value="central">Central Province</option>
+    </select>
+    <br><br>
+
+    <label for="district">District:</label>
+    <select id="district" name="district" required>
+      <option value="ampara">Ampara</option>
+      <option value="anuradhapura">Anuradhapura</option>
+      <option value="badulla">Badulla</option>
+      <option value="madakalapuwa">Badkalapu</option>
+      <option value="colombo">Colombo</option>
+      <option value="galle">Galle</option>
+      <option value="gampaha">Gampaha</option>
+      <option value="hambantota">Hambantota</option>
+      <option value="jaffna">Jaffna</option>
+      <option value="kaluthara">Kaluthara</option>
+      <option value="kandy">Manuvara</option>
+      <option value="kegalle">kegalle</option>
+      <option value="kilinochchi">Kilinochchi</option>
+      <option value="kurunegala">Kurunegala</option>
+      <option value="mannar">Mannar</option>
+      <option value="mathale">Mathale</option>
+      <option value="matara">Matara</option>
+      <option value="monaragala">Monaragala</option>
+      <option value="mulathiv">mulathiv</option>
+      <option value="nuwaraeliya">Nuwaraeliya</option>
+      <option value="polonnaruwa">Pollonnaruwa</option>
+      <option value="puthtalam">Puthtalam</option>
+      <option value="rathnapura">Rathnapura</option>
+      <option value="trincomalee">Trincomalee</option>
+      <option value="vavnia">Vavnia</option>
+    </select>
+    <br><br>
+
+    <label for="divisional_secretariats">Divisional Secretariats division:</label>
+    <input type="text" id="divisional_secretariats" name="divisional_secretariats">
+
+    <label for="grama_niladhari">Grama Niladhari Division and No:</label>
+    <input type="text" id="grama_niladhari" name="grama_niladhari">
+    <br><br>
+
+    <label for="rate_no">3.4 Rate No:</label>
+    <input type="text" id="rate_no" name="rate_no">
+
+    <label for="telephone_no">3.5 Telephone No:</label>
+    <input type="text" id="telephone_no" name="telephone_no">
+
+    <label for="email_address">3.6 Email address:</label>
+    <input type="text" id="email_address" name="email_address">
+
+    <label for="registration_certificate">3.7 If registered under Department of Ayurveda, Registration certificate Number:</label>
+    <input type="text" id="registration_certificate" name="registration_certificate">
+
+    <div class="form-group">
+        <label for="date_of_issue">Date of issue:</label>
+        <input type="date" id="date_of_issue" name="date_of_issue">
+    </div>
+    <br>
+
+    <label for="establishment_date">3.8 Date of establishment of the drug manufactory:</label>
+    <input type="date" id="establishment_date" name="establishment_date">
+</div>
+
+                        <br> <br> 
+                   <!------------------!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!$$$$$$$$$$!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!---------------------->
+                   <h4>4. Details of consultant physician </h4>
+                   <div class="form-group">
+                   <label for="Full_name_of_physician">4.1  Full name of physician:</label>
+                   <input type="text" id="Full_name_of_physician" name="Full_name_of_physician">
+                   </div>
+                   
+                   <div class="form-group">
+                       <label for="registration_no">4.2 Ayurveda medical council registration no:</label>
+                       <input type="text" id="registration_no" name="registration_no">
+                   
+                       <div class="checkbox-group">
+                           <input type="checkbox" id="general" name="registration_type" value="General">
+                           <label for="general">General</label>
+                           <input type="checkbox" id="special" name="registration_type" value="Special">
+                           <label for="special">Special</label>
+                       </div>
+                   </div>
+                   
+                   <div class="form-group">
+                       <label for="registration_date">4.2 Date of Registration:</label>
+                       <input type="date" id="registration_date" name="registration_date">
+                      
+                   </div>
+                   <div class="form-group">
+                   <label for="renewal_date">4.2 Date of renewal:</label>
+                   <input type="date" id="renewal_date" name="renewal_date">
+                  </div> 
+                  
+                   <div class="form-group">
+                       <label for="special_registration">4.3 Section of special registration:</label>
+                       <input type="text" id="special_registration" name="special_registration">
+                   </div>
+                   
+                   <div class="form-group">
+                       <label for="personal_address">4.4 Personal address:</label>
+                       <input type="text" id="personal_address" name="personal_address">
+                   </div>
+                   
+                   <div class="form-group">
+                       <label for="telephone_no">4.5 Telephone no:</label>
+                       <input type="tel" id="telephone_no" name="telephone_no">
+                   </div>
+                   <div class="form-group">
+                   <label for="mobile_no">Mobile:</label>
+                   <input type="tel" id="mobile_no" name="mobile_no"></div>
+
+                   <div class="form-group">
+                       <label for="email_address">4.6 Email address:</label>
+                       <input type="email" id="email_address" name="email_address">
+                   </div>
+                   
+   
+
+
+    <br> <br> 
+
+
+     <!------------------!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!$$$$$$$$$$!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!---------------------->
+     
+     <h4>5. Details of Product</h4>
+
+     <div class="form-group">
+         <label for="product_name">5.1 Name of the product according to Ayurveda/Siddha/Unani/Traditional medicines pharmacopeia:</label>
+         <input type="text" id="product_name" name="product_name">
+     </div>
+     
+     <div class="form-group">
+         <label for="trade_name">5.2 Trade name of the product:</label>
+         <input type="text" id="trade_name" name="trade_name">
+     </div>
+     
+     <div class="form-group">
+         <label for="nature_of_product">5.3 Nature of product:</label>
+         <select id="nature_of_product" name="nature_of_product">
+             <option value="Medicine">Medicine</option>
+             <option value="Diet_and_nutritional_supplementary_products">Diet and nutritional supplementary products</option>
+             <option value="Cosmetic_products">Cosmetic products</option>
+             <option value="Devices">Devices</option>
+         </select>
+     </div>
+     
+     <div class="form-group">
+         <label for="therapeutic_indications">5.4 Therapeutic indications/uses of product:</label>
+         <textarea id="therapeutic_indications" name="therapeutic_indications"></textarea>
+     </div>
+     
+     <div class="form-group">
+         <label for="registration_under_department">5.5 If you have obtained registration for this product under the Department of Ayurveda:</label>
+         <input type="text" id="registration_under_department" name="registration_under_department">
+     </div>
+     
+     <div class="form-group">
+         <label for="registration_number_first_time">Registration Number first-Time:</label>
+         <input type="text" id="registration_number_first_time" name="registration_number_first_time">
+         <label for="date_of_issue_first_time">Date:</label>
+         <input type="date" id="date_of_issue_first_time" name="date_of_issue_first_time">
+     </div>
+     
+     <div class="form-group">
+         <label for="registration_number_last_time">Registration Number last-Time:</label>
+         <input type="text" id="registration_number_last_time" name="registration_number_last_time">
+         <label for="date_of_issue_last_time">Date:</label>
+         <input type="date" id="date_of_issue_last_time" name="date_of_issue_last_time">
+     </div>
+     
+     <div class="form-group">
+         <label for="research_done">5.6 Has any research been done on this product in Sri Lanka after first registration? (yes/no) If yes, briefly describe the results (attach a copy of the report/publication):</label>
+         <textarea id="research_done" name="research_done"></textarea>
+         <div class="checkbox-group">
+             <input type="checkbox" id="research_yes" name="research_yes" value="Yes">
+             <label for="research_yes">Yes</label>
+             <input type="checkbox" id="research_no" name="research_no" value="No">
+             <label for="research_no">No</label>
+         </div>
+     </div>
+     
+
+
+
+<br> <br>
+
+ <!------------------!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!$$$$$$$$$$!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!---------------------->
+
+
+
+ <h4>6. If the product is a medicine,</h4>
+ <br>
+ <div class="form-group">
+     <label for="text_page_recipe_no">6.1 If the product is medicine, mention the Name of text/page/recipe no:</label>
+     <input type="text" id="text_page_recipe_no" name="text_page_recipe_no">
+ </div>
+ 
+ <div class="form-group">
+     <label>Please mention whether this medicine is obtained from:</label>
+     <div class="checkbox-group">
+         <input type="checkbox" id="classical_texts" name="obtained_from[]" value="Classical texts">
+         <label for="classical_texts">Classical texts</label>
+         <input type="checkbox" id="pharmacopeia" name="obtained_from[]" value="Pharmacopeia">
+         <label for="pharmacopeia">Pharmacopeia</label>
+         <input type="checkbox" id="traditional_base" name="obtained_from[]" value="Traditional base">
+         <label for="traditional_base">Traditional base</label>
+     </div>
+ </div>
+ 
+ <br><br>
+ 
+ <div class="form-group">
+     <label for="new_product">6.2 Is it a new product, mention the recipe (to be prepared as a separate document):</label>
+     <div class="checkbox-group">
+         <input type="radio" id="new_product_yes" name="new_product" value="Yes">
+         <label for="new_product_yes">Yes</label>
+         <input type="radio" id="new_product_no" name="new_product" value="No">
+         <label for="new_product_no">No</label>
+     </div>
+ </div>
+ 
+ <div class="form-group">
+     <label for="legal_provision_certificate">6.3 Certificate of legal provision in the relevant country:</label>
+     <input type="text" id="legal_provision_certificate" name="legal_provision_certificate">
+ </div>
+ 
+ <div class="form-group">
+     <label for="dose_and_dosage">6.4 Dose and dosage:</label>
+     <input type="text" id="dose_and_dosage" name="dose_and_dosage">
+ </div>
+ 
+ <div class="form-group">
+     <label for="route_of_administration">6.5 Route of administration:</label>
+     <div class="checkbox-group">
+         <input type="checkbox" id="external_application" name="route_of_administration[]" value="External application">
+         <label for="external_application">External application</label>
+         <input type="checkbox" id="orally" name="route_of_administration[]" value="Orally">
+         <label for="orally">Orally</label>
+         <input type="checkbox" id="inhalation" name="route_of_administration[]" value="Inhalation">
+         <label for="inhalation">Inhalation</label>
+         <input type="checkbox" id="vasthi" name="route_of_administration[]" value="Vasthi">
+         <label for="vasthi">Vasthi</label>
+         <input type="checkbox" id="nasya" name="route_of_administration[]" value="Nasya">
+         <label for="nasya">Nasya</label>
+         <input type="checkbox" id="others" name="route_of_administration[]" value="Others">
+         <label for="others">Others</label>
+     </div>
+ </div>
+ 
+
+<br> 
+<br> <br>
+<!------------------!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!$$$$$$$$$$!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!---------------------->
+<div class="table-container1">
+  <h4>7. If the product is exported, give details.</h4>
+
+
+      <table>
+          <thead>
+              <tr>
+                  <th>Serial no</th>
+                  <th>Category (Raw Materials/ Medicines Packaging material Preservatives/ Excipients etc.)</th>
+                  <th>Types of (Raw Materials/ Medicines Packaging material/ Preservatives/ Excipients) to be exported</th>
+                  <th>Countries expected to export</th>
+                  <th>Name and address of the foreign company</th>
+                  <th>Export Quantity (Kg/Unit) last year</th>
+                  <th>Expected export quantity for next year (Kg/units)</th>
+              </tr>
+          </thead>
+          <tbody>
+              <!-- Example row with input fields -->
+              <tr>
+                  <td><input type="text" name="serial_no[]"></td>
+                  <td><input type="text" name="category[]"></td>
+                  <td><input type="text" name="types[]"></td>
+                  <td><input type="text" name="countries[]"></td>
+                  <td><input type="text" name="foreign_company[]"></td>
+                  <td><input type="text" name="export_quantity_last_year[]"></td>
+                  <td><input type="text" name="expected_export_quantity_next_year[]"></td>
+              </tr>
+              <tr>
+                  <td><input type="text" name="serial_no[]"></td>
+                  <td><input type="text" name="category[]"></td>
+                  <td><input type="text" name="types[]"></td>
+                  <td><input type="text" name="countries[]"></td>
+                  <td><input type="text" name="foreign_company[]"></td>
+                  <td><input type="text" name="export_quantity_last_year[]"></td>
+                  <td><input type="text" name="expected_export_quantity_next_year[]"></td>
+              </tr>
+              <!-- Additional rows can be added here -->
+          </tbody>
+      </table>
+      
+ 
+</div>
+
+<br><br>
+ <!------------------!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!$$$$$$$$$$!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!---------------------->
+
+ <h4>8. Details of imported material used in the preparation of production (If available)</h4>
+
+  <table class="form-table">
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+    <tr>
+      <td>8.1 Whether imported materials are used in the preparation of medicine?</td>
+      <td>
+        <label class="checkbox-inline"><input type="radio" name="imported_materials" value="Yes">Yes</label>
+        <label class="checkbox-inline"><input type="radio" name="imported_materials" value="No">No</label>
+      </td>
+    </tr>
+    <tr>
+      <td>8.2 If yes, Name of institution issued license for importation of materials</td>
+      <td><input type="text" class="input-field" name="institution_name"></td>
+    </tr>
+    <tr>
+      <td>8.3 License No:<br>Date:</td>
+      <td>
+        <input type="text" class="input-field" name="license_no"><br>
+        <input type="date" class="input-field" name="license_date">
+      </td>
+    </tr>
+    <tr>
+      <td>8.4 Country of import</td>
+      <td><input type="text" class="input-field" name="country_of_import"></td>
+    </tr>
+    <tr>
+      <td>8.5 Name of the raw material manufacturer in relevant country</td>
+      <td><input type="text" class="input-field" name="manufacturer_name"></td>
+    </tr>
+    <tr>
+      <td>8.6 Address</td>
+      <td><input type="text" class="input-field" name="manufacturer_address"></td>
+    </tr>
+    <tr>
+      <td>8.7 List of imported raw materials (relevant documents to be submitted)</td>
+      <td><input type="text" class="input-field" name="imported_raw_materials_list"></td>
+    </tr>
+    <tr>
+      <td>8.8 Has any processed products been imported to be used as a raw material in the product?</td>
+      <td>
+        <label class="checkbox-inline"><input type="radio" name="processed_products_imported" value="Yes">Yes</label>
+        <label class="checkbox-inline"><input type="radio" name="processed_products_imported" value="No">No</label>
+      </td>
+    </tr>
+    <tr>
+      <td>8.9 If yes, name/names of processed products imported as raw materials</td>
+      <td><input type="text" class="input-field" name="processed_products_names"></td>
+    </tr>
+    <tr>
+      <td>8.10 Has separate approval obtained from Department of Ayurveda to import such product?</td>
+      <td>
+        <label class="checkbox-inline"><input type="radio" name="approval_obtained" value="Yes">Yes</label>
+        <label class="checkbox-inline"><input type="radio" name="approval_obtained" value="No">No</label>
+      </td>
+    </tr>
+    <tr>
+      <td>8.11 If yes, the referral letter number<br>Date:</td>
+      <td>
+        <input type="text" class="input-field" name="referral_letter_number"><br>
+        <input type="date" class="input-field" name="referral_letter_date">
+      </td>
+    </tr>
+  </table>
+ 
+
+
+
+  </table>
+ 
+
+<br>
+
+
+
+<!------------------!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!$$$$$$$$$$!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!---------------------->
+
+<div class="table-container1">
+  <h4>9. Details whether raw materials included in this product are restricted by the rules and regulations imposed in Sri Lanka:</h4>
+
+  
+      <table>
+          <thead>
+              <tr>
+                  <th>Serial no</th>
+                  <th>Type of ingredients restricted by law</th>
+                  <th>District and Divisional Secretariat where the relevant raw materials are procured</th>
+                  <th>Address of the place of procurement of the relevant raw materials</th>
+                  <th>License number and date of approval for the use of the relevant ingredients</th>
+                  <th>Quantity of raw materials used in above product last year (Kg/ Unit)</th>
+                  <th>Quantity expected to be procured in next year (Kg/Unit)</th>
+              </tr>
+          </thead>
+          <tbody>
+              <!-- Example row with input fields -->
+              <tr>
+                  <td><input type="text" name="serial_no[]"></td>
+                  <td><input type="text" name="type_of_ingredients[]"></td>
+                  <td><input type="text" name="district_secretariat[]"></td>
+                  <td><input type="text" name="place_of_procurement[]"></td>
+                  <td><input type="text" name="license_number_date[]"></td>
+                  <td><input type="text" name="quantity_used_last_year[]"></td>
+                  <td><input type="text" name="quantity_expected_next_year[]"></td>
+              </tr>
+              <tr>
+                  <td><input type="text" name="serial_no[]"></td>
+                  <td><input type="text" name="type_of_ingredients[]"></td>
+                  <td><input type="text" name="district_secretariat[]"></td>
+                  <td><input type="text" name="place_of_procurement[]"></td>
+                  <td><input type="text" name="license_number_date[]"></td>
+                  <td><input type="text" name="quantity_used_last_year[]"></td>
+                  <td><input type="text" name="quantity_expected_next_year[]"></td>
+              </tr>
+              <!-- Additional rows can be added here -->
+          </tbody>
+      </table>
+
+</div>
+
+<br> 
+
+
+
+
+
+
+
+<!------------------!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!$$$$$$$$$$!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!---------------------->
+
+<div class="table-container1">
+  <h4>10. Details of preservatives/excipients of the product (If available):</h4>
+
+
+    <table>
+      <thead>
+        <tr>
+          <th>Serial no</th>
+          <th>Type of preservatives/excipients contained in the product</th>
+          <th>Quantity and percentage per unit to be used for the above product</th>
+          <th>Amount of material used last year for the above product (Kg/Unit)</th>
+          <th>Amount expected to be procured next year (Kg/Unit)</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <!-- Example row with input fields -->
+        <tr>
+          <td><input type="text" name="serial_no_preservatives[]"></td>
+          <td><input type="text" name="type_of_preservatives[]"></td>
+          <td><input type="text" name="quantity_percentage[]"></td>
+          <td><input type="text" name="amount_used_last_year[]"></td>
+          <td><input type="text" name="amount_expected_next_year[]"></td>
+        </tr>
+
+        <tr>
+          <td><input type="text" name="serial_no_preservatives[]"></td>
+          <td><input type="text" name="type_of_preservatives[]"></td>
+          <td><input type="text" name="quantity_percentage[]"></td>
+          <td><input type="text" name="amount_used_last_year[]"></td>
+          <td><input type="text" name="amount_expected_next_year[]"></td>
+        </tr>
+        <!-- Additional rows can be added here -->
+      </tbody>
+    </table>
+    
+</div>
+
+
+
+<div class="certificate-form">
+  <h4>11. Certificate of Consultant Physician</h4>
+  <p>I,</p>
+  <input class="form-field" type="text" name="name" placeholder="(Name)">
+  <p>holder of National Identity Card No</p>
+  <input class="form-field" type="text" name="id_number" placeholder="(ID Number)">
+  <p>of</p>
+  <input class="form-field" type="text" name="address" placeholder="(Address)">
+  <p>the consultant Ayurvedic medical practitioner of the above named institution/ayurvedic drug manufacturing company 
+    hereby certify that I abide by the Registered Ayurvedic Medical Practitioners Rules No. 1 of 2014 made under
+    the Ayurvedic Act No. 31 of 1961 and that I am legally responsible for the standard of the products and in connection 
+    therewith manufactured under my supervision and that I will provide my services full time and that I will be held 
+    responsible and will be responsible personally for the correctness of all information disclosed under No. 4 hereto
+  </p>
+  <div class="certificate-footer">
+    <div class="form-signature">
+      <p>Signature of applicant:</p>
+      <canvas id="signature-pad" class="signature-pad" width="300" height="150"></canvas>
+      <input type="file" id="image-loader" name="imageLoader" accept="image/*">
+      <button id="clear">Clear Signature</button>
+    </div>
+    <div class="form-signature">
+      <p>Date:</p>
+      <input class="form-field" type="date" name="date" placeholder="Date">
+    </div>
+  </div>
+  <p>Official stamp</p>
+</div>  
+
+ <br><br> <br>
+ <script> document.addEventListener('DOMContentLoaded', function() {
+  var canvas = document.getElementById('signature-pad');
+  var ctx = canvas.getContext('2d');
+  var imageLoader = document.getElementById('image-loader');
+  var clearButton = document.getElementById('clear');
+
+  // Function to upload and draw an image onto the canvas
+  function handleImageUpload(e) {
+    var reader = new FileReader();
+    reader.onload = function(event) {
+      var img = new Image();
+      img.onload = function() {
+        // Clear the canvas before drawing the image
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        // Draw the uploaded image
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+      }
+      img.src = event.target.result;
+    }
+    reader.readAsDataURL(e.target.files[0]);
+  }
+
+  // Function to clear the canvas
+  function clearCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+
+  // Event listeners
+  imageLoader.addEventListener('change', handleImageUpload);
+  clearButton.addEventListener('click', clearCanvas);});</script>
+</div>
+
+
+
+
+<br> 
+
+<!------------------!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!$$$$$$$$$$!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!---------------------->
+<div class="certificate-form">
+  <h4>12. Declaration of applicant</h4>
+  <p>I hereby certify that the information given in the application is true and correct.
+    I am personally responsible and liable for the accuracy of all information furnished herein.</p>
+
+  <div class="certificate-footer">
+    <div class="form-signature">
+      <p>Signature of applicant:</p>
+      <canvas id="signature-pad-applicant" class="signature-pad" width="300" height="150"></canvas>
+      <input type="file" id="image-loader-applicant" name="imageLoaderApplicant" accept="image/*">
+      <button type="button" onclick="clearCanvas('signature-pad-applicant')">Clear Signature</button>
+    </div>
+    <div class="form-signature">
+      <p>Date:</p>
+      <input class="form-field" type="date" name="applicant_date" placeholder="Date">
+    </div>
+  </div>
+
+  <p>Official stamp</p>
+
+  <br><br><br><br><br>
+
+  <div class="official-use-container2">
+    <div class="official-use-header">
+      For official use only
+    </div>
+    <label>Money order No:</label>
+    <input class="form-field" type="text" name="money_order_no" placeholder="">
+
+    <label>Receipt No:</label>
+    <input class="form-field" type="text" name="receipt_no" placeholder="">
+
+    <label>Documents submitted date:</label>
+    <input class="form-field" type="date" name="documents_submitted_date" placeholder="">
+
+    <div class="checkbox-section">
+      <label class="checkbox-label">Note:</label>
+      <label><input type="checkbox" name="note[]" value="completed"> Completed</label>
+      <label><input type="checkbox" name="note[]" value="incompleted"> In-completed</label>
+      <label><input type="checkbox" name="note[]" value="forged_document"> Forged document</label>
+      <label><input type="checkbox" name="note[]" value="complaints"> Complaints</label>
+    </div>
+  </div>
+
+  <div class="footer-section">
+    <div>
+      <label>Name and signature of officer received:</label>
+      <input class="form-field" type="text" name="officer_name_signature" placeholder="">
+    </div>
+    <div>
+      <label>Date:</label>
+      <input class="form-field" type="date" name="officer_received_date">
+    </div>
+  </div>
+
+  <div class="form-signature">
+    <p>Signature of officer:</p>
+    <canvas id="signature-pad-officer" class="signature-pad" width="300" height="150"></canvas>
+    <input type="file" id="image-loader-officer" name="imageLoaderOfficer" accept="image/*"> <br>
+    <button type="button" onclick="clearCanvas('signature-pad-officer')">Clear Signature</button>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    function setupSignaturePad(canvasId, imageLoaderId) {
+      var canvas = document.getElementById(canvasId);
+      var ctx = canvas.getContext('2d');
+      var imageLoader = document.getElementById(imageLoaderId);
+
+      imageLoader.addEventListener('change', function(e) {
+        var reader = new FileReader();
+        reader.onload = function(event) {
+          var img = new Image();
+          img.onload = function() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            var scale = Math.min(canvas.width / img.width, canvas.height / img.height);
+            var x = (canvas.width / 2) - (img.width / 2) * scale;
+            var y = (canvas.height / 2) - (img.height / 2) * scale;
+            ctx.drawImage(img, x, y, img.width * scale, img.height * scale);
+          }
+          img.src = event.target.result;
+        }
+        reader.readAsDataURL(e.target.files[0]);
+      });
+    }
+
+    window.clearCanvas = function(canvasId) {
+      var canvas = document.getElementById(canvasId);
+      var ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    // Setup signature pads
+    setupSignaturePad('signature-pad-applicant', 'image-loader-applicant');
+    setupSignaturePad('signature-pad-officer', 'image-loader-officer');
+  });
+</script>
+
+<br><br>
+<p>
+  Note: Completed check-list, document containing all necessary details and product samples, equivalent to market release samples as required, should be handed over along with this application by the consulting Ayurvedic practitioner to the technical division of the Department of ayurveda on specified dates.
+</p>
+
+
+       
+<div class="file-upload">
+  <div class="drag-drop">
+   <i class="bx bxs-cloud-upload"></i>
+   <h3>Drag & Drop to upload File</h3>
+   <h6>Or</h6>
+   <p> browse your computer</p>
+   <div class="browse">
+     <input type="file" id="file-input" multiple>
+     <label for="file-input">Browse Computer</label>
+   </div>
+ </div>
+
+ <div class="max-size">
+   <p></p>
+ </div>
+</div>
+</div>
+ <!--button start-->
+
+  <div class="button-group" action="connect.php" method="post">
+    <button type="submit" id="submit-button" class="submit-button">
+      <span class="button-text">Submit</span>
+      <span class="button-icon"><i class="bx bxs-send"></i></span>
+    </button>
+    <button type="reset" id="reset-button" class="reset-button">
+      <span class="button-text">Reset</span>
+      <span class="button-icon"><i class="bx bxs-eraser"></i></span>
+    </button>
+    <button type="button" id="download-button" class="download-button">
+      <span class="button-text">Download Form</span>
+      <span class="button-icon"><i class="bx bxs-download"></i></span>
+    </button>
+
+    <a id="button"></a>
+
+    <style>#button {
+        display: inline-block;
+        background-color: #1e90ff;
+        width: 50px;
+        height: 50px;
+        text-align: center;
+        border-radius: 4px;
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        transition: background-color .3s, 
+          opacity .5s, visibility .5s;
+        opacity: 0;
+        visibility: hidden;
+        z-index: 1000;
+      }
+      #button::after {
+        content: "\f077";
+        font-family: FontAwesome;
+        font-weight: normal;
+        font-style: normal;
+        font-size: 2em;
+        line-height: 50px;
+        color: #fff;
+      }
+      #button:hover {
+        cursor: pointer;
+        background-color: #257fbb;
+      }
+      #button:active {
+        background-color: #5871ff;
+      }
+      #button.show {
+        opacity: 1;
+        visibility: visible;
+      }
+      
+      /* Styles for the content section */
+      
+      .content {
+        width: 77%;
+        margin: 50px auto;
+        font-family: 'Merriweather', serif;
+        font-size: 17px;
+        color: #6c767a;
+        line-height: 1.9;
+      }
+      @media (min-width: 500px) {
+        .content {
+          width: 43%;
+        }
+        #button {
+          margin: 30px;
+        }
+      }
+      .content h1 {
+        margin-bottom: -10px;
+        color: #03a9f4;
+        line-height: 1.5;
+      }
+      .content h3 {
+        font-style: italic;
+        color: #96a2a7;
+      }</style>
+
+    <script>
+      // Add event listeners to buttons for click events
+      document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("download-button").addEventListener("click", function() {
+            // Implement download functionality here, e.g., downloading a PDF form
+            // This is just a placeholder, you can replace it with actual download code
+            alert("Download button clicked. Implement download functionality.");
+        });
+    });
+      
+      document.getElementById('reset-button').addEventListener('click', function(event) {
+        
+        window.scrollTo({
+          top:0,
+          left:0,
+          behavior:"smooth"
+        })
+        window.location.reload();
+        // if (confirm('Are you sure you want to reset the form?')) {
+        //   document.getElementById('declaration-form').reset();
+        // } else {
+        //   event.preventDefault(); // Prevent the form from resetting if the user cancels the action
+        // }
+      });
+      
+      document.getElementById('download-button').addEventListener('click', function() {
+        window.print();
+        // Replace this alert with your actual download logic
+      });
+      </script>
+     <script>
+      const btn = document.getElementById('button');
+      window.onscroll = function() {
+          if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+              btn.classList.add('show');
+          } else {
+              btn.classList.remove('show');
+          }
+      };
+      btn.onclick = function() {
+          document.body.scrollTop = 0;
+          document.documentElement.scrollTop = 0;
+      };
+  
+      
+  </script>
+  </div>
+  
+
+
+
+
+</form>
+
+<!--button end-->
+
+
+
+
+
+      <img src="images/upbtn.png" style="width: 4.5%;" id="myBtn" onclick="topFunction()">
+      <script src="pharmacyForm.js"></script>
+      <!-- Link to Bootstrap JS and its dependencies -->
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>
