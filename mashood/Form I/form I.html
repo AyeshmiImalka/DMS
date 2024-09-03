@@ -1,0 +1,2135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Link to Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application for Cultivation, manufacture of Ayurveda products, storage, distribution, sale,
+        transportation and exportation of Medicinal cannabis</title>
+    <link rel="stylesheet" href="form I.css">
+    <link rel="stylesheet" href="/form I.js">
+   
+</head>
+<body>
+     
+
+<!------------------!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!$$$$$$$$$$!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!---------------------->
+
+<form action="formI.php"  method="post">
+  <div class="container mt-5">
+    <!-- Form Header -->
+    <div class="text-center form-header mb-4">
+        <h3>Form I</h3>
+        <p>Application for registration / renewal of Ayurveda Products</p>
+    </div>
+
+    <!-- Official Use Only Box -->
+    <div class="official-use-box">
+        <b><p>For official use only</p></b>
+        <div>File No/ Registration No: <input type="text" id="file-no" name="file-no" required></div>
+        <div>Money order/ Receipt No: <input type="text" id="receipt-no" name="receipt-no" required></div>
+        <div>Date of issue: <input type="date" id="date-of-issue" name="date-of-issue" required></div>
+        <div>Signature of subject officer: <input type="text" id="officer-signature" name="officer-signature" required></div>
+    </div>
+
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+   <!-- Registration Type -->
+<div class="form-group">
+  <p><b>Nature of Business</b></p>
+  <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" id="localOrganization" name="registration_type[]" value="Local Organization">
+      <label class="form-check-label" for="localOrganization">Local Organization</label>
+  </div>
+  <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" id="jointVenture" name="registration_type[]" value="Joint Venture">
+      <label class="form-check-label" for="jointVenture">A joint venture</label>
+  </div>
+  <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" id="foreignOrganization" name="registration_type[]" value="Foreign Organization">
+      <label class="form-check-label" for="foreignOrganization">Foreign Organization</label>
+  </div>
+  <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" id="soleProprietary" name="registration_type[]" value="Sole Proprietary">
+      <label class="form-check-label" for="soleProprietary">A sole proprietary</label>
+  </div>
+</div>
+
+<div class="form-group"><br>
+  <p><b>Obtaining a temporary license</b></p>
+  <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" id="tempCultivate" name="temporary_license[]" value="Cultivate">
+      <label class="form-check-label" for="tempCultivate">Cultivate</label>
+  </div>
+  <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" id="tempManufacture" name="temporary_license[]" value="Manufacture">
+      <label class="form-check-label" for="tempManufacture">Manufacture</label>
+  </div>
+  <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" id="tempExport" name="temporary_license[]" value="Export">
+      <label class="form-check-label" for="tempExport">Export</label>
+  </div>
+</div>
+
+<div class="form-group"><br>
+  <p><b>Obtaining a permanent license</b></p>
+  <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" id="permCultivate" name="permanent_license[]" value="Cultivate">
+      <label class="form-check-label" for="permCultivate">Cultivate</label>
+  </div>
+  <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" id="permManufacture" name="permanent_license[]" value="Manufacture">
+      <label class="form-check-label" for="permManufacture">Manufacture</label>
+  </div>
+  <div class="form-check form-check-inline">
+      <input class="form-check-input" type="checkbox" id="permExport" name="permanent_license[]" value="Export">
+      <label class="form-check-label" for="permExport">Export</label>
+  </div>
+</div>
+
+
+    <p><b>(Put the "✔" sign in the appropriate box.)</b></p>
+    <br><br><br>
+
+
+      
+        <!-- Details of Applicant -->
+        
+        <!-- Add additional fields for address, NIC/passport/driving license no., profession, post of applicant at drug manufactory, telephone number, email address, number and date of company registration, registration certificate number, date of establishment of the institution/company, etc. -->
+      
+
+
+     <!------------------!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!$$$$$$$$$$!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!---------------------->
+     <h4>1. Details of applicant</h4>
+
+     <div class="form-group">
+      <label for="applicant_name">1.1 Name of applicant:</label>
+      <input type="text" id="applicant_name" name="applicant_name" required>
+  
+      <label for="applicant_address">1.2 Address:</label>
+      <input type="text" id="applicant_address" name="applicant_address" required>
+  
+      <label for="id_number">1.3 National Identity card/ Passport/ Driving license No:</label>
+      <input type="text" id="id_number" name="id_number" required>
+  
+      <label for="applicant_profession">1.4 Profession:</label>
+      <input type="text" id="applicant_profession" name="applicant_profession" required>
+  
+      <div class="form-group">
+          <label for="Telephone">1.5 Telephone no:</label>
+          <input type="text" id="Telephone" name="Telephone" required>
+          <label for="Mobile">Mobile:</label>
+          <input type="text" id="Mobile" name="Mobile" required>
+      </div>
+  
+      <label for="emailAddress">1.6 Email address:</label>
+      <input type="emailAddress" id="emailAddress" name="emailAddress" required>
+  </div>
+     
+     <br><br>
+     
+     <h4>2. Details of the manufacturing company/business</h4>
+     
+     <div class="form-group">
+         <label for="company_name">2.1 Name of company/business:</label>
+         <input type="text" id="company_name" name="company_name">
+     
+         <label for="company_address">2.2 Address:</label>
+         <input type="text" id="company_address" name="company_address">
+     
+         <label for="company_phone">2.3 Telephone number:</label>
+         <input type="text" id="company_phone" name="company_phone">
+     
+         <label for="company_email">2.4 Email address:</label>
+         <input type="email" id="company_email" name="company_email">
+     
+         <label for="registration_certificate_no">2.5 Company/business registration certificate No:</label>
+         <input type="text" id="registration_certificate_no" name="registration_certificate_no">
+     
+         <div class="form-group">
+             <label for="company_date_of_issue">Date of issue:</label>
+             <input type="date" id="company_date_of_issue" name="company_date_of_issue">
+         </div>
+         <br>
+     
+         <label for="ayurveda_registration_no">2.6 If registered under Department of Ayurveda, Registration certificate Number:</label>
+         <input type="text" id="ayurveda_registration_no" name="ayurveda_registration_no">
+     
+         <div class="form-group">
+             <label for="ayurveda_date_of_issue">Date of issue:</label>
+             <input type="date" id="ayurveda_date_of_issue" name="ayurveda_date_of_issue">
+         </div>
+         <br>
+     
+         <label for="company_establishment_date">2.7 Date of establishment of company/business:</label>
+         <input type="date" id="company_establishment_date" name="company_establishment_date">
+         <br>
+         
+         <label for="applicant_position">2.8 Applicant’s position in the company/business:</label>
+         <input type="text" id="applicant_position" name="applicant_position">
+     </div>
+     
+     <br><br>
+     
+     <div class="table-container1">
+         <h4>3. Details of Board of Directors/Partners/Members</h4>
+         <p>(Details of all members/partners should be submitted)</p>
+     
+         <table>
+             <thead>
+                 <tr>
+                     <th>Serial no</th>
+                     <th>Designation in company</th>
+                     <th>Full name of officer/board member</th>
+                     <th>National Identity Card Number</th>
+                     <th>Specimen Signature</th>
+                 </tr>
+             </thead>
+             <tbody>
+                 <!-- Example row with input fields -->
+                 <tr>
+                     <td><input type="text" name="serial_no[]"></td>
+                     <td><input type="text" name="designation[]"></td>
+                     <td><input type="text" name="full_name[]"></td>
+                     <td><input type="text" name="id_card_number[]"></td>
+                     <td><input type="text" name="specimen_signature[]"></td>
+                 </tr>
+                 <tr>
+                     <td><input type="text" name="serial_no[]"></td>
+                     <td><input type="text" name="designation[]"></td>
+                     <td><input type="text" name="full_name[]"></td>
+                     <td><input type="text" name="id_card_number[]"></td>
+                     <td><input type="text" name="specimen_signature[]"></td>
+                 </tr>
+                 <!-- Additional rows for agent details -->
+             </tbody>
+         </table>
+     </div>
+     
+<!------------------!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!$$$$$$$$$$!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!---------------------->
+<!-- Section for attachment copies -->
+<h6>Annexures relating to Nos. 1, 2, 3</h6>
+<p>(If copies are attached, mark ✓ in relevant column)</p>
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <tbody>
+      <tr>
+        <td>1. Certified photocopy of Business/Company Registration Certificate</td>
+        <td><input type="checkbox" name="attachment1"></td>
+      </tr>
+      <tr>
+        <td>2. Certified photocopy of Registration certificate (If registered under Department of Ayurveda)</td>
+        <td><input type="checkbox" name="attachment2"></td>
+      </tr>
+      <tr>
+        <td>3. Photocopies of National Identity Card/Passport of Applicant/Board of Directors/Members/Partners (mention number of attachments)</td>
+        <td><input type="checkbox" name="attachment3"></td>
+      </tr>
+      <tr>
+        <td>4. Bank statements of near 3 months of local/foreign bank accounts to verify financial capability</td>
+        <td><input type="checkbox" name="attachment4"></td>
+      </tr>
+      <tr>
+        <td>5. Certificate of bank balance of approximately near 3 months in local/foreign bank accounts</td>
+        <td><input type="checkbox" name="attachment5"></td>
+      </tr>
+      <tr>
+        <td>6. Document authorized to sign on behalf of the company</td>
+        <td><input type="checkbox" name="attachment6"></td>
+      </tr>
+      <tr>
+        <td>7. Affidavit confirming authorization to sign on behalf of the company</td>
+        <td><input type="checkbox" name="attachment7"></td>
+      </tr>
+      <tr>
+        <td>8. If the relevant entity is a company, the report containing the authorized board of directors’ decision to submit the EOI (Board Resolution)</td>
+        <td><input type="checkbox" name="attachment8"></td>
+      </tr>
+      <tr>
+        <td>9. In case of Sole Proprietorship/Partnership, Affidavit confirming the nature of the business and personal details</td>
+        <td><input type="checkbox" name="attachment9"></td>
+      </tr>
+      <tr>
+        <td>10. Cash Receipt of Non-Refundable Deposit Fee Credited to bank account of Department of Ayurveda</td>
+        <td><input type="checkbox" name="attachment10"></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<h4>4. Details of consultant physician</h4>
+
+<div class="form-group">
+  <label for="physician_fullname">4.1 Full name of physician:</label>
+  <input type="text" id="physician_fullname" name="physician_fullname">
+</div>
+
+<div class="form-group">
+  <label for="registration_no">4.2 If registered under Department of Ayurveda:</label>
+  <input type="text" id="registration_no" name="registration_no">
+
+  <div class="checkbox-group">
+    <input type="checkbox" id="general" name="registration_purpose[]" value="General">
+    <label for="general">General</label>
+    <input type="checkbox" id="special" name="registration_purpose[]" value="Special">
+    <label for="special">Special</label>
+  </div>
+</div> 
+
+<div class="form-group">
+  <label for="registration_certificate_no">Registration certificate no:</label>
+  <input type="text" id="registration_certificate_no" name="registration_certificate_no">
+
+  <label for="date_of_issue">Date of issue:</label>
+  <input type="date" id="date_of_issue" name="date_of_issue">
+  
+  <label for="date_of_renewal">Date of Renewal:</label>
+  <input type="date" id="date_of_renewal" name="date_of_renewal">
+</div>
+<br> <br>
+<div class="form-group">
+  <label for="special_registration">4.3 Section of special registration:</label>
+  <input type="text" id="special_registration" name="special_registration">
+  
+  <label for="personal_address">4.4 Personal address:</label>
+  <input type="text" id="personal_address" name="personal_address">
+</div>
+
+<div class="form-group">
+  <label for="telephone_fixed">4.5 Telephone Number</label>
+  <input type="tel" id="telephone_fixed" name="telephone_fixed">
+  
+  
+  
+  <label for="mobile">Mobile:</label>
+  <input type="tel" id="mobile" name="mobile">
+</div>
+
+<div class="form-group">
+  <label for="email_address">4.6 Email address:</label>
+  <input type="email" id="email_address" name="email_address">
+</div>
+<br><br>
+<!------------------!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!$$$$$$$$$$!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!---------------------->
+<h4>5. Details of pharmacist</h4>
+
+<div class="form-group">
+  <label for="pharmacist_fullname">5.1 Full name of pharmacist:</label>
+  <input type="text" id="pharmacist_fullname" name="pharmacist_fullname">
+</div>
+
+<div class="form-group">
+  <label for="ayurveda_medical_council_registration_no">5.2 Ayurveda Medical Council Registration no:</label>
+  <input type="text" id="ayurveda_medical_council_registration_no" name="ayurveda_medical_council_registration_no">
+</div>
+
+<div class="form-group">
+  <label for="pharmacist_date_of_issue">Date of issue:</label>
+  <input type="date" id="pharmacist_date_of_issue" name="pharmacist_date_of_issue">
+</div>
+
+<div class="form-group">
+  <label for="pharmacist_date_of_renewal">Date of Renewal:</label>
+  <input type="date" id="pharmacist_date_of_renewal" name="pharmacist_date_of_renewal">
+</div>
+
+<div class="form-group">
+  <label for="pharmacist_personal_address">5.3 Personal address:</label>
+  <input type="text" id="pharmacist_personal_address" name="pharmacist_personal_address">
+</div>
+
+<div class="form-group">
+  <label for="pharmacist_telephone_fixed">5.4 Telephone Number</label>
+  <input type="tel" id="pharmacist_telephone_fixed" name="pharmacist_telephone_fixed">
+  
+  
+  <label for="pharmacist_telephone_mobile">Mobile:</label>
+  <input type="tel" id="pharmacist_telephone_mobile" name="pharmacist_telephone_mobile">
+</div>
+
+<div class="form-group">
+  <label for="pharmacist_email_address">5.5 Email address:</label>
+  <input type="email" id="pharmacist_email_address" name="pharmacist_email_address">
+</div>
+
+<h6>Annexures relating to Nos. 4, 5</h6>
+<p>(If copies are attached, mark ✓ in relevant column)</p>
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <tbody>
+      <tr>
+        <td>1. Certified copy of consultant physician’s Ayurveda Medical Council registration certificate</td>
+        <td><input type="checkbox" name="attachment1"></td>
+      </tr>
+      <tr>
+        <td>2. Certified copy of pharmacist’s Ayurveda Medical Council registration certificate</td>
+        <td><input type="checkbox" name="attachment2"></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!------------------!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!$$$$$$$$$$!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!---------------------->
+
+<h4>6. Details on Cultivation</h4>
+<p>(In case of more than one land, annexures should be submitted for each cultivation land in this format)</p>
+
+<label for="name_of_owner">6.1 Name of the company/business/individual who acquired the ownership of the cultivation land:</label>
+<input type="text" id="name_of_owner" name="name_of_owner">
+
+<div class="form-group">
+    <label for="address">6.2 Address:</label>
+    <input type="text" id="address" name="address">
+</div>
+
+<div class="form-group">
+    <label for="telephone">6.3 Telephone Number:</label>
+    <input type="tel" id="telephone" name="telephone">
+</div>
+
+<div class="form-group">
+    <label for="email">6.4 Email address:</label>
+    <input type="email" id="email" name="email">
+</div>
+
+<div class="form-group">
+    <label for="primary_cultivation">6.5 Area under primary cultivation - Acres:</label>
+    <input type="text" id="primary_cultivation" name="primary_cultivation">
+</div>
+
+<div class="form-group">
+    <label for="secondary_cultivation"> Area under secondary cultivation - Acres:</label>
+    <input type="text" id="secondary_cultivation" name="secondary_cultivation">
+</div>
+
+<div class="form-group">
+    <label for="total_cultivation">Total area of cultivation - Acres:</label>
+    <input type="text" id="total_cultivation" name="total_cultivation">
+</div>
+
+
+<div class="form-group">
+  <label for="total_cultivation">Used for cultivation</label>
+  <input type="text" id="total_cultivation" name="total_cultivation">
+</div>
+
+<div class="form-group">
+    <label for="land_surrounding">6.6 How the land is surrounded:</label>
+    <div class="checkbox-group">
+        <input type="checkbox" id="border_wall" name="land_surrounding" value="border_wall">
+        <label for="border_wall">A border wall</label>
+        <input type="checkbox" id="mesh_fencing" name="land_surrounding" value="mesh_fencing">
+        <label for="mesh_fencing">Mesh covers/Cover fencing</label>
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="province">6.7 Province:</label>
+    <select id="province" name="province" required>
+        <option value="western">Western Province</option>
+        <option value="uva">Uva Province</option>
+        <option value="southern">Southern Province</option>
+        <option value="sabaragamuwa">Sabaragamuwa Province</option>
+        <option value="north_western">North Western Province</option>
+        <option value="northern">Northern Province</option>
+        <option value="north_central">North Central Province</option>
+        <option value="eastern">Eastern Province</option>
+        <option value="central">Central Province</option>
+    </select>
+</div>
+
+<div class="form-group">
+    <label for="district"> District:</label>
+    <select id="district" name="district" required>
+        <option value="ampara">Ampara</option>
+        <option value="anuradhapura">Anuradhapura</option>
+        <option value="badulla">Badulla</option>
+        <option value="madakalapuwa">Madakalapu</option>
+        <option value="colombo">Colombo</option>
+        <option value="galle">Galle</option>
+        <option value="gampaha">Gampaha</option>
+        <option value="hambantota">Hambantota</option>
+        <option value="jaffna">Jaffna</option>
+        <option value="kaluthara">Kaluthara</option>
+        <option value="kandy">Kandy</option>
+        <option value="kegalle">Kegalle</option>
+        <option value="kilinochchi">Kilinochchi</option>
+        <option value="kurunegala">Kurunegala</option>
+        <option value="mannar">Mannar</option>
+        <option value="mathale">Mathale</option>
+        <option value="matara">Matara</option>
+        <option value="monaragala">Monaragala</option>
+        <option value="mulathiv">Mulathiv</option>
+        <option value="nuwaraeliya">Nuwaraeliya</option>
+        <option value="polonnaruwa">Polonnaruwa</option>
+        <option value="puthtalam">Puthtalam</option>
+        <option value="rathnapura">Rathnapura</option>
+        <option value="trincomalee">Trincomalee</option>
+        <option value="vavnia">Vavnia</option>
+    </select>
+</div>
+
+<div class="form-group">
+    <label for="divisional_secretariat"> Divisional Secretariats:</label>
+    <input type="text" id="divisional_secretariat" name="divisional_secretariat">
+</div>
+
+<div class="form-group">
+    <label for="grama_niladhari"> Grama Niladhari Division and No:</label>
+    <input type="text" id="grama_niladhari" name="grama_niladhari">
+</div>
+
+<div class="form-group">
+    <label for="cultivation_land"> Cultivation Land:</label>
+    <input type="text" id="cultivation_land" name="cultivation_land">
+</div>
+
+<div class="form-group">
+    <label for="ownership">6.8 Nature of ownership of the applicant party in respect of the cultivated land:</label>
+    <input type="text" id="ownership" name="ownership">
+</div>
+
+<div class="form-group">
+    <label for="rate_no">6.9 Rate No:</label>
+    <input type="text" id="rate_no" name="rate_no">
+</div>
+
+<div class="form-group">
+    <label for="commencement_date">6.10 Date of commencement of cultivation:</label>
+    <input type="date" id="commencement_date" name="commencement_date">
+</div>
+
+<div class="form-group">
+    <label for="agriculture_instructor">6.11 Name of Agriculture Instructor supervising primary cultivation and professional qualification  (Mention the degree/s):</label>
+    <input type="text" id="agriculture_instructor" name="agriculture_instructor">
+</div>
+
+<div class="form-group">
+    <label for="instructor_address">Personnel Address:</label>
+    <input type="text" id="instructor_address" name="instructor_address">
+</div>
+
+<div class="form-group">
+    <label for="instructor_nic">National Identity Card/Passport/Driving License No:</label>
+    <input type="text" id="instructor_nic" name="instructor_nic">
+</div>
+
+<div class="form-group">
+    <label for="instructor_telephone">Telephone No:</label>
+    <input type="text" id="instructor_telephone" name="instructor_telephone">
+</div>
+
+
+
+<div class="form-group">
+    <label for="instructor_mobile">Mobile:</label>
+    <input type="text" id="instructor_mobile" name="instructor_mobile">
+</div>
+
+<div class="form-group">
+    <label for="instructor_email">Email Address:</label>
+    <input type="email" id="instructor_email" name="instructor_email">
+</div>
+
+   <br> <br>
+   <label for="agriculture_instructor_secondary">6.12 Name of Agriculture instructor supervising secondary cultivation and professional qualification (Mention the degree/s):</label>
+<input type="text" id="agriculture_instructor_secondary" name="agriculture_instructor_secondary">
+
+<div class="form-group">
+    <label for="instructor_address">Personnel Address:</label>
+    <input type="text" id="instructor_address" name="instructor_address">
+</div>
+
+<div class="form-group">
+    <label for="nic">National Identity Card/Passport/Driving License No:</label>
+    <input type="text" id="nic" name="nic">
+</div>
+
+<div class="form-group">
+    <label for="telephone">Telephone No:</label>
+    <input type="text" id="telephone" name="telephone">
+</div>
+
+
+
+<div class="form-group">
+    <label for="mobile">Mobile:</label>
+    <input type="text" id="mobile" name="mobile">
+</div>
+
+<div class="form-group">
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email">
+</div>
+
+<div class="form-group">
+    <label for="license_number">6.13 License number obtained from the Central Environment Authority for maintaining a cultivation land:</label>
+    <input type="text" id="license_number" name="license_number">
+</div>
+
+<div class="form-group">
+    <label for="license_date_of_issue">Date of issue:</label>
+    <input type="date" id="license_date_of_issue" name="license_date_of_issue">
+</div>
+
+<div class="form-group">
+    <label for="ayurveda_registration">6.14 If registered under the Department of Ayurveda, Registration certificate no:</label>
+    <input type="text" id="ayurveda_registration" name="ayurveda_registration">
+</div>
+
+<div class="form-group">
+    <label for="ayurveda_date_of_issue">Date of issue:</label>
+    <input type="date" id="ayurveda_date_of_issue" name="ayurveda_date_of_issue">
+</div>
+
+<div class="form-group">
+    <label for="protective_measures">6.15 Are the proper protective measures recommended by the Department of Ayurveda being followed?</label>
+    <div class="checkbox-group">
+        <input type="checkbox" id="protective_measures_yes" name="protective_measures" value="Yes">
+        <label for="protective_measures_yes">Yes</label>
+        <input type="checkbox" id="protective_measures_no" name="protective_measures" value="No">
+        <label for="protective_measures_no">No</label>
+    </div>
+</div>
+
+<h6>Annexures relating to No. 6</h6>
+<p>(If copies are attached, mark ✓ in the relevant column)</p>
+
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <td>1. Copies of documents proving the ownership of the cultivated land</td>
+                <td><input type="checkbox" name="attachment1"></td>
+            </tr>
+            <tr>
+                <td>2. Photocopies of National Identity Card/Passport of cultivation supervising agriculture instructors (Mention number of attachments)</td>
+                <td><input type="checkbox" name="attachment2"></td>
+            </tr>
+            <tr>
+                <td>3. Copy of certificate proving qualifications of primary cultivation supervising agriculture instructor</td>
+                <td><input type="checkbox" name="attachment3"></td>
+            </tr>
+            <tr>
+                <td>4. Copy of certificate proving qualifications of secondary cultivation supervising agriculture instructor</td>
+                <td><input type="checkbox" name="attachment4"></td>
+            </tr>
+            <tr>
+                <td>5. Detailed report on the safety measures used for the cultivated land</td>
+                <td><input type="checkbox" name="attachment5"></td>
+            </tr>
+            <tr>
+                <td><b>The following annexures must be submitted before granting the permanent license</b></td>
+            </tr>
+            <tr>
+                <td>6. Photocopy of license obtained from the Central Environment Authority</td>
+                <td><input type="checkbox" name="attachment6"></td>
+            </tr>
+            <tr>
+                <td>7. Photocopy of Medicinal Cultivation Registration Certificate from the Department of Ayurveda</td>
+                <td><input type="checkbox" name="attachment7"></td>
+            </tr>
+            <tr>
+                <td>8. Police Report from the Police Officer in Charge of the Police area to which the Cultivated Land belongs</td>
+                <td><input type="checkbox" name="attachment8"></td>
+            </tr>
+            <tr>
+                <td>9. Observation report with the counter sign of the Divisional Secretariat and signature of Grama Niladhari which the Cultivated Land belongs</td>
+                <td><input type="checkbox" name="attachment9"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+ <!------------------!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!$$$$$$$$$$!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!---------------------->
+
+ <h4>7. Details of Drug Manufactory</h4>
+
+ <div class="form-group">
+     <label for="drug_manufactory_name">7.1 Name of drug manufactory:</label>
+     <input type="text" id="drug_manufactory_name" name="drug_manufactory_name">
+ </div>
+ 
+ <div class="form-group">
+     <label for="address">7.2 Address:</label>
+     <input type="text" id="address" name="address">
+ </div>
+ 
+ <div class="form-group">
+     <label for="telephone">7.3 Telephone No:</label>
+     <input type="text" id="telephone" name="telephone">
+ </div>
+ 
+ <div class="form-group">
+     <label for="email">7.4 Email:</label>
+     <input type="email" id="email" name="email">
+ </div>
+ 
+ <div class="form-group">
+     <label for="province">7.5 Province:</label>
+     <select id="province" name="province" required>
+         <option value="western">Western Province</option>
+         <option value="uva">Uva Province</option>
+         <option value="southern">Southern Province</option>
+         <option value="sabaragamuwa">Sabaragamuwa Province</option>
+         <option value="north_western">North Western Province</option>
+         <option value="northern">Northern Province</option>
+         <option value="north_central">North Central Province</option>
+         <option value="eastern">Eastern Province</option>
+         <option value="central">Central Province</option>
+     </select>
+ </div>
+ 
+ <div class="form-group">
+     <label for="district">District:</label>
+     <select id="district" name="district" required>
+         <option value="ampara">Ampara</option>
+         <option value="anuradhapura">Anuradhapura</option>
+         <option value="badulla">Badulla</option>
+         <option value="badalkapu">Badalkapu</option>
+         <option value="colombo">Colombo</option>
+         <option value="galle">Galle</option>
+         <option value="gampaha">Gampaha</option>
+         <option value="hambantota">Hambantota</option>
+         <option value="jaffna">Jaffna</option>
+         <option value="kalutara">Kalutara</option>
+         <option value="kandy">Kandy</option>
+         <option value="kegalle">Kegalle</option>
+         <option value="kilinochchi">Kilinochchi</option>
+         <option value="kurunegala">Kurunegala</option>
+         <option value="mannar">Mannar</option>
+         <option value="matale">Matale</option>
+         <option value="matara">Matara</option>
+         <option value="monaragala">Monaragala</option>
+         <option value="mullaitivu">Mullaitivu</option>
+         <option value="nuwara_eliya">Nuwara Eliya</option>
+         <option value="polonnaruwa">Polonnaruwa</option>
+         <option value="puttalam">Puttalam</option>
+         <option value="ratnapura">Ratnapura</option>
+         <option value="trincomalee">Trincomalee</option>
+         <option value="vavuniya">Vavuniya</option>
+     </select>
+ </div>
+ 
+ <div class="form-group">
+     <label for="divisional_secretariats">Divisional Secretariats:</label>
+     <input type="text" id="divisional_secretariats" name="divisional_secretariats">
+ </div>
+ 
+ <div class="form-group">
+     <label for="grama_niladhari_division">Grama Niladhari Division and No:</label>
+     <input type="text" id="grama_niladhari_division" name="grama_niladhari_division">
+ </div>
+ 
+ <div class="form-group">
+     <label for="cultivation_land">Cultivation Land:</label>
+     <input type="text" id="cultivation_land" name="cultivation_land">
+ </div>
+ 
+ <div class="form-group">
+     <label for="applicant_nature_right">7.6 Applicants’ nature of right regarding the drug manufactory and manufacturing land:</label>
+     <input type="text" id="applicant_nature_right" name="applicant_nature_right">
+ </div>
+ 
+ <div class="form-group">
+     <label for="land_area">7.7 Area of land owned by the drug manufactory:</label>
+     <input type="text" id="land_area" name="land_area">
+ </div>
+ 
+ <div class="form-group">
+     <label for="land_surroundings">7.8 How the land is surrounded:</label>
+     <input type="text" id="land_surroundings" name="land_surroundings">
+ </div>
+ 
+ <div class="form-group">
+     <label for="rate_no">7.9 Rate No:</label>
+     <input type="text" id="rate_no" name="rate_no">
+ </div>
+ 
+ <div class="form-group">
+     <label for="ayurveda_registration">7.10 If registered under Department of Ayurveda, Registration certificate no:</label>
+     <input type="text" id="ayurveda_registration" name="ayurveda_registration">
+ </div>
+ 
+ <div class="form-group">
+     <label for="registration_date">Date of issue:</label>
+     <input type="date" id="registration_date" name="registration_date">
+ </div>
+ 
+ <div class="form-group">
+     <label for="establishment_date">7.11 Date of establishment of drug manufactory:</label>
+     <input type="date" id="establishment_date" name="establishment_date">
+ </div>
+ 
+ <div class="form-group">
+     <label for="consultant_physician">7.12 Full name of consultant physician:</label>
+     <input type="text" id="consultant_physician" name="consultant_physician">
+ </div>
+ 
+ <div class="form-group">
+     <label for="physician_address">Personnel Address:</label>
+     <input type="text" id="physician_address" name="physician_address">
+ </div>
+ 
+ <div class="form-group">
+     <label for="physician_nic">National Identity card/Passport No:</label>
+     <input type="text" id="physician_nic" name="physician_nic">
+ </div>
+ 
+ <div class="form-group">
+     <label for="physician_telephone">Telephone No:</label>
+     <input type="text" id="physician_telephone" name="physician_telephone">
+ </div>
+ 
+
+ 
+ <div class="form-group">
+     <label for="physician_mobile">Mobile:</label>
+     <input type="text" id="physician_mobile" name="physician_mobile">
+ </div>
+ 
+ <div class="form-group">
+     <label for="physician_email">Email:</label>
+     <input type="email" id="physician_email" name="physician_email">
+ </div>
+ 
+ <div class="form-group">
+     <label for="license_no">7.13 License No obtained from Central Environment Authority:</label>
+     <input type="text" id="license_no" name="license_no">
+ </div>
+ 
+ <div class="form-group">
+     <label for="license_date">Date of issue:</label>
+     <input type="date" id="license_date" name="license_date">
+ </div>
+ 
+ <div class="form-group">
+     <label for="safety_regulations">7.15 Is this drug manufactory built as per recommended safety regulations approved by Department of Ayurveda?</label>
+     <div class="checkbox-group">
+         <input type="checkbox" id="safety_yes" name="safety_regulations" value="Yes">
+         <label for="safety_yes">Yes</label>
+         <input type="checkbox" id="safety_no" name="safety_regulations" value="No">
+         <label for="safety_no">No</label>
+     </div>
+ </div>
+
+
+<br> <br>
+       <h6>Appendix relating to No. 7</h6>
+<p>(If copies are attached, mark ✓ in the relevant column)</p>
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <tbody>
+            <tr>
+                <td>1. Certified copy of Ayurveda Product Registration Certificate under Department of Ayurveda</td>
+                <td><input type="checkbox" name="attachment1"></td>
+            </tr>
+            <tr>
+                <td>2. Certified copies of documents proving ownership of drug manufactory</td>
+                <td><input type="checkbox" name="attachment2"></td>
+            </tr>
+            <tr>
+                <td>3. Copy of Ayurveda Medical Council registration certificate of the physician supervising the drug manufactory</td>
+                <td><input type="checkbox" name="attachment3"></td>
+            </tr>
+            <tr>
+                <td>4. Copy of certificate proving qualification of technical officer supervising the drug manufactory</td>
+                <td><input type="checkbox" name="attachment4"></td>
+            </tr>
+            <tr>
+                <td>5. Photocopies of National Identity Card/Passport of technical officer supervising the drug manufactory (Mention number of attachments)</td>
+                <td><input type="checkbox" name="attachment5"></td>
+            </tr>
+            <tr>
+                <td>6. Detailed report on the safety measures used for the drug manufactory</td>
+                <td><input type="checkbox" name="attachment6"></td>
+            </tr>
+            <tr>
+                <td><b>The following annexures must be submitted before granting the permanent license</b></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td>7. Certified copy of license obtained from Central Environment Authority</td>
+                <td><input type="checkbox" name="attachment7"></td>
+            </tr>
+            <tr>
+                <td>8. Police Report of the Police Officer in Charge of the Police area to which the drug manufactory belongs</td>
+                <td><input type="checkbox" name="attachment8"></td>
+            </tr>
+            <tr>
+                <td>9. Observation report with the counter-sign of the Divisional Secretariat and signature of Grama Niladhari to which the drug manufactory belongs</td>
+                <td><input type="checkbox" name="attachment9"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+   
+    
+     <!------------------!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!$$$$$$$$$$!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!---------------------->
+
+     <h4>8. Details of Product</h4>
+<p>(Products here indicate “Ayurvedic medicines and other cannabis-related products”. In case of more than one product, annexures should be submitted for each product in this format)</p>
+<br>
+
+<table>
+  <tbody>
+    <tr>
+      <td>8.1</td>
+      <td>Category of product</td>
+      <td>
+        <label>
+          <input type="checkbox" name="productCategory" value="diet">
+       <br>
+          Diet and nutritional supplementary
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="checkbox" name="productCategory" value="cosmetic">
+          Medicine
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="checkbox" name="productCategory" value="cosmetic">
+          Cosmetic products
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="checkbox" name="productCategory" value="devices">
+          Devices
+        </label>
+      </td>
+      <td>
+        Other <input type="text" name="otherCategory" style="width: 150px;">
+      </td>
+    </tr>
+
+    <tr>
+      <td>8.2</td>
+      <td>Trade name of the product</td>
+      <td colspan="5">
+        <input type="text" name="tradeName" style="width: 100%;">
+      </td>
+    </tr>
+
+    <tr>
+      <td>8.3</td>
+      <td>Text book name of the product</td>
+      <td colspan="5">
+        <input type="text" name="textBookName" style="width: 100%;">
+      </td>
+    </tr>
+
+    <tr>
+      <td>8.4</td>
+      <td>Name of text, page, recipe no (Please mention whether this product is obtained from Classical texts/ pharmacopeia/Traditional base)</td>
+      <td colspan="5">
+        <input type="text" name="nameOfText" style="width: 100%;">
+      </td>
+    </tr>
+
+    <tr>
+      <td>8.5</td>
+      <td>Therapeutic indications/uses of product</td>
+      <td colspan="5">
+        <div>
+          <label>
+            <input type="checkbox" name="therapeuticPurpose" value="therapeutic">
+            For Therapeutic purpose
+          </label>
+        </div>
+        <div>
+          <label>
+            <input type="checkbox" name="therapeuticPurpose" value="rejuvenation">
+            For rejuvenation purpose
+          </label>
+        </div>
+        <div>
+          <label>
+            <input type="checkbox" name="therapeuticPurpose" value="cosmeceutical">
+            For Cosmeceutical purpose
+          </label>
+        </div>
+        <div>
+          Other <input type="text" name="otherTherapeuticPurpose" style="width: 150px;">
+        </div>
+      </td>
+    </tr>
+    <br> <br>
+    <tr>
+      <td>8.6</td>
+      <td>Dose and dosage</td>
+      <td colspan="5">
+        <input type="text" name="doseAndDosage" style="width: 100%;">
+      </td>
+    </tr>
+
+    <tr>
+      <td>8.7</td>
+      <td>Route of administration</td>
+      <td colspan="5">
+        <div>
+          <label>
+            <input type="checkbox" name="routeOfAdministration" value="orally">
+            Orally
+          </label>
+        </div>
+        <div>
+          <label>
+            <input type="checkbox" name="routeOfAdministration" value="external">
+            External application
+          </label>
+        </div>
+        <div>
+          <label>
+            <input type="checkbox" name="routeOfAdministration" value="inhalation">
+            Inhalation
+          </label>
+        </div>
+        <div>
+          <label>
+            <input type="checkbox" name="routeOfAdministration" value="vasti">
+            Vasti
+          </label>
+        </div>
+        <div>
+          <label>
+            <input type="checkbox" name="routeOfAdministration" value="nasya">
+            Nasya
+          </label>
+        </div>
+        <div>
+          Other <input type="text" name="otherRoute" style="width: 150px;">
+        </div>
+      </td>
+    </tr>
+
+    <tr>
+      <td>8.8</td>
+      <td>If you have obtained registration for this product under Department of Ayurveda before:</td>
+      <td colspan="5">
+        Registration number first-time:
+        <input type="text" name="registrationNumberFirst" style="width: 100%;">
+        <div class="form-group">
+          <label for="dateOfIssueFirst">Registration number first-time Date:</label>
+          <input type="date" id="dateOfIssueFirst" name="dateOfIssueFirst">
+        </div>
+        <div class="form-group">
+          <label for="dateOfIssueLast">Registration number last-time Date:</label>
+          <input type="date" id="dateOfIssueLast" name="dateOfIssueLast">
+        </div>
+      </td>
+    </tr>
+
+    <tr>
+      <td>8.9</td>
+      <td>Has any research been done on this product in Sri Lanka after first registration?</td>
+      <td colspan="5">
+        <div>
+          <label>
+            <input type="checkbox" name="researchDone" value="yes">
+            Yes
+          </label>
+        </div>
+        <div>
+          <label>
+            <input type="checkbox" name="researchDone" value="no">
+            No
+          </label>
+        </div>
+      </td>
+    </tr>
+
+    <tr>
+      <td>8.10</td>
+      <td>If yes, briefly describe the results</td>
+      <td colspan="5">
+        <input type="text" name="researchResults" style="width: 100%;">
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<br> <br>
+<!------------------!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!$$$$$$$$$$!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!---------------------->
+
+
+
+<table class="responsive-table">
+  <h4>9. Summary Report on Products</h4>
+  <thead>
+    <tr>
+      <th>Serial no</th>
+      <th>Category</th>
+      <th>Text book name of the product</th>
+      <th>Trade name</th>
+      <th colspan="3"><b>Mode of Approval</b><br>Pharmacopeia</th>
+      <th><b>Mode of Approval</b><br> If approved from TCAM, medicine name, number, and date</th>
+      <th>Quantity of products in previous year (Kg/unit)</th>
+      <th>Expected quantity per next year (Kg/unit)</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>Ayurveda</th>
+      <th>Siddha</th>
+      <th>Unani</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><input type="text" name="serialNo1"></td>
+      <td><input type="text" name="category1"></td>
+      <td><input type="text" name="textBookName1"></td>
+      <td><input type="text" name="tradeName1"></td>
+      <td><input type="text" name="ayurvedaApproval1"></td>
+      <td><input type="text" name="siddhaApproval1"></td>
+      <td><input type="text" name="unaniApproval1"></td>
+      <td><input type="text" name="tcamApproval1"></td>
+      <td><input type="text" name="previousQuantity1"></td>
+      <td><input type="text" name="expectedQuantity1"></td>
+    </tr>
+    <tr>
+      <td><input type="text" name="serialNo2"></td>
+      <td><input type="text" name="category2"></td>
+      <td><input type="text" name="textBookName2"></td>
+      <td><input type="text" name="tradeName2"></td>
+      <td><input type="text" name="ayurvedaApproval2"></td>
+      <td><input type="text" name="siddhaApproval2"></td>
+      <td><input type="text" name="unaniApproval2"></td>
+      <td><input type="text" name="tcamApproval2"></td>
+      <td><input type="text" name="previousQuantity2"></td>
+      <td><input type="text" name="expectedQuantity2"></td>
+    </tr>
+  </tbody>
+</table>
+<br> <br>
+
+
+
+
+
+ <!------------------!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!$$$$$$$$$$!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!---------------------->
+
+ <!------------------!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!$$$$$$$$$$!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!---------------------->
+
+
+ 
+
+ <div class="table-container1">
+  <h4>10. Summary Report on Above Product/Products Containing Cannabis Species, All Subspecies, and Other Ingredients Restricted by the Rules and Regulations Imposed in Sri Lanka</h4>
+  <br>
+  <table>
+    <thead>
+      <tr>
+        <th>Serial No</th>
+        <th>Chemical/Scientific Name of Ingredient Restricted by Law</th>
+        <th>District and Divisional Secretariat Where the Relevant Raw Materials are Procured</th>
+        <th>Address of the Place of Procurement of the Relevant Raw Materials</th>
+        <th>License Number and Date of Approval for the Use of the Relevant Ingredients</th>
+        <th>Quantity of Raw Materials Used in Above Product Last Year (Kg/Unit)</th>
+        <th>Quantity Expected to be Procured in Next Year (Kg/Unit)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Example row with input fields -->
+      <tr>
+        <td><input type="text" name="serialNo1"></td>
+        <td><input type="text" name="chemicalName1"></td>
+        <td><input type="text" name="district1"></td>
+        <td><input type="text" name="address1"></td>
+        <td><input type="text" name="licenseNumber1"></td>
+        <td><input type="text" name="quantityLastYear1"></td>
+        <td><input type="text" name="quantityNextYear1"></td>
+      </tr>
+      <tr>
+        <td><input type="text" name="serialNo2"></td>
+        <td><input type="text" name="chemicalName2"></td>
+        <td><input type="text" name="district2"></td>
+        <td><input type="text" name="address2"></td>
+        <td><input type="text" name="licenseNumber2"></td>
+        <td><input type="text" name="quantityLastYear2"></td>
+        <td><input type="text" name="quantityNextYear2"></td>
+      </tr>
+      <!-- Additional rows can be added as needed -->
+    </tbody>
+  </table>
+</div>
+
+<h6>Annexures Relating to Nos. 08, 09, 10</h6>
+<p>(If copies are attached, mark ✓ in relevant column)</p>
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <tbody>
+      <tr>
+        <td>1. If it is a new product, mention the recipe</td>
+        <td><input type="checkbox" name="annexure1"></td>
+      </tr>
+      <tr>
+        <td>2. If it is a new product, certificate of approval obtained by TCAM</td>
+        <td><input type="checkbox" name="annexure2"></td>
+      </tr>
+      <tr>
+        <td>3. If registered under Department of Ayurveda, copy of the valid certificate</td>
+        <td><input type="checkbox" name="annexure3"></td>
+      </tr>
+      <tr>
+        <td>4. Has any research been done on this product in Sri Lanka after first registration? Attach a copy of the report/publication</td>
+        <td><input type="checkbox" name="annexure4"></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<br> <br>
+ <!------------------!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!$$$$$$$$$$!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!---------------------->
+
+ 
+
+
+
+
+<!------------------!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!$$$$$$$$$$!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!---------------------->
+<h4>11. Details of Imported Raw Materials/Packaging/Preservatives/Excipients Used in the Manufacturing Process of Related Products</h4>
+<p>(In case of more than one raw material/packaging/preservatives/excipient, annexures should be submitted for each production in this format. If applicable only)</p>
+
+<!-- Research Information -->
+<label for="researchDone">11.1 Has any research been done on this product in Sri Lanka after first registration?</label>
+<div>
+  <label>
+    <input type="checkbox" name="researchDone" value="yes"> Yes
+  </label>
+  <label>
+    <input type="checkbox" name="researchDone" value="no"> No
+  </label>
+</div>
+
+<!-- Processed Product Information -->
+<label for="processedProduct">11.2 Scientific/Textbook name of any processed product if it is imported to be used as an ingredient in the respective product:</label>
+<input type="text" id="processedProduct" name="processedProduct">
+
+<!-- Nature and Name of Raw Material -->
+<label for="natureOfRawMaterial">11.3 Nature of raw material:</label>
+<input type="text" id="natureOfRawMaterial" name="natureOfRawMaterial">
+
+<label for="scientificNameRawMaterial">11.4 Scientific/Chemical name of raw material:</label>
+<input type="text" id="scientificNameRawMaterial" name="scientificNameRawMaterial">
+
+<!-- Classification of Raw Material -->
+<label>11.5 Classification of raw material:</label>
+<div>
+  <label>
+    <input type="checkbox" name="rawMaterialCategory" value="common"> Common
+  </label>
+  <label>
+    <input type="checkbox" name="rawMaterialCategory" value="rare"> Rare
+  </label>
+  <label>
+    <input type="checkbox" name="rawMaterialCategory" value="endemic"> Endemic
+  </label>
+  <label>
+    <input type="checkbox" name="rawMaterialCategory" value="threatened"> Threatened with extinction
+  </label>
+</div>
+
+<!-- Regulations or Ordinances -->
+<label for="regulationsOrOrdinances">11.7 Are there regulations or ordinances related to the ingredient?</label>
+<input type="text" id="regulationsOrOrdinances" name="regulationsOrOrdinances">
+
+<!-- Mode of Import/Export -->
+<label>11.8 Mode of import/export of raw materials:</label>
+<div>
+  <label>
+    <input type="checkbox" name="modeOfImport" value="raw"> Raw
+  </label>
+  <label>
+    <input type="checkbox" name="modeOfImport" value="dry"> Dry
+  </label>
+  <label>
+    <input type="checkbox" name="modeOfImport" value="extract"> Extract
+  </label>
+  <label>
+    Other <input type="text" style="width: 150px;" name="modeOfImportOther">
+  </label>
+</div>
+
+<!-- Packaging/Preservative/Excipient Details -->
+<label for="scientificNamePackaging">11.9 Scientific/Chemical Name of Packaging Material/Preservative/Excipient:</label>
+<input type="text" id="scientificNamePackaging" name="scientificNamePackaging">
+
+<label for="tradeNamePackaging">11.10 Trade Name of Packaging Material/Preservative/Excipient:</label>
+<input type="text" id="tradeNamePackaging" name="tradeNamePackaging">
+
+<label for="expectedQuantity">11.11 The expected quantity to be imported in a year (Kg/unit):</label>
+<input type="text" id="expectedQuantity" name="expectedQuantity">
+
+      <!-- =========================------------------------------------------------- -->
+
+
+      <div class="table-container1">
+        <h4>12. Summary Report Related to Imported Goods</h4>
+        <br>
+        <table>
+            <thead>
+                <tr>
+                    <th>Serial No</th>
+                    <th>Category<br>(Raw Materials/Ayurveda Products/Packaging/Preservatives/Excipients etc.)</th>
+                    <th>Types of Raw Materials/Ayurveda Products/Packaging/Preservatives/Excipients Expected to be Imported</th>
+                    <th>Country Expected to be Imported From</th>
+                    <th>Name and Address of Foreign Company</th>
+                    <th>Quantity of Raw Materials Used in Above Product Last Year (Kg/Unit)</th>
+                    <th>Quantity Expected to be Procured in Next Year (Kg/Unit)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Example row with input fields -->
+                <tr>
+                    <td><input type="text" name="serialNo"></td>
+                    <td><input type="text" name="category"></td>
+                    <td><input type="text" name="typesOfRawMaterials"></td>
+                    <td><input type="text" name="country"></td>
+                    <td><input type="text" name="foreignCompany"></td>
+                    <td><input type="text" name="quantityLastYear"></td>
+                    <td><input type="text" name="quantityNextYear"></td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="serialNo"></td>
+                    <td><input type="text" name="category"></td>
+                    <td><input type="text" name="typesOfRawMaterials"></td>
+                    <td><input type="text" name="country"></td>
+                    <td><input type="text" name="foreignCompany"></td>
+                    <td><input type="text" name="quantityLastYear"></td>
+                    <td><input type="text" name="quantityNextYear"></td>
+                </tr>
+                <!-- Additional rows for more details -->
+            </tbody>
+        </table>
+    </div>
+    
+    <h6>Annexures Relating to Nos. 11 and 12</h6>
+    <p>(If copies are attached, mark ✓ in the relevant column)</p>
+    <div class="table-responsive">
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <td>1. Registration certificate issued by the Department of Ayurveda for importation of each category</td>
+                    <td><input type="checkbox" name="attachment1"></td>
+                </tr>
+                <tr>
+                    <td>2. Copy of letter approved by Ayurveda Drugs and Products Regulatory Council regarding the product to be imported</td>
+                    <td><input type="checkbox" name="attachment2"></td>
+                </tr>
+                <tr>
+                    <td>3. Certified Copy of Sample Import Permit issued by the Department of Ayurveda</td>
+                    <td><input type="checkbox" name="attachment3"></td>
+                </tr>
+                <tr>
+                    <td>4. Detailed quality assurance report of imported goods</td>
+                    <td><input type="checkbox" name="attachment4"></td>
+                </tr>
+                <tr>
+                    <td>5. Certificate of origin of the imported product</td>
+                    <td><input type="checkbox" name="attachment5"></td>
+                </tr>
+                <tr>
+                    <td>6. Approval obtained from Sri Lanka Import and Export Control Department</td>
+                    <td><input type="checkbox" name="attachment6"></td>
+                </tr>
+                <tr>
+                    <td>7. Pro-forma Invoice issued by the seller</td>
+                    <td><input type="checkbox" name="attachment7"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
+  <!-- =========================------------------------------------------------- -->
+  <h4>13. Details of Storage</h4>
+  <p>(In case of more than one storage, annexures should be submitted for each storage in this format)</p>
+  
+  <label for="storageName">13.1 Name of Storage:</label>
+  <input type="text" id="storageName" name="storageName">
+  
+  <label for="address">13.2 Address:</label>
+  <input type="text" id="address" name="address">
+  
+  <label for="telephone">13.3 Telephone No:</label>
+  <input type="text" id="telephone" name="telephone">
+  
+  <label for="email">13.4 Email:</label>
+  <input type="text" id="email" name="email">
+  
+  <label for="province">13.5 Province:</label>
+  <select id="province" name="province" required>
+      <option value="western">Western Province</option>
+      <option value="uva">Uva Province</option>
+      <option value="southern">Southern Province</option>
+      <option value="sabaragamuwa">Sabaragamuwa Province</option>
+      <option value="north_western">North Western Province</option>
+      <option value="northern">Northern Province</option>
+      <option value="north_central">North Central Province</option>
+      <option value="eastern">Eastern Province</option>
+      <option value="central">Central Province</option>
+  </select>
+  <br><br>
+  
+  <label for="district">District:</label>
+  <select id="district" name="district" required>
+      <option value="ampara">Ampara</option>
+      <option value="anuradhapura">Anuradhapura</option>
+      <option value="badulla">Badulla</option>
+      <option value="badalkapuwa">Badalkapuwa</option>
+      <option value="colombo">Colombo</option>
+      <option value="galle">Galle</option>
+      <option value="gampaha">Gampaha</option>
+      <option value="hambantota">Hambantota</option>
+      <option value="jaffna">Jaffna</option>
+      <option value="kalutara">Kalutara</option>
+      <option value="kandy">Kandy</option>
+      <option value="kegalle">Kegalle</option>
+      <option value="kilinochchi">Kilinochchi</option>
+      <option value="kurunegala">Kurunegala</option>
+      <option value="mannar">Mannar</option>
+      <option value="matale">Matale</option>
+      <option value="matara">Matara</option>
+      <option value="monaragala">Monaragala</option>
+      <option value="mullaitivu">Mullaitivu</option>
+      <option value="nuwaraeliya">Nuwara Eliya</option>
+      <option value="polonnaruwa">Polonnaruwa</option>
+      <option value="puttalam">Puttalam</option>
+      <option value="rathnapura">Rathnapura</option>
+      <option value="trincomalee">Trincomalee</option>
+      <option value="vavuniya">Vavuniya</option>
+  </select>
+  <br><br>
+  
+  <label for="divisionalSecretariats">Divisional Secretariats:</label>
+  <input type="text" id="divisionalSecretariats" name="divisionalSecretariats">
+  
+  <label for="gramaNiladhariDivision">Grama Niladhari Division and No:</label>
+  <input type="text" id="gramaNiladhariDivision" name="gramaNiladhariDivision">
+  
+  <label for="cultivationLand">Cultivation Land:</label>
+  <input type="text" id="cultivationLand" name="cultivationLand">
+  <br><br>
+  
+  <label for="rateNo">13.6 Rate No:</label>
+  <input type="text" id="rateNo" name="rateNo">
+  
+  <label for="establishmentDate">13.7 Date of Establishment of Storage:</label>
+  <input type="text" id="establishmentDate" name="establishmentDate">
+  
+  <label for="ownershipNature">13.8 Nature of Ownership of the Applicant Party Regarding the Building and Land Where the Storage is Established:</label>
+  <input type="text" id="ownershipNature" name="ownershipNature">
+  
+  <label for="storageArea">13.9 Area Used for Storage (Indicate the Square Ft Amount Separately):</label>
+  <div>
+      <label for="rawMaterialArea">Raw Material:</label>
+      <input type="text" id="rawMaterialArea" name="rawMaterialArea"> Sq. ft
+  </div>
+  <br>
+
+  <div>
+      <label for="productsArea">Products:</label>
+      <input type="text" id="productsArea" name="productsArea"> Sq. ft
+  </div>
+  <br>
+  <div>
+      <label for="packagingArea">Packaging:</label>
+      <input type="text" id="packagingArea" name="packagingArea"> Sq. ft
+  </div>
+  <br>
+  <div>
+      <label for="preservativesArea">Preservatives:</label>
+      <input type="text" id="preservativesArea" name="preservativesArea"> Sq. ft
+  </div>
+  <br>
+  <div>
+      <label for="excipientsArea">Excipients:</label>
+      <input type="text" id="excipientsArea" name="excipientsArea"> Sq. ft
+  </div>
+  <br>
+  
+  <tr>
+    <td>13.10</td>
+    <td>If registered under Department of ayurveda
+        Registration certificate no:
+      <input type="text" name="Registration certificate no">
+      <div class="form-group">
+        <label for="dateOfIssue">  Date of issue:</label>
+        <input type="date" id="dateOfIssue" name="dateOfIssue">
+        
+    </td>
+  </tr>
+  <br><br>
+  <label for="approved regulations">13.11 Is this storage built as per recommended rules and regulations
+    approved by Department of Ayurveda?</label>
+
+<div class="checkbox-group">
+ <input type="checkbox" id="Yes" name="registration_type" value="Yes">
+ <label for="general">Yes</label>
+ <input type="checkbox" id="No" name="registration_type" value="No">
+ <label for="No">No</label>
+</div>
+<br> 
+<label for="approved regulations">13.12 Whether the storage is maintained in accordance with the
+    regulations approved by Department of Ayurveda?</label>
+
+<div class="checkbox-group">
+ <input type="checkbox" id="Yes" name="registration_type" value="Yes">
+ <label for="general">Yes</label>
+ <input type="checkbox" id="No" name="registration_type" value="No">
+ <label for="No">No</label>
+</div>
+
+<br> 
+<label for="approved regulations">13.13 Are quarantine measures followed to secure stored materials
+    within the storage premises??</label>
+
+<div class="checkbox-group">
+ <input type="checkbox" id="Yes" name="registration_type" value="Yes">
+ <label for="general">Yes</label>
+ <input type="checkbox" id="No" name="registration_type" value="No">
+ <label for="No">No</label>
+</div>
+<br> <br>
+
+<!---=========================--------------------------------------------------->
+
+<h4>14. Details of Store keeper/keepers</h4>
+<p>(In case of more than one store keeper, annexures should be submitted for each individual in this
+    format)</p>
+
+   <br>
+   <label for=" Full name of store keeper">14.1 Full name of store keeper</label>
+   <input type="text" id=" Full name of store keeper" name=" Full name of store keeper" >
+   <label for="Personnel Address">14.2 Personnel Address:</label>
+   <input type="text" id="Personnel Address" name="Personnel Address" >   
+   <label for="NIC">14.3 National Identity card/ Passport No/Driving License No: -</label>
+   <input type="text" id="NIC" name="NIC" >
+
+   <label for="Telephone No">Telephone No:</label>
+   <input type="text" id="Telephone No" name="Telephone No" >   
+   <label for="Fixed">Fixed:</label>
+   <input type="text" id="Fixed" name="Fixed" > 
+   <label for="Mobile">Mobile:</label>
+   <input type="text" id="Mobile" name="Mobile" >    
+   <label for="Email">Email:</label>
+   <input type="text" id="Email" name="Email" >   
+   
+     <!-- =========================------------------------------------------------- -->
+
+     <div class="table-container1">
+      <h4>15. Details regarding storage</h4>
+      <br>
+      <table>
+          <thead>
+              <tr>
+                  <th>Serial No</th>
+                  <th>Category (Raw Materials/ Medicines/ Packaging Materials/ Preservatives/ Excipients etc.)</th>
+                  <th>Types of Raw Materials/ Medicines/ Packaging Materials/ Preservatives/ Excipients Stored</th>
+                  <th>Quantity Stored During Last Year (Kg/ Unit)</th>
+                  <th>Expected Quantity to Store for Next Year (Kg/ Unit)</th>
+              </tr>
+          </thead>
+          <tbody>
+              <!-- Example row with input fields -->
+              <tr>
+                  <td><input type="text" name="serial_no[]"></td>
+                  <td><input type="text" name="category[]"></td>
+                  <td><input type="text" name="types[]"></td>
+                  <td><input type="text" name="quantity_stored_last_year[]"></td>
+                  <td><input type="text" name="expected_quantity_next_year[]"></td>
+              </tr>
+              <tr>
+                  <td><input type="text" name="serial_no[]"></td>
+                  <td><input type="text" name="category[]"></td>
+                  <td><input type="text" name="types[]"></td>
+                  <td><input type="text" name="quantity_stored_last_year[]"></td>
+                  <td><input type="text" name="expected_quantity_next_year[]"></td>
+              </tr>
+              <!-- Additional rows can be added similarly -->
+          </tbody>
+      </table>
+  </div>
+  
+    <h6>Annexures relating to Nos. 13,14,15</h6>
+    <p>(If copies are attached, mark ✓ in relevant column)</p>
+    <div class="table-responsive">
+      <table class="table table-bordered">
+       
+        <tbody>
+          <tr>
+            <td>1. Registration certificate obtained from Department of Ayurveda for the storage of each category</td>
+            <td><input type="checkbox" name="attachment1"></td>
+          </tr>
+          <tr>
+            <td>2. Confirmation document of ownership of the applicant party regarding the building and land where
+                the storage is established.</td>
+            <td><input type="checkbox" name="attachment2"></td>
+          </tr>
+          <tr>
+            <td>3. License issued by the Department of Ayurveda for the storage of cannabis species, all subspecies
+                and other ingredients or Ayurvedic products containing such ingredients restricted by law in Sri
+                Lanka</td>
+            <td><input type="checkbox" name="attachment3"></td>
+          </tr>
+    
+          <tr>
+            <td>4.Photocopy of license obtained from Central Environment Authority</td>
+            <td><input type="checkbox" name="attachment4"></td>
+          </tr>
+          <tr>
+            <td>5.Police Report of the Police Officer in Charge of the Police area to which the storage belongs</td>
+            <td><input type="checkbox" name="attachment4"></td>
+          </tr>
+          <tr>
+            <td>6.Observation report with the counter sign of the divisional secretariate and signature of Grama
+                niladhari which the storage belongs</td>
+            <td><input type="checkbox" name="attachment4"></td>
+          </tr>
+          <tr>
+            <td>7.Photocopies of store keeper/s National Identity Card/Passport (Mention number of attachments)</td>
+            <td><input type="checkbox" name="attachment4"></td>
+          </tr>
+          
+
+        </tbody>
+    </table>
+  </div>
+</div>
+
+
+     
+
+<!-- =========================------------------------------------------------- -->
+
+<h4>16. Details on vehicles expected to be used for transportation purposes</h4>
+
+<label for="Number of vehicles">16.1 Number of vehicles expected to be used:</label>
+   <input type="text" id="Number of vehicles" name="Number of vehicles" >
+
+   <label for=" details of each location"id=" details of each location" name="details of each location">16.2 (If multiple locations, give separate details of each location)</label>
+
+<label for="province"> Province: </label>
+<select id="province" required>
+    <option value="western">Western Province</option>
+    <option value="uva">Uva Province</option>
+    <option value="southern">Southern Province</option>
+    <option value="sabaragamuwa"> Sabaragamuwa Province</option>
+    <option value="north_western">North Western Province</option>
+    <option value="northen"> Northern Province</option>
+    <option value="north_cental"> North Central Province</option>
+    <option value="estern"> Eastern Province</option>
+    <option value="central">Central Province</option>
+  </select>
+<br> <br>
+
+
+<label for="district"> District: </label>
+<select id="district" required>
+<option value="ampara">Ampara</option>
+<option value="anuradhapura">Anuradhapura</option>
+<option value="badulla">Badulla</option>
+<option value="madakalapuwa">Badkalapu</option>
+<option value="colombo">Colombo</option>
+<option value="galle">Galle</option>
+<option value="gampaha">Gampaha</option>
+<option value="hambantota">Hambantota</option>
+<option value="jaffna">Jaffna</option>
+<option value="kaluthara">Kaluthara</option>
+<option value="kandy">Manuvara</option>
+<option value="kegalle">kegalle</option>
+<option value="kilinochchi">Kilinochchi</option>
+<option value="kurunegala">Kurunegala</option>
+<option value="mannar">Mannar</option>
+<option value="mathale">Mathale</option>
+<option value="matara">Matara</option>
+<option value="monaragala">Monaragala</option>
+<option value="mulathiv">mulathiv</option>
+<option value="nuwaraeliya">Nuwaraeliya</option>
+<option value="polonnaruwa">Pollonnaruwa</option>
+<option value="puthtalam">Puthtalam</option>
+<option value="rathnapura">Rathnapura</option>
+<option value="trincomalee">Trincomalee</option>
+<option value="vavnia">Vavnia</option>
+</select> <br> <br>
+
+<label for="Divisonal Secretariats">Divisonal Secretariats</label>
+<input type="text" id="Divisonal Secretariats" name="Divisonal Secretariats" >
+
+<label for="Grama Niladhari Division and No">16.3 Grama Niladhari Division and No: Of vehicle location</label>
+<input type="text" id="Grama Niladhari Division and No" name="Grama Niladhari Division and No" >
+<label for="cultivation land"></label>
+<input type="text" id="cultivation land" name="cultivation land" >
+
+
+<div class="table-container1">
+  <p>16.4</p>
+  <table>
+      <thead>
+          <tr>
+              <th>Type of Vehicle</th>
+              <th>Vehicle Number</th>
+              <th>Color</th>
+              <th>Engine Capacity</th>
+          </tr>
+      </thead>
+      <tbody>
+          <!-- Example row with input fields -->
+          <tr>
+              <td><input type="text" name="vehicle_type[]"></td>
+              <td><input type="text" name="vehicle_number[]"></td>
+              <td><input type="text" name="vehicle_color[]"></td>
+              <td><input type="text" name="engine_capacity[]"></td>
+          </tr>
+          <tr>
+              <td><input type="text" name="vehicle_type[]"></td>
+              <td><input type="text" name="vehicle_number[]"></td>
+              <td><input type="text" name="vehicle_color[]"></td>
+              <td><input type="text" name="engine_capacity[]"></td>
+          </tr>
+          <!-- Additional rows for vehicle details -->
+      </tbody>
+  </table>
+</div>
+
+
+     <!-- =========================------------------------------------------------- -->
+  
+
+     <div class="table-container1">
+      <h4>17. Driver’s Details</h4>
+      <table>
+          <thead>
+              <tr>
+                  <th>Name of Driver</th>
+                  <th>Driving License No</th>
+                  <th>Driver’s Personal Address</th>
+              </tr>
+          </thead>
+          <tbody>
+              <!-- Example row with input fields -->
+              <tr>
+                  <td><input type="text" name="driver_name[]"></td>
+                  <td><input type="text" name="driving_license_no[]"></td>
+                  <td><input type="text" name="driver_address[]"></td>
+              </tr>
+              <tr>
+                  <td><input type="text" name="driver_name[]"></td>
+                  <td><input type="text" name="driving_license_no[]"></td>
+                  <td><input type="text" name="driver_address[]"></td>
+              </tr>
+              <!-- Additional rows for driver details can be added here -->
+          </tbody>
+      </table>
+  </div>
+  
+
+<!--=========================--------------------------------------------------->
+<div class="table-container1">
+  <h4>18. Details on Ayurveda Medicines / Raw materials / Packaging materials to be transported</h4>
+  <br>
+  <table>
+      <thead>
+          <tr>
+              <th>Serial No</th>
+              <th>Category (Ayurvedic Medicines / Raw materials / Packaging materials)</th>
+              <th>Type of Ayurvedic Medicines / Raw materials / Packaging materials intended to be transported</th>
+              <th>Trade Name</th>
+              <th>Quantity transported during the last year (Kg / Unit)</th>
+              <th>Annual quantity expected to be transported (Kg / Unit)</th>
+          </tr>
+      </thead>
+      <tbody>
+          <!-- Example row with input fields -->
+          <tr>
+              <td><input type="text" name="serial_no[]"></td>
+              <td><input type="text" name="category[]"></td>
+              <td><input type="text" name="type[]"></td>
+              <td><input type="text" name="trade_name[]"></td>
+              <td><input type="text" name="quantity_last_year[]"></td>
+              <td><input type="text" name="quantity_expected[]"></td>
+          </tr>
+          <tr>
+              <td><input type="text" name="serial_no[]"></td>
+              <td><input type="text" name="category[]"></td>
+              <td><input type="text" name="type[]"></td>
+              <td><input type="text" name="trade_name[]"></td>
+              <td><input type="text" name="quantity_last_year[]"></td>
+              <td><input type="text" name="quantity_expected[]"></td>
+          </tr>
+          <!-- Additional rows for agent details can be added here -->
+      </tbody>
+  </table>
+</div>
+
+
+
+
+    <h6>Annexures relating to Nos. 16,17,18</h6>
+    <p>(If copies are attached, mark ✓ in relevant column)</p>
+    <div class="table-responsive">
+      <table class="table table-bordered">
+       
+        <tbody>
+          <tr>
+            <td>1. Registration certificate obtained from Department of Ayurveda for the transportation of each
+                category</td>
+            <td><input type="checkbox" name="attachment1"></td>
+          </tr>
+          <tr>
+            <td>2. License issued by the Department of Ayurveda for the storage of cannabis species, all subspecies
+                and other ingredients or Ayurvedic products containing such ingredients restricted by law in Sri
+                Lanka (Permit should be obtained in each case of transport)</td>
+            <td><input type="checkbox" name="attachment2"></td>
+          </tr>
+          <tr>
+            <td>3. Route map showing the expected routes to carry out transport activities</td>
+            <td><input type="checkbox" name="attachment3"></td>
+          </tr>
+          
+          <tr>
+            <td>4.Certified Photocopies of revenue license certificates of vehicles to be used for transportation of
+                Products/ Medicines / Raw materials / Packaging materials / Preservatives/ Excipients</td>
+            <td><input type="checkbox" name="attachment4"></td>
+          </tr>
+          <tr>
+            <td>5.Photocopies of driving license of drivers
+                (Mention number of attachments)</td>
+            <td><input type="checkbox" name="attachment4"></td>
+          </tr>
+    
+        </tbody>
+    </table>
+  </div>
+
+  <!-- =========================------------------------------------------------- -->
+  <h4>19. Details related to exportation</h4>
+  <p>(In case of more than one type, annexures should be submitted for each type of goods in this format)</p>
+   <br>
+  
+    <tr>
+     
+      <td>19.1 Type of goods expected to be imported</td>
+     <br> <br>
+     <td>
+        <label>
+          <input type="checkbox" name="products" value="products">
+          products
+        </label>
+      </td>
+      <td>
+        <label>
+          <input type="checkbox" name="Raw Material" value="Raw Material">
+          Raw Material
+        </label>
+      </td>
+    
+    <br> 
+    <tr>
+      
+      <td>19.2 Nature of the product to be imported</td>
+<br><br>
+<div>
+    <label>
+        <input type="checkbox" name="nature_of_product[]" value="Medicine">
+        Medicine
+    </label>
+</div>
+<div>
+    <label>
+        <input type="checkbox" name="nature_of_product[]" value="Diet and nutritional">
+        Diet and nutritional
+    </label>
+</div>
+<div>
+    <label>
+        <input type="checkbox" name="nature_of_product[]" value="Supplementary">
+        Supplementary
+    </label>
+</div>
+<div>
+    <label>
+        <input type="checkbox" name="nature_of_product[]" value="Cosmetic products">
+        Cosmetic products
+    </label>
+</div>
+<div>
+    <label>
+        <input type="checkbox" name="nature_of_product[]" value="Devices">
+        Devices
+    </label>
+</div>
+
+      
+      <td>
+        Other <input type="text" style="width: 150px;">
+      </td>
+    </tr>
+    <br> <br>
+    <td>19.3 Trade name of the product to be exported </td>
+        <input type="text" name="Trade name of the product">
+    <td>19.4 Textbook name of the product be exported </td>
+        <input type="text" name="Textbook name of the product">
+    <tr>
+       
+      <td>19.5 Mode of export</td>
+      <br><br>
+      <div>
+          <label>
+              <input type="checkbox" name="mode_of_export[]" value="Raw">
+              Raw
+          </label>
+      </div>
+      <div>
+          <label>
+              <input type="checkbox" name="mode_of_export[]" value="Dry">
+              Dry
+          </label>
+      </div>
+      <div>
+          <label>
+              <input type="checkbox" name="mode_of_export[]" value="Extract">
+              Extract
+          </label>
+      </div>
+      
+<td>
+    Other <input type="text" style="width: 150px;">
+  </td>
+    </tr>
+    <br> <br>
+  <!-- =========================------------------------------------------------- -->
+
+
+  <div class="table-container1">
+    <h4>20. Summary report of the goods to be exported</h4>
+    <br>
+    <table>
+        <thead>
+            <tr>
+                <th>Serial no</th>
+                <th>Category (Raw Materials/Ayurveda products/Packaging/Preservatives/excipients etc.)</th>
+                <th>Types of raw materials/Ayurveda products/packaging/preservatives/excipients expected to be exported</th>
+                <th>Country expected to be exported to</th>
+                <th>Name and address of foreign company</th>
+                <th>Quantity of exports during last year (Kg/Unit)</th>
+                <th>Expected Quantity of exports next year (Kg/Unit)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Example row with input fields -->
+            <tr>
+                <td><input type="text" name="serial_no[]"></td>
+                <td><input type="text" name="category[]"></td>
+                <td><input type="text" name="types_of_raw_materials[]"></td>
+                <td><input type="text" name="country[]"></td>
+                <td><input type="text" name="foreign_company[]"></td>
+                <td><input type="text" name="quantity_last_year[]"></td>
+                <td><input type="text" name="expected_quantity_next_year[]"></td>
+            </tr>
+            <tr>
+                <td><input type="text" name="serial_no[]"></td>
+                <td><input type="text" name="category[]"></td>
+                <td><input type="text" name="types_of_raw_materials[]"></td>
+                <td><input type="text" name="country[]"></td>
+                <td><input type="text" name="foreign_company[]"></td>
+                <td><input type="text" name="quantity_last_year[]"></td>
+                <td><input type="text" name="expected_quantity_next_year[]"></td>
+            </tr>
+            <!-- Additional rows for agent details can be added here -->
+        </tbody>
+    </table>
+</div>
+
+    <tr>
+        <h6>Annexures relating to Nos. 19,20</h6>
+        <p>(If copies are attached, mark ✓ in relevant column)</p>
+        <div class="table-responsive">
+          <table class="table table-bordered">
+           
+            <tbody>
+              <tr>
+                <td>1. Photocopy of the document approved by the Import and Export Control Department for export of
+                    the above good/s</td>
+                <td><input type="checkbox" name="attachment1"></td>
+              </tr>
+              <tr>
+                <td>2. Photocopy of the document approved by the Export Development Board for export of the above
+                    good/s</td>
+                <td><input type="checkbox" name="attachment2"></td>
+              </tr>
+              <tr>
+                <td>3. Photocopy of the document obtaining a Tax Identification Number issued by the Inland Revenue
+                    Department</td>
+                <td><input type="checkbox" name="attachment3"></td>
+              </tr>
+              
+              <tr>
+                <td>4.Photocopy of the document registered with Sri Lanka Customs for export of the above goods</td>
+                <td><input type="checkbox" name="attachment4"></td>
+              </tr>
+              <tr>
+                <td>5.Photo copy of the said document if prior approval has been obtained from the Department of
+                    Ayurveda for export of the above goods</td>
+                <td><input type="checkbox" name="attachment4"></td>
+              </tr>
+        
+            </tbody>
+        </table>
+      </div>
+        <!-- =========================------------------------------------------------- -->
+
+      <table border="1">
+        <tr>
+          <th colspan="2">21. Details about the project proposal to be submitted for feasibility study</th>
+        </tr>
+        <tr>
+          <td>21.1 Name of project proposal</td>
+          <td><input type="text" name="projectProposalName"></td>
+        </tr>
+        <tr>
+          <td>21.2 Details in brief</td>
+          <td><textarea name="projectProposalDetails"></textarea></td>
+        </tr>
+      </table>
+      
+      <p>Annexure relating to Nos. 21</p>
+      <p>(If copies are attached, mark '✓' in relevant column)</p>
+      
+      <table border="1">
+        <tr>
+          <th>01</th>
+          <td>project proposal</td>
+          <td><input type="checkbox" name="annexureProjectProposal"></td>
+        </tr>
+        <tr>
+          <th>02</th>
+          <td>Detail report on the human resources expected to be used in the project</td>
+          <td><input type="checkbox" name="annexureHumanResources"></td>
+        </tr>
+        <tr>
+          <th>03</th>
+          <td>Affidavit to act in accordance with labor, women and child protection laws</td>
+          <td><input type="checkbox" name="annexureAffidavit"></td>
+        </tr>
+      </table>
+    
+    </tr>
+    </div>
+
+  <!-- =========================------------------------------------------------- -->
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
+<div class="file-upload">
+  <div class="drag-drop">
+   <i class="bx bxs-cloud-upload"></i>
+   <h3>Drag & Drop to upload File</h3>
+   <h6>Or</h6>
+   <p> browse your computer</p>
+   <div class="browse">
+     <input type="file" id="file-input" multiple>
+     <label for="file-input">Browse Computer</label>
+   </div>
+ </div>
+
+ <div class="max-size">
+   <p></p>
+ </div>
+ <!--button start-->
+ 
+  <div class="button-group">
+    <button type="submit" id="submit-button" class="submit-button">
+      <span class="button-text">Submit</span>
+      <span class="button-icon"><i class="bx bxs-send"></i></span>
+    </button>
+    <button type="reset" id="reset-button" class="reset-button">
+      <span class="button-text">Reset</span>
+      <span class="button-icon"><i class="bx bxs-eraser"></i></span>
+    </button>
+    <button type="button" id="download-button" class="download-button">
+      <span class="button-text">Download Form</span>
+      <span class="button-icon"><i class="bx bxs-download"></i></span>
+    </button>
+
+
+  </div>
+</form>
+    <script>
+      // Add event listeners to buttons for click events
+      document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("download-button").addEventListener("click", function() {
+            // Implement download functionality here, e.g., downloading a PDF form
+            // This is just a placeholder, you can replace it with actual download code
+            alert("Download button clicked. Implement download functionality.");
+        });
+    });
+      
+      document.getElementById('reset-button').addEventListener('click', function(event) {
+        
+        window.scrollTo({
+          top:0,
+          left:0,
+          behavior:"smooth"
+        })
+        window.location.reload();
+        // if (confirm('Are you sure you want to reset the form?')) {
+        //   document.getElementById('declaration-form').reset();
+        // } else {
+        //   event.preventDefault(); // Prevent the form from resetting if the user cancels the action
+        // }
+      });
+      
+      document.getElementById('download-button').addEventListener('click', function() {
+        window.print();
+        // Replace this alert with your actual download logic
+      });
+      </script>
+ 
+
+<!--button end-->
+
+
+
+
+
+      <img src="images/upbtn.png" style="width: 4.5%;" id="myBtn" onclick="topFunction()">
+      <script src="pharmacyForm.js"></script>
+      <script src="/form I.js"></script>
+      <!-- Link to Bootstrap JS and its dependencies -->
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+</body>
+</html>
