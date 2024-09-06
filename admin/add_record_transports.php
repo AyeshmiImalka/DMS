@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $license_years = mysqli_real_escape_string($conn, $_POST['licenseYears']);
     $renewal_update = mysqli_real_escape_string($conn, $_POST['renewalUpdate']);
 
-    $sql = "INSERT INTO transportservices_db (Reg_ID, Reg_name, Vehicle_type, Reg_date, `LicenseRenewal(yrs)`, Renewal_update) VALUES ('$reg_id', '$reg_name', '$vehicle_type', '$reg_date', '$license_years', '$renewal_update')";
+    $sql = "INSERT INTO transportservices_db (Reg_id, Reg_name, Vehicle_type, Reg_date, `LicenseRenewal(yrs)`, Renewal_update) VALUES ('$reg_id', '$reg_name', '$vehicle_type', '$reg_date', '$license_years', '$renewal_update')";
 
     if (mysqli_query($conn, $sql)) {
         echo 1; // Success

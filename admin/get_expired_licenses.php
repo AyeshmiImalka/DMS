@@ -42,16 +42,6 @@ if ($table === 'drugstores') {
             $expired_licenses[] = $row;
         }
     }
-}elseif ($table === 'transport') {
-    // Fetch expired licenses from manufacturingcenters_db
-    $sql = "SELECT Service_id, Service_name, Vehicle_type, Registration_date, `LicenseRenewal(yrs)`, Renewal_update FROM pharmacies_db WHERE Renewal_update < CURDATE()";
-    $result = mysqli_query($conn, $sql);
-
-    if (mysqli_num_rows($result) > 0) {
-        while($row = mysqli_fetch_assoc($result)) {
-            $expired_licenses[] = $row;
-        }
-    }
 }elseif ($table === 'supplier') {
     // Fetch expired licenses from suppliers_db
     $sql = "SELECT Reg_id, Reg_name, Reg_date, `LicenseRenewal(yrs)`, Renewal_update FROM suppliers_db WHERE Renewal_update < CURDATE()";
@@ -173,7 +163,6 @@ if ($table === 'drugstores') {
         }
     }
 }
-
 
 
 // Return data as JSON

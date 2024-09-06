@@ -1,32 +1,76 @@
 <?php
-include 'config_form.php';
+// Connect to the database
+$conn = mysqli_connect('localhost', 'root', '', 'document_management_system');
 
-if (isset($_POST['ids']) && isset($_POST['db'])) {
-    $ids = $_POST['ids'];
-    $db = $_POST['db'];
-
-    // Define column names for different databases
-    $db_columns = [
-        'pharmacies_db' => 'id', // Replace 'id' with the actual column name for pharmacies_db
-        'manufacturingcenters_db' => 'Reg_id'
-    ];
-
-    // Validate the database name to prevent SQL injection
-    $valid_dbs = array_keys($db_columns);
-    if (!in_array($db, $valid_dbs)) {
-        echo json_encode(['status' => 'error', 'message' => 'Invalid database']);
-        exit;
-    }
-
-    // Get the column name for the specified database
-    $column = $db_columns[$db];
-
-    foreach ($ids as $id) {
-        $id = mysqli_real_escape_string($conn, $id);
-        $sql = "DELETE FROM $db WHERE $column='$id'";
-        mysqli_query($conn, $sql);
-    }
-
-    echo json_encode(['status' => 'success']);
+// Check connection
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
 }
+
+if (isset($_POST['id']) && isset($_POST['table'])) {
+    $id = $_POST['id'];
+    $table = $_POST['table'];
+
+    // List of allowed tables
+    $allowed_tables = array(
+        'manufacturingcenters_db',
+        'pharmacies_db',
+        'drugstores_db',
+        'transportservices_db',
+        'suppliers_db',
+        'distributors_db',
+        'localdrugs_db',
+        'localproducts_db',
+        'importeddrugs_db',
+        'importedproducts_db',
+        'restricteddrugs_db',
+        'cannabies_db',
+        'hospitals_db',
+        'panchakarmacenters_db',
+        'ayurvedainstitutions_db'
+    );
+
+    // Define the ID column for each table
+    $id_columns = array(
+        'manufacturingcenters_db' => 'Reg_id',
+        'pharmacies_db' => 'Reg_id',
+        'drugstores_db' => 'Reg_id',
+        'transportservices_db' => 'Reg_id',
+        'suppliers_db' => 'Reg_id',
+        'distributors_db' => 'Reg_id',
+        'localdrugs_db' => 'Reg_id',
+        'localproducts_db' => 'Reg_id',
+        'importeddrugs_db' => 'Reg_id',
+        'importedproducts_db' => 'Reg_id',
+        'restricteddrugs_db' => 'Reg_id',
+        'cannabies_db' => 'Reg_id',
+        'hospitals_db' => 'Reg_id',
+        'panchakarmacenters_db' => 'Reg_id',
+        'ayurvedainstitutions_db' => 'Reg_id'
+    );
+
+    // Validate the table and column
+    if (in_array($table, $allowed_tables) && array_key_exists($table, $id_columns)) {
+        $id_column = $id_columns[$table];
+
+        // Prepare the SQL query to prevent SQL injection
+        $stmt = $conn->prepare("DELETE FROM $table WHERE $id_column = ?");
+        $stmt->bind_param("s", $id);
+
+        // Execute the query and check for errors
+        if ($stmt->execute()) {
+            echo 1; // Return success
+        } else {
+            echo "Error: " . $stmt->error; // Check for errors
+        }
+
+        // Close the statement
+        $stmt->close();
+    } else {
+        echo 0; // Return failure if the table or ID column is not found
+    }
+}
+
+// Close the database connection
+$conn->close();
 ?>

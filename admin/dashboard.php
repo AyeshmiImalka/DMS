@@ -177,7 +177,7 @@ include('includes/header.php');
             <img src="assets/vendor/images/pharmacy.png" alt="Pharmacy" style="height: 50px;">
         </div>
           <div class="widget-data">
-            <div class="h3 mb-0"><?php echo $pharmacies_count; ?></div>
+            <div class="weight-800 font-24"><?php echo $pharmacies_count; ?></div>
             <div class="weight-800 font-16">Private Ayurveda Pharmacies</div>
           </div>
         </div>
@@ -190,7 +190,7 @@ include('includes/header.php');
             <img src="assets/vendor/images/hospital.png" alt="hospital" style="height: 50px;">
         </div>
           <div class="widget-data">
-            <div class="h3 mb-0"><?php echo $hospitals_count; ?></div>
+            <div class="weight-800 font-24"><?php echo $hospitals_count; ?></div>
             <div class="weight-800 font-16">Private Ayurveda Hospitals</div>
           </div>
         </div>
@@ -203,7 +203,7 @@ include('includes/header.php');
             <img src="assets/vendor/images/factory.png" alt="factory" style="height: 50px;">
         </div>
           <div class="widget-data">
-            <div class="h3 mb-0"><?php echo $manufacturingcenters_count; ?></div>
+            <div class="weight-800 font-24"><?php echo $manufacturingcenters_count; ?></div>
             <div class="weight-800 font-16">Manufacturing Centers</div>
           </div>
         </div>
@@ -216,7 +216,7 @@ include('includes/header.php');
             <img src="assets/vendor/images/store.png" alt="store" style="height: 50px;">
         </div>
           <div class="widget-data">
-            <div class="h3 mb-0"><?php echo $drugstores_count; ?></div>
+            <div class="weight-800 font-24"><?php echo $drugstores_count; ?></div>
             <div class="weight-800 font-16">Ayurveda Drug Stores</div>
           </div>
         </div>

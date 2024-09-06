@@ -32,6 +32,9 @@ include('includes/header.php');
                             </ol>
                         </nav>
                     </div>
+                    <div class="col-md-4 col-sm-12 text-right">
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#addRecordModal">Add New Payment</button>
+                    </div>
                 </div>
             </div>
             <!-- Simple Datatable start -->
@@ -118,7 +121,7 @@ include('includes/header.php');
                                 <?php if ($page > 1 || $total_pages > 1) : ?>
                                     <li class="page-item <?php echo $page == 1 ? 'disabled' : ''; ?>">
                                         <a class="page-link" href="?page=<?php echo $page - 1; ?>" <?php echo $page == 1 ? 'tabindex="-1" aria-disabled="true"' : ''; ?>>
-                                            <i class="bi bi-caret-left"></i>
+                                            <i class="bi bi-caret-left-fill"></i>
                                         </a>
                                     </li>
                                 <?php endif; ?>
@@ -126,7 +129,7 @@ include('includes/header.php');
                                 <?php if ($page < $total_pages || $total_pages > 1) : ?>
                                     <li class="page-item <?php echo $page == $total_pages ? 'disabled' : ''; ?>">
                                         <a class="page-link" href="?page=<?php echo $page + 1; ?>" <?php echo $page == $total_pages ? 'tabindex="-1" aria-disabled="true"' : ''; ?>>
-                                            <i class="bi bi-caret-right"></i>
+                                            <i class="bi bi-caret-right-fill"></i>
                                         </a>
                                     </li>
                                 <?php endif; ?>
@@ -137,6 +140,9 @@ include('includes/header.php');
             </div>
             <!-- Export Datatable End -->
             <?php include('includes/footer.php');?>
+
+            <!-- Add Record Modal -->
+            <?php include('database/payments/addPayments.php'); ?>
 			
             <script>
                 // Checkbox to select all rows
@@ -189,6 +195,38 @@ include('includes/header.php');
                                         }
                                     }
                                 });
+                            }
+                        });
+                    });
+
+                    // Form submission for adding a new record
+$('#addRecordForm').submit(function(e) {
+                        e.preventDefault();
+                        var formData = $(this).serialize();
+                        $.ajax({
+                            url: 'add_record_payments.php',
+                            type: 'POST',
+                            data: formData,
+                            success: function(response) {
+                                if (response == 1) {
+                                    Swal.fire({
+                                        title: 'Success!',
+                                        text: 'The record has been added successfully.',
+                                        icon: 'success',
+                                        confirmButtonText: 'OK'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            location.reload();
+                                        }
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        title: 'Error!',
+                                        text: 'An error occurred while adding the record.',
+                                        icon: 'error',
+                                        confirmButtonText: 'OK'
+                                    });
+                                }
                             }
                         });
                     });

@@ -11,6 +11,19 @@ $sql_expired_count = "SELECT COUNT(*) AS expired_count FROM pharmacies_db WHERE 
 $result_expired_count = mysqli_query($conn, $sql_expired_count);
 $row_expired_count = mysqli_fetch_assoc($result_expired_count);
 $expired_count = $row_expired_count['expired_count'];
+
+// Delete record functionality
+if(isset($_POST['id'])) {
+    $id = $_POST['id'];
+    $sql_delete = "DELETE FROM pharmacies_db WHERE Reg_id = '$id'";
+    $result_delete = mysqli_query($conn, $sql_delete);
+    if($result_delete) {
+        echo 1; // Success
+    } else {
+        echo 0; // Failure
+    }
+    exit;
+}
 ?>
 
 
@@ -225,48 +238,48 @@ include('includes/header.php');
 
         //row delete 
         $(document).ready(function() {
-            $('.delete-btn').click(function() {
-                var id = $(this).data('id');
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: 'This record will be deleted permanently!',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonText: 'Yes, delete it!',
-                    cancelButtonText: 'No, cancel!',
-                    reverseButtons: true
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $.ajax({
-                            url: 'delete.php',
-                            type: 'POST',
-                            data: {id: id},
-                            success: function(response) {
-                                if (response == 1) {
-                                    Swal.fire({
-                                        title: 'Deleted!',
-                                        text: 'The record has been deleted successfully.',
-                                        icon: 'success',
-                                        confirmButtonText: 'OK'
-                                    }).then((result) => {
-                                        if (result.isConfirmed) {
-                                            location.reload();
-                                        }
-                                    });
-                                } else {
-                                    Swal.fire({
-                                        title: 'Error!',
-                                        text: 'An error occurred while deleting the record.',
-                                        icon: 'error',
-                                        confirmButtonText: 'OK'
-                                    });
-                                }
+        $('.delete-btn').click(function() {
+            var id = $(this).data('id');
+            Swal.fire({
+                title: 'Are you sure?',
+                text: 'This record will be deleted permanently!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: '<?php echo $_SERVER['PHP_SELF']; ?>',
+                        type: 'POST',
+                        data: {id: id},
+                        success: function(response) {
+                            if (response == 1) {
+                                Swal.fire({
+                                    title: 'Deleted!',
+                                    text: 'The record has been deleted successfully.',
+                                    icon: 'success',
+                                    confirmButtonText: 'OK'
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        location.reload();
+                                    }
+                                });
+                            } else {
+                                Swal.fire({
+                                    title: 'Error!',
+                                    text: 'An error occurred while deleting the record.',
+                                    icon: 'error',
+                                    confirmButtonText: 'OK'
+                                });
                             }
-                        });
-                    }
-                });
+                        }
+                    });
+                }
             });
         });
+    });
 
  // Form submission for adding a new record
  $('#addRecordForm').submit(function(e) {

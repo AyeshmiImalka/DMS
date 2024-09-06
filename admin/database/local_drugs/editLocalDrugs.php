@@ -13,12 +13,12 @@
                     
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="editRegName">Registered Name</label>
+                            <label for="editRegName">Drug Name</label>
                             <input type="text" class="form-control" id="editRegName" name="regName" required>
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="editRegId">Registered ID</label>
-                            <input type="text" class="form-control" id="editRegId" name="regId" required>
+                            <label for="editRegId">Drug ID</label>
+                            <input type="text" class="form-control" id="editRegId" name="regId" required readonly>
                         </div>
                     </div>
                     <div class="form-row">
