@@ -286,6 +286,14 @@ if (!isset($_SESSION['admin_name'])) {
         .pending-row {
             background-color: #ffeb99; /* Change to your desired pending row color */
         }
+
+        #circle-btn {
+    width: 30px; /* Adjust as needed */
+    height: 30px; /* Adjust as needed */
+    padding: 7; /* Remove any padding */
+    line-height: 28px; /* Center the icon vertically */
+    text-align: center; /* Center the icon horizontally */
+}
     </style>
 
 </div>

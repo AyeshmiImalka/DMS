@@ -1,6 +1,6 @@
 <?php
     // Include the database connection file
-    include('config_form.php');
+    include('../config_form.php');
 
     // Start the session if not already started
     if (session_status() == PHP_SESSION_NONE) {

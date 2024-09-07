@@ -11,7 +11,7 @@
 #circle-btn {
     width: 30px; /* Adjust as needed */
     height: 30px; /* Adjust as needed */
-    padding: 0; /* Remove any padding */
+    padding: 7; /* Remove any padding */
     line-height: 28px; /* Center the icon vertically */
     text-align: center; /* Center the icon horizontally */
 }

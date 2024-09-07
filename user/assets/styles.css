@@ -1,0 +1,34 @@
+/*local drugs registration start*/
+
+.icon-blue {
+    color: #007bff;
+}
+
+.icon-blue:hover {
+    color: #0056b3; /* Change to the desired hover color */
+}
+
+#circle-btn {
+    width: 30px; /* Adjust as needed */
+    height: 30px; /* Adjust as needed */
+    padding: 0; /* Remove any padding */
+    line-height: 28px; /* Center the icon vertically */
+    text-align: center; /* Center the icon horizontally */
+}
+
+.checkbox-custom {
+    width: 18px; /* Adjust width */
+    height: 18px; /* Adjust height */
+}
+
+.checkbox-custom:checked + .checkbox-custom-label:before {
+    width: 18px; /* Adjust width */
+    height: 18px; /* Adjust height */
+    border-color: #007bff; /* Change border color when checked if desired */
+}
+
+/*local drugs registration end*/
+
+/*dashboard banner start*/
+
+  /*dashboard banner end*/

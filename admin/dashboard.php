@@ -155,9 +155,9 @@ include('includes/header.php');
 <link rel="stylesheet" href="assets/styles.css">
 
 <div class="container-fluid main-container">
-  <div class="card-box pd-20 height-100-p mb-30" style="background-image: url('assets/vendor/images/banner_bg.png'); background-size: cover; background-position: center; color: white; position: relative;">
+  <div class="card-box pd-20 height-100-p mb-30" style="background-image: url('assets/vendor/images/banner_bg.png'); background-size: cover; background-position: center; color: white; position: relative; height: 300px;">
     <!-- Add the mirrored image here -->
-    <img src="assets/vendor/images/dms_banner.png" alt="" class="mirror-image" />
+    <img src="assets/vendor/images/dms_banner.png" alt="" class="mirror-image"  />
     <div class="row align-items-center">
       <div class="col-md-8">
         <h1 class="welcome-message">Welcome back, <?php echo $admin_name; ?>!</h1>
