@@ -461,6 +461,21 @@
     font-size: 18px;
 }
 
+.left-part {
+    flex: 50;
+    display: flex;
+    flex-direction: column;
+    background-image: url(user/images/OIP.jpg);
+    max-width: 600px;
+    height: 45vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 15px;
+    margin-left: 6%;
+    margin-right: 4%;
+}
+
 
 
 
@@ -579,23 +594,23 @@
     <div class="slideshow-container">
 
         <div class="mySlides fade">
-            <img src="images/C1.jpeg" style="width:100%">
+            <img src="user/images/C1.jpeg" style="width:100%">
         </div>
 
         <div class="mySlides fade">
-            <img src="images/C2.jpeg" style="width:100%">
+            <img src="user/images/C2.jpeg" style="width:100%">
         </div>
 
         <div class="mySlides fade">
-            <img src="images/C3.jpeg" style="width:100%">
+            <img src="user/images/C3.jpeg" style="width:100%">
         </div>
 
         <div class="mySlides fade">
-            <img src="images/C4.jpeg" style="width:100%">
+            <img src="user/images/C4.jpeg" style="width:100%">
         </div>
 
         <div class="mySlides fade">
-            <img src="images/C5.jpeg" style="width:100%">
+            <img src="user/images/C5.jpeg" style="width:100%">
         </div>
     </div>
     <br>
@@ -668,7 +683,7 @@ $(document).ready(function(){
             <!-- News Card 1 -->
             <div class="col">
                 <div class="card h-100 p-3">
-                    <img src="images/img10.jpg" class="card-img-top" alt="...">
+                    <img src="user/images/img10.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <span class="badge bg-secondary">
                             <h5 class="mt-2">03<br>June</h5>
@@ -682,7 +697,7 @@ $(document).ready(function(){
             <!-- News Card 2 -->
             <div class="col">
                 <div class="card h-100 p-3">
-                    <img src="images/img3.jpg" class="card-img-top" alt="...">
+                    <img src="user/images/img3.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <span class="badge bg-secondary">
                             <h5 class="mt-2">12<br>Sunday</h5>
@@ -696,7 +711,7 @@ $(document).ready(function(){
             <!-- News Card 3 -->
             <div class="col">
                 <div class="card h-100 p-3">
-                    <img src="images/img4.jpg" class="card-img-top" alt="...">
+                    <img src="user/images/img4.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <span class="badge bg-secondary">
                             <h5 class="mt-2">13<br>Sunday</h5>
@@ -710,7 +725,7 @@ $(document).ready(function(){
             <!-- News Card 4 -->
             <div class="col">
                 <div class="card h-100 p-3">
-                    <img src="images/img5.jpg" class="card-img-top" alt="...">
+                    <img src="user/images/img5.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <span class="badge bg-secondary">
                             <h5 class="mt-2">12<br>Sunday</h5>
@@ -724,7 +739,7 @@ $(document).ready(function(){
             <!-- News Card 5 -->
             <div class="col">
                 <div class="card h-100 p-3">
-                    <img src="images/img2.jpg" class="card-img-top" alt="...">
+                    <img src="user/images/img2.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <span class="badge bg-secondary">
                             <h5 class="mt-2">12<br>Sunday</h5>
@@ -738,7 +753,7 @@ $(document).ready(function(){
             <!-- News Card 6 -->
             <div class="col">
                 <div class="card h-100 p-3">
-                    <img src="images/img11.jpeg" class="card-img-top" alt="...">
+                    <img src="user/images/img11.jpeg" class="card-img-top" alt="...">
                     <div class="card-body">
                         <span class="badge bg-secondary">
                             <h5 class="mt-2">12<br>Sunday</h5>
@@ -782,7 +797,7 @@ $(document).ready(function(){
         
       <div class="card">
           <div class="imbBx">
-              <img src="images/honramesh.jpg" alt="dr.ramesh">
+              <img src="user/images/honramesh.jpg" alt="dr.ramesh">
           </div>
           <div class="content">
               <div class="contentBx">
@@ -793,7 +808,7 @@ $(document).ready(function(){
 
       <div class="card">
           <div class="imbBx">
-              <img src="images/statemini.jpg" alt="">
+              <img src="user/images/statemini.jpg" alt="">
           </div>
           <div class="content">
               <div class="contentBx">-
@@ -804,7 +819,7 @@ $(document).ready(function(){
 
       <div class="card">
         <div class="imbBx">
-            <img src="images/Sec_Health.jpg" alt="">
+            <img src="user/images/Sec_Health.jpg" alt="">
         </div>
         <div class="content">
             <div class="contentBx">
@@ -815,7 +830,7 @@ $(document).ready(function(){
 
 
             <div class="card_btn" onclick="location.href='contactUs.php#wrapper';">
-                <img src="images/rightbtn.png" style="width: 60%;">
+                <img src="user/images/rightbtn.png" style="width: 60%;">
             </div>
         </div>
 

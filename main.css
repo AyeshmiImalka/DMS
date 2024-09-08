@@ -283,7 +283,7 @@ select {
     flex: 50;
     display: flex;
     flex-direction: column;
-    background-image: url(images/OIP\ \(26\).jpg);
+    background-image: url(user/images/OIP.jpg);
     max-width: 600px;
     height: 45vh;
     background-position: center;
@@ -1591,7 +1591,7 @@ h5{
 /*FAQ section starts*/
 .hero-section {
     height: 70vh;
-    background-image: url("images/faq.jpg");
+    background-image: url("user/images/faq.jpg");
     background-position: center;
     background-size: cover;
     display: flex;

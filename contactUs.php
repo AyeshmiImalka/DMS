@@ -265,7 +265,7 @@
         <div class="row gx-5">
           <div class="col-lg-5 mb-5 mb-lg-0" style="min-height: 400px;">
               <div class="position-relative h-100">
-                  <img class="position-absolute w-100 h-100" src="images/contactus-Img.jpg" style="object-fit: cover;">
+                  <img class="position-absolute w-100 h-100" src="user/images/contactus-Img.jpg" style="object-fit: cover;">
               </div>
           </div>
           <div class="col-lg-6 pb-5">
@@ -293,7 +293,7 @@
   <div class="card_Container">
       <div class="card">
           <div class="imbBx">
-              <img src="images/honramesh.jpg" alt="dr.ramesh">
+              <img src="user/images/honramesh.jpg" alt="dr.ramesh">
           </div>
           <div class="content">
               <div class="contentBx">
@@ -304,7 +304,7 @@
 
       <div class="card">
           <div class="imbBx">
-              <img src="images/statemini.jpg" alt="">
+              <img src="user/images/statemini.jpg" alt="">
           </div>
           <div class="content">
               <div class="contentBx">-
@@ -315,7 +315,7 @@
 
       <div class="card">
         <div class="imbBx">
-            <img src="images/Sec_Health.jpg" alt="">
+            <img src="user/images/Sec_Health.jpg" alt="">
         </div>
         <div class="content">
             <div class="contentBx">
@@ -326,7 +326,7 @@
 
       <div class="card">
           <div class="imbBx">
-              <img src="images/Con4.jpg" alt="">
+              <img src="user/images/Con4.jpg" alt="">
           </div>
           <div class="content">
               <div class="contentBx">
@@ -336,7 +336,7 @@
       </div>
       <div class="card">
         <div class="imbBx">
-            <img src="images/Con5.jpg" alt="">
+            <img src="user/images/Con5.jpg" alt="">
         </div>
         <div class="content">
             <div class="contentBx">
@@ -346,7 +346,7 @@
     </div>
     <div class="card">
       <div class="imbBx">
-          <img src="images/con6.png" alt="">
+          <img src="user/images/con6.png" alt="">
       </div>
       <div class="content">
           <div class="contentBx">
@@ -356,7 +356,7 @@
    </div>
    <div class="card">
       <div class="imbBx">
-        <img src="images/img-3.jpg" alt="">
+        <img src="user/images/img-3.jpg" alt="">
       </div>
       <div class="content">
         <div class="contentBx">
@@ -366,7 +366,7 @@
    </div>
 <div class="card">
   <div class="imbBx">
-      <img src="images/Untitled-1-1.jpg" alt="">
+      <img src="user/images/Untitled-1-1.jpg" alt="">
   </div>
   <div class="content">
       <div class="contentBx">
@@ -377,7 +377,7 @@
 
 <div class="card">
   <div class="imbBx">
-      <img src="images/Con10.jpg" alt="">
+      <img src="user/images/Con10.jpg" alt="">
   </div>
   <div class="content">
       <div class="contentBx">
@@ -387,7 +387,7 @@
 </div>
 <div class="card">
   <div class="imbBx">
-      <img src="images/Con11.jpg" alt="">
+      <img src="user/images/Con11.jpg" alt="">
   </div>
   <div class="content">
       <div class="contentBx">
@@ -397,7 +397,7 @@
 </div>
 <div class="card">
   <div class="imbBx">
-      <img src="images/Frame_10-removebg-preview.png" alt="">
+      <img src="user/images/Frame_10-removebg-preview.png" alt="">
   </div>
   <div class="content">
       <div class="contentBx">
@@ -407,7 +407,7 @@
 </div>
 <div class="card">
   <div class="imbBx">
-      <img src="images/Con13.jpg" alt="">
+      <img src="user/images/Con13.jpg" alt="">
   </div>
   <div class="content">
       <div class="contentBx">
@@ -417,7 +417,7 @@
 </div>
 <div class="card">
     <div class="imbBx">
-        <img src="images/Con13-1.jpg" alt="">
+        <img src="user/images/Con13-1.jpg" alt="">
     </div>
     <div class="content">
         <div class="contentBx">
@@ -427,7 +427,7 @@
   </div>
   <div class="card">
     <div class="imbBx">
-        <img src="images/con14.jpg" alt="">
+        <img src="user/images/con14.jpg" alt="">
     </div>
     <div class="content">
         <div class="contentBx">
@@ -437,7 +437,7 @@
   </div>
   <div class="card">
     <div class="imbBx">
-        <img src="images/Con15.jpg" alt="">
+        <img src="user/images/Con15.jpg" alt="">
     </div>
     <div class="content">
         <div class="contentBx">
@@ -447,7 +447,7 @@
   </div>
   <div class="card">
     <div class="imbBx">
-        <img src="images/Con17.jpg" alt="">
+        <img src="user/images/Con17.jpg" alt="">
     </div>
     <div class="content">
         <div class="contentBx">

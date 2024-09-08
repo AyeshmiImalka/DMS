@@ -204,6 +204,17 @@
     font-size: 18px;
 }
 
+/*FAQ section starts*/
+.hero-section {
+    height: 70vh;
+    background-image: url("user/images/faq.jpg");
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+  }
+
     </style>
 </head>
 
